@@ -13,10 +13,13 @@ export const cambiarTituloPagina = (idPagina) => {
             document.title = "Iniciar Sesion";
             break;
         case "Registrarse" : 
-            document.title = "Registrarse"
+            document.title = "Registrarse";
+            break;
+        case "Error404" : 
+            document.title = "Error 404";
             break;
         default: 
         document.title = "Pagina";
-        break
+        break;
     }
 }
