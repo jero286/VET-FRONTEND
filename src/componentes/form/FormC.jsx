@@ -1,28 +1,67 @@
+import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const FormC = ({idPage}) => {
+const FormC = ({ idPage }) => {
   return (
     <>
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
+        <Form.Group className="mb-3" controlId="idUsuario">
+          <Form.Label>Usuario</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Ingrese su nombre de usuario"
+            name="nombreUsuario"
+          />
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+        {idPage === "registro" && (
+          <Form.Group className="mb-3" controlId="idEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Ingrese su email"
+              name="email"
+            />
+          </Form.Group>
+        )}
+        <Form.Group className="mb-3" controlId="idContrasenia">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Ingrese su contraseña"
+            name="contrasenia"
+          />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        {idPage === "registro" && (
+          <Form.Group className="mb-3" controlId="idRepContrasenia">
+            <Form.Label>Repetir contraseña</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Vuelva a ingresar su contrasenia"
+              name="repContrasenia"
+            />
+          </Form.Group>
+        )}
+        {idPage === "registro" && (
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check
+              type="checkbox"
+              label="Aceptar terminos y condiciones"
+              name="terminosYCondiciones"
+            />
+          </Form.Group>
+        )}
+        {idPage === "inicioSesion" && (
+          <p>
+            Si olvidaste tu contraseña, haz click
+            <Link to={"/recuperarContraseña"}>aquí</Link>
+          </p>
+        )}
+        <Container className="text-center">
+          <Button variant="primary" type="submit">
+            {idPage === "registro" ? "Enviar datos" : "Ingresar"}
+          </Button>
+        </Container>
       </Form>
     </>
   );
