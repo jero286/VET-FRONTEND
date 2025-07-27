@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/acercaDeNosotros" element={<AcercaDeNosotros/>}/>
         <Route path="/iniciarSesion" element={<IniciarSesion/>}/>
         <Route path="/registrarse" element={<Registrarse/>}/>
-        <Route path="/error404" element={<Error404/>}/>
+        <Route path="*" element={<Error404/>}/>
       </Routes>
       <FooterC/>
     </Router>
