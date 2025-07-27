@@ -1,11 +1,13 @@
-import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
-
+import FormC from "../componentes/form/FormC";
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 const Registrarse = () => {
-  cambiarTituloPagina("Registrarse")
+  cambiarTituloPagina("Registrarse");
   return (
-    <div>Registrarse</div>
-  )
-}
+    <>
+      <FormC />
+    </>
+  );
+};
 
-export default Registrarse
+export default Registrarse;

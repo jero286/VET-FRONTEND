@@ -1,13 +1,13 @@
-import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
-
+import FormC from "../componentes/form/FormC";
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 const IniciarSesion = () => {
-  cambiarTituloPagina("Iniciar Sesion")
+  cambiarTituloPagina("Iniciar Sesion");
   return (
     <>
-    
+      <FormC />
     </>
-  )
-}
+  );
+};
 
-export default IniciarSesion
+export default IniciarSesion;
