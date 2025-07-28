@@ -100,6 +100,14 @@ const FormC = ({ idPage }) => {
     }
   };
 
+  const handleChangeDatosRegistro = (ev) => {
+    const value =
+      ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
+    setRegistro({ ...registro, [ev.target.name]: value });
+  };
+
+
+
   const handleClickBotonLogueo = async (ev) => {
     try {
       ev.preventDefault();
@@ -129,6 +137,11 @@ const FormC = ({ idPage }) => {
         swal.fire({
           title: `${usuarioLogueado.data.msg}`,
           icon: "success",
+        });
+
+        setLogin({
+          nombreUsuario: "",
+          contrasenia: "",
         });
 
         if (usuarioLogueado.data.rol === "usuario") {
@@ -205,7 +218,15 @@ const FormC = ({ idPage }) => {
           </p>
         )}
         <Container className="text-center">
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={
+              idPage === "registro"
+                ? handleClickDelBotonParaRegistro
+                : handleClickBotonLogueo
+            }
+          >
             {idPage === "registro" ? "Enviar datos" : "Ingresar"}
           </Button>
         </Container>
