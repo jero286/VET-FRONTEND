@@ -7,8 +7,17 @@ import swal from "sweetalert2";
 
 const FormC = ({ idPage }) => {
   const [errores, setErrores] = useState({});
-  const [registro, setRegistro] = useState({});
-  const [login, setLogin] = useState({});
+  const [registro, setRegistro] = useState({
+    nombreUsuario: "",
+    email: "",
+    contrasenia: "",
+    repContrasenia: "",
+    terminosYCondiciones: false,
+  });
+  const [login, setLogin] = useState({
+    nombreUsuario: "",
+    contrasenia: "",
+  });
 
   return (
     <>
