@@ -59,8 +59,8 @@ const FormC = ({ idPage }) => {
         terminosYCondiciones
       ) {
         if (contrasenia === repContrasenia) {
-          const usuario = clienteAxios.post(
-            "/usuarios",
+          const usuarioRegistrado = await clienteAxios.post(
+            "/registrarse",
             {
               nombreUsuario,
               email,
@@ -69,7 +69,7 @@ const FormC = ({ idPage }) => {
             configHeader
           );
           swal.fire({
-            title: `${(await usuario).data.msg}`,
+            title: `${usuarioRegistrado.data.msg}`,
             text: "¡En breve recibiras un email de confirmación!",
             icon: "success",
           });
@@ -89,6 +89,56 @@ const FormC = ({ idPage }) => {
             title: "Las contraseñas no coinciden",
           });
         }
+      }
+    } catch (error) {
+      if (error) {
+        swal.fire({
+          icon: "error",
+          title: "¡Rellena todos los campos!",
+        });
+      }
+    }
+  };
+
+  const handleClickBotonLogueo = async (ev) => {
+    try {
+      ev.preventDefault();
+      const erroresLogin = {};
+      const { nombreUsuario, contrasenia } = login;
+      if (!nombreUsuario) {
+        erroresLogin.nombreUsuario = "Campo USUARIO vacío";
+      }
+      if (!contrasenia) {
+        erroresLogin.contrasenia = "Campo CONTRASEÑA vacío";
+      }
+      setErrores(erroresLogin);
+      if (nombreUsuario && contrasenia) {
+        const usuarioLogueado = await clienteAxios.post(
+          "/iniciarSesion",
+          {
+            nombreUsuario,
+            contrasenia,
+          },
+          configHeader
+        );
+        sessionStorage.setItem(
+          "token",
+          JSON.stringify(usuarioLogueado.data.token)
+        );
+        sessionStorage.setItem("rol", JSON.stringify(usuarioLogueado.data.rol));
+        swal.fire({
+          title: `${usuarioLogueado.data.msg}`,
+          icon: "success",
+        });
+
+        if (usuarioLogueado.data.rol === "usuario") {
+          setTimeout(() => {
+            navigate("/panelUsario");
+          }, 1000);
+        } else {
+          navigate("/panelAdmin");
+        }
+      } else {
       }
     } catch (error) {
       if (error) {
