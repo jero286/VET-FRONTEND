@@ -174,7 +174,23 @@ const FormC = ({ idPage }) => {
             type="text"
             placeholder="Ingrese su nombre de usuario"
             name="nombreUsuario"
+            className={
+              errores.nombreUsuario ? "form-control is-invalid" : "form-control"
+            }
+            value={
+              idPage === "registro"
+                ? registro.nombreUsuario
+                : login.nombreUsuario
+            }
+            onChange={
+              idPage === "registro"
+                ? handleChangeDatosRegistro
+                : handleChangeDatosLogeo
+            }
           />
+          {errores.nombreUsuario && (
+            <p className="text-danger">{errores.nombreUsuario}</p>
+          )}
         </Form.Group>
         {idPage === "registro" && (
           <Form.Group className="mb-3" controlId="idEmail">
@@ -183,7 +199,13 @@ const FormC = ({ idPage }) => {
               type="email"
               placeholder="Ingrese su email"
               name="email"
+              className={
+                errores.email ? "form-control is-invalid" : "form-control"
+              }
+              value={registro.email}
+              onChange={handleChangeDatosRegistro}
             />
+            {errores.email && <p className="text-danger">{errores.email}</p>}
           </Form.Group>
         )}
         <Form.Group className="mb-3" controlId="idContrasenia">
@@ -192,7 +214,21 @@ const FormC = ({ idPage }) => {
             type="password"
             placeholder="Ingrese su contraseña"
             name="contrasenia"
+            className={
+              errores.contrasenia ? "form-control is-invalid" : "form-control"
+            }
+            value={
+              idPage === "registro" ? registro.contrasenia : login.contrasenia
+            }
+            onChange={
+              idPage === "registro"
+                ? handleChangeDatosRegistro
+                : handleChangeDatosLogeo
+            }
           />
+          {errores.contrasenia && (
+            <p className="text-danger">{errores.contrasenia}</p>
+          )}
         </Form.Group>
         {idPage === "registro" && (
           <Form.Group className="mb-3" controlId="idRepContrasenia">
@@ -201,7 +237,17 @@ const FormC = ({ idPage }) => {
               type="password"
               placeholder="Vuelva a ingresar su contrasenia"
               name="repContrasenia"
+              className={
+                errores.repContrasenia
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+              value={registro.repContrasenia}
+              onChange={handleChangeDatosRegistro}
             />
+            {errores.repContrasenia && (
+              <p className="text-danger">{errores.repContrasenia}</p>
+            )}
           </Form.Group>
         )}
         {idPage === "registro" && (
@@ -210,7 +256,12 @@ const FormC = ({ idPage }) => {
               type="checkbox"
               label="Aceptar terminos y condiciones"
               name="terminosYCondiciones"
+              onChange={handleChangeDatosRegistro}
+              value={registro.terminosYCondiciones}
             />
+            {errores.terminosYCondiciones && (
+              <p className="text-danger">{errores.terminosYCondiciones}</p>
+            )}
           </Form.Group>
         )}
         {idPage === "inicioSesion" && (
