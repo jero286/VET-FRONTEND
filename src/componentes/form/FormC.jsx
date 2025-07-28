@@ -3,9 +3,12 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router";
+import clienteAxios from "../../funciones_auxiliares/configAxios";
+import { configHeader } from "../../funciones_auxiliares/configAxios";
 import swal from "sweetalert2";
 
 const FormC = ({ idPage }) => {
+  const navigate = useNavigate();
   const [errores, setErrores] = useState({});
   const [registro, setRegistro] = useState({
     nombreUsuario: "",
@@ -18,6 +21,84 @@ const FormC = ({ idPage }) => {
     nombreUsuario: "",
     contrasenia: "",
   });
+
+  const handleClickDelBotonParaRegistro = async (ev) => {
+    try {
+      ev.preventDefault();
+      const erroresFormulario = {};
+      const {
+        nombreUsuario,
+        email,
+        contrasenia,
+        repContrasenia,
+        terminosYCondiciones,
+      } = registro;
+      if (!nombreUsuario) {
+        erroresFormulario.nombreUsuario = "Campo USUARIO está vacío";
+      }
+      if (!email) {
+        erroresFormulario.email = "Campo EMAIL está vacío";
+      }
+      if (!contrasenia) {
+        erroresFormulario.contrasenia = "Campo CONTRASEÑA está vacío";
+      }
+      if (!repContrasenia) {
+        erroresFormulario.repContrasenia =
+          "Campo REPETIR CONTRASEÑA está vacío";
+      }
+      if (!terminosYCondiciones) {
+        erroresFormulario.terminosYCondiciones =
+          "Acepta los terminos y condiciones";
+      }
+      setErrores(erroresFormulario);
+      if (
+        nombreUsuario &&
+        email &&
+        contrasenia &&
+        repContrasenia &&
+        terminosYCondiciones
+      ) {
+        if (contrasenia === repContrasenia) {
+          const usuario = clienteAxios.post(
+            "/usuarios",
+            {
+              nombreUsuario,
+              email,
+              contrasenia,
+            },
+            configHeader
+          );
+          swal.fire({
+            title: `${(await usuario).data.msg}`,
+            text: "¡En breve recibiras un email de confirmación!",
+            icon: "success",
+          });
+          setRegistro({
+            nombreUsuario: "",
+            email: "",
+            contrasenia: "",
+            repContrasenia: "",
+            terminosYCondiciones: false,
+          });
+          setTimeout(() => {
+            navigate("/iniciarSesion");
+          }, 1000);
+        } else {
+          swal.fire({
+            icon: "error",
+            title: "Las contraseñas no coinciden",
+          });
+        }
+      }
+    } catch (error) {
+      if (error) {
+        swal.fire({
+          icon: "error",
+          title: "¡Rellena todos los campos!",
+        });
+      }
+    }
+  };
 
   return (
     <>
