@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link, useNavigate } from "react-router";
+import swal from "sweetalert2";
 
 const FormC = ({ idPage }) => {
-  
-
-
+  const [errores, setErrores] = useState({});
+  const [registro, setRegistro] = useState({});
+  const [login, setLogin] = useState({});
 
   return (
     <>
