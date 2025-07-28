@@ -1,11 +1,16 @@
-import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
-
+import { Container } from "react-bootstrap";
+import FormC from "../componentes/form/FormC";
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 const Registrarse = () => {
-  cambiarTituloPagina("Registrarse")
+  cambiarTituloPagina("Registrarse");
   return (
-    <div>Registrarse</div>
-  )
-}
+    <>
+      <Container className="d-flex justify-content-center my-4">
+        <FormC idPage="registro" />
+      </Container>
+    </>
+  );
+};
 
-export default Registrarse
+export default Registrarse;
