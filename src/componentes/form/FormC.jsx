@@ -3,6 +3,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 const FormC = ({ idPage }) => {
+  
+
+
+
   return (
     <>
       <Form>
