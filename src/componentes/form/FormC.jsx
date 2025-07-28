@@ -106,7 +106,9 @@ const FormC = ({ idPage }) => {
     setRegistro({ ...registro, [ev.target.name]: value });
   };
 
-
+  const handleChangeDatosLogeo = (ev) => {
+    setLogin({ ...login, [ev.target.name]: ev.target.value });
+  };
 
   const handleClickBotonLogueo = async (ev) => {
     try {
