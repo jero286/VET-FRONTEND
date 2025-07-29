@@ -187,10 +187,10 @@ const FormC = ({ idPage }) => {
     <>
       <Form>
         <Form.Group className="mb-3" controlId="idUsuario">
-          <Form.Label>Usuario</Form.Label>
+          <Form.Label>Nombre</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ingrese su nombre de usuario"
+            placeholder="Ingrese su nombre"
             name="nombreUsuario"
             className={
               errores.nombreUsuario ? "form-control is-invalid" : "form-control"
@@ -211,6 +211,22 @@ const FormC = ({ idPage }) => {
           )}
         </Form.Group>
         {idPage === "registro" && (
+          <Form.Group className="mb-3" controlId="idApellido">
+            <Form.Label>Apellido</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese su apellido"
+              name="apellido"
+              className={
+                errores.apellidoUsuario ? "form-control is-invalid" : "form-control"
+              }
+              value={registro.apellidoUsuario}
+              onChange={handleChangeDatosRegistro}
+            />
+            {errores.apellidoUsuario && <p className="text-danger">{errores.apellidoUsuario}</p>}
+          </Form.Group>
+        )}
+        {idPage === "registro" && (
           <Form.Group className="mb-3" controlId="idEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -227,7 +243,7 @@ const FormC = ({ idPage }) => {
           </Form.Group>
         )}
         {idPage === "registro" && (
-          <Form.Group className="mb-3" controlId="idEmail">
+          <Form.Group className="mb-3" controlId="idTelefono">
             <Form.Label>Telefono</Form.Label>
             <Form.Control
               type="text"
