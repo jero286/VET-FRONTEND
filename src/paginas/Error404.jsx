@@ -10,14 +10,15 @@ export default function Error404() {
         
       }}
     >
-    <div className="d-flex align-items-center justify-content-center text-center p-4" bg-drak>
+    <div className="d-flex align-items-center justify-content-center text-center p-4">
       <div>
         <img
           src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
           alt="Perrito triste"
           style={{ width: "150px", marginBottom: "20px" }}
         />
-        <h1 className="display-4 fw-bold text-danger">404</h1>
+        <h1 className="display-4 fw-bold text-primary">404</h1>
+        <div className="d-flex- flex-colum justify-content-center bg-white text-center p-4">
         <h2 className="mb-3 fw-semibold">¡Ups! Página no encontrada</h2>
         <p className="mb-4 text-muted">
           Lo sentimos, la página que estás buscando no existe o fue movida. 🐾
@@ -25,6 +26,7 @@ export default function Error404() {
         <Link to="/" className="btn btn-primary">
           Volver al inicio
         </Link>
+        </div>
       </div>
     </div>
     </div>
