@@ -13,7 +13,7 @@ const FormC = ({ idPage }) => {
   const [registro, setRegistro] = useState({
     nombreUsuario: "",
     apellidoUsuario: "",
-    email: "",
+    emailUsuario: "",
     telefono: "",
     contrasenia: "",
     repContrasenia: "",
@@ -41,10 +41,10 @@ const FormC = ({ idPage }) => {
         erroresFormulario.nombreUsuario = "Campo USUARIO está vacío";
       }
       if (!apellidoUsuario) {
-        erroresFormulario.apellido = "Campo APELLIDO está vacío";
+        erroresFormulario.apellidoUsuario = "Campo APELLIDO está vacío";
       }
       if (!emailUsuario) {
-        erroresFormulario.email = "Campo EMAIL está vacío";
+        erroresFormulario.emailUsuario = "Campo EMAIL está vacío";
       }
       if (!telefono) {
         erroresFormulario.telefono = "Campo TELEFONO está vacío";
@@ -216,7 +216,7 @@ const FormC = ({ idPage }) => {
             <Form.Control
               type="text"
               placeholder="Ingrese su apellido"
-              name="apellido"
+              name="apellidoUsuario"
               className={
                 errores.apellidoUsuario ? "form-control is-invalid" : "form-control"
               }
@@ -232,14 +232,14 @@ const FormC = ({ idPage }) => {
             <Form.Control
               type="email"
               placeholder="Ingrese su email"
-              name="email"
+              name="emailUsuario"
               className={
-                errores.email ? "form-control is-invalid" : "form-control"
+                errores.emailUsuario ? "form-control is-invalid" : "form-control"
               }
-              value={registro.email}
+              value={registro.emailUsuario}
               onChange={handleChangeDatosRegistro}
             />
-            {errores.email && <p className="text-danger">{errores.email}</p>}
+            {errores.emailUsuario && <p className="text-danger">{errores.emailUsuario}</p>}
           </Form.Group>
         )}
         {idPage === "registro" && (
