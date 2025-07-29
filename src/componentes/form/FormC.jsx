@@ -12,6 +12,7 @@ const FormC = ({ idPage }) => {
   const [errores, setErrores] = useState({});
   const [registro, setRegistro] = useState({
     nombreUsuario: "",
+    apellidoUsuario: "",
     email: "",
     telefono: "",
     contrasenia: "",
@@ -29,6 +30,7 @@ const FormC = ({ idPage }) => {
       const erroresFormulario = {};
       const {
         nombreUsuario,
+        apellidoUsuario,
         emailUsuario,
         telefono,
         contrasenia,
@@ -37,6 +39,9 @@ const FormC = ({ idPage }) => {
       } = registro;
       if (!nombreUsuario) {
         erroresFormulario.nombreUsuario = "Campo USUARIO está vacío";
+      }
+      if (!apellidoUsuario) {
+        erroresFormulario.apellido = "Campo APELLIDO está vacío";
       }
       if (!emailUsuario) {
         erroresFormulario.email = "Campo EMAIL está vacío";
@@ -58,6 +63,7 @@ const FormC = ({ idPage }) => {
       setErrores(erroresFormulario);
       if (
         nombreUsuario &&
+        apellidoUsuario &&
         emailUsuario &&
         telefono &&
         contrasenia &&
@@ -69,6 +75,7 @@ const FormC = ({ idPage }) => {
             "/usuarios",
             {
               nombreUsuario,
+              apellidoUsuario,
               emailUsuario,
               contrasenia,
               telefono,
@@ -82,6 +89,7 @@ const FormC = ({ idPage }) => {
           });
           setRegistro({
             nombreUsuario: "",
+            apellidoUsuario: "",
             emailUsuario: "",
             telefono: "",
             contrasenia: "",
