@@ -119,10 +119,10 @@ export default function Contacto() {
 
               <hr className="mt-5" />
               <div className="text-center small text-muted">
-                <p><strong>📍 Dirección:</strong> Calle Falsa 123, Tucumán</p>
+                <p><strong>📍 Dirección:</strong> General Paz 576, Tucumán</p>
                 <p><strong>📞 Teléfono:</strong> +54 381 123 4567</p>
-                <p><strong>📧 Email:</strong> contacto@vetapp.com</p>
-                <p><strong>🌐 Instagram:</strong> <a href="https://instagram.com/vetapp" className="text-decoration-none"> @vetapp</a></p>
+                <p><strong>📧 Email:</strong> contacto@vetcare.com</p>
+                <p><strong>🌐 Instagram:</strong> <a href="https://instagram.com/vetcare" className="text-decoration-none"> @vetapp</a></p>
               </div>
             </div>
           </div>
