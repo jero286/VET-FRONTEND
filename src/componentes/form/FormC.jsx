@@ -13,7 +13,7 @@ const FormC = ({ idPage }) => {
   const [registro, setRegistro] = useState({
     nombreUsuario: "",
     email: "",
-    telefono:"",
+    telefono: "",
     contrasenia: "",
     repContrasenia: "",
     terminosYCondiciones: false,
@@ -29,7 +29,7 @@ const FormC = ({ idPage }) => {
       const erroresFormulario = {};
       const {
         nombreUsuario,
-        email,
+        emailUsuario,
         telefono,
         contrasenia,
         repContrasenia,
@@ -38,11 +38,11 @@ const FormC = ({ idPage }) => {
       if (!nombreUsuario) {
         erroresFormulario.nombreUsuario = "Campo USUARIO está vacío";
       }
-      if (!email) {
+      if (!emailUsuario) {
         erroresFormulario.email = "Campo EMAIL está vacío";
       }
       if (!telefono) {
-        erroresFormulario.telefono = "Campo TELEFONO está vacío"
+        erroresFormulario.telefono = "Campo TELEFONO está vacío";
       }
       if (!contrasenia) {
         erroresFormulario.contrasenia = "Campo CONTRASEÑA está vacío";
@@ -58,8 +58,8 @@ const FormC = ({ idPage }) => {
       setErrores(erroresFormulario);
       if (
         nombreUsuario &&
-        email &&
-        telefono&&
+        emailUsuario &&
+        telefono &&
         contrasenia &&
         repContrasenia &&
         terminosYCondiciones
@@ -69,9 +69,9 @@ const FormC = ({ idPage }) => {
             "/usuarios",
             {
               nombreUsuario,
-              email,
+              emailUsuario,
               contrasenia,
-              telefono
+              telefono,
             },
             configHeader
           );
@@ -82,8 +82,8 @@ const FormC = ({ idPage }) => {
           });
           setRegistro({
             nombreUsuario: "",
-            email: "",
-            telefono:"",
+            emailUsuario: "",
+            telefono: "",
             contrasenia: "",
             repContrasenia: "",
             terminosYCondiciones: false,
@@ -231,7 +231,9 @@ const FormC = ({ idPage }) => {
               value={registro.telefono}
               onChange={handleChangeDatosRegistro}
             />
-            {errores.telefono && <p className="text-danger">{errores.telefono}</p>}
+            {errores.telefono && (
+              <p className="text-danger">{errores.telefono}</p>
+            )}
           </Form.Group>
         )}
         <Form.Group className="mb-3" controlId="idContrasenia">
