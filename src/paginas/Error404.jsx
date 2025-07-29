@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 
 export default function Error404() {
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 bg-light text-center p-4">
+    <div
+      className="d-flex align-items-center justify-content-center vh-100 text-center p-4"
+      style={{
+        backgroundImage:
+          "url('https://i.pinimg.com/1200x/b8/94/6b/b8946b5fdf7c0be0c0cd3b2fc708788e.jpg')",
+        
+      }}
+    >
+    <div className="d-flex align-items-center justify-content-center text-center p-4" bg-drak>
       <div>
         <img
           src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
@@ -18,6 +26,7 @@ export default function Error404() {
           Volver al inicio
         </Link>
       </div>
+    </div>
     </div>
   );
 }
