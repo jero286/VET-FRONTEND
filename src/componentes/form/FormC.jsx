@@ -13,6 +13,7 @@ const FormC = ({ idPage }) => {
   const [registro, setRegistro] = useState({
     nombreUsuario: "",
     email: "",
+    telefono:"",
     contrasenia: "",
     repContrasenia: "",
     terminosYCondiciones: false,
@@ -29,6 +30,7 @@ const FormC = ({ idPage }) => {
       const {
         nombreUsuario,
         email,
+        telefono,
         contrasenia,
         repContrasenia,
         terminosYCondiciones,
@@ -38,6 +40,9 @@ const FormC = ({ idPage }) => {
       }
       if (!email) {
         erroresFormulario.email = "Campo EMAIL está vacío";
+      }
+      if (!telefono) {
+        erroresFormulario.telefono = "Campo TELEFONO está vacío"
       }
       if (!contrasenia) {
         erroresFormulario.contrasenia = "Campo CONTRASEÑA está vacío";
@@ -54,17 +59,19 @@ const FormC = ({ idPage }) => {
       if (
         nombreUsuario &&
         email &&
+        telefono&&
         contrasenia &&
         repContrasenia &&
         terminosYCondiciones
       ) {
         if (contrasenia === repContrasenia) {
           const usuarioRegistrado = await clienteAxios.post(
-            "/registrarse",
+            "/usuarios",
             {
               nombreUsuario,
               email,
               contrasenia,
+              telefono
             },
             configHeader
           );
@@ -76,6 +83,7 @@ const FormC = ({ idPage }) => {
           setRegistro({
             nombreUsuario: "",
             email: "",
+            telefono:"",
             contrasenia: "",
             repContrasenia: "",
             terminosYCondiciones: false,
@@ -91,12 +99,14 @@ const FormC = ({ idPage }) => {
         }
       }
     } catch (error) {
-      if (error) {
-        swal.fire({
-          icon: "error",
-          title: "¡Rellena todos los campos!",
-        });
-      }
+      console.log(error.response?.data || error.message);
+      swal.fire({
+        icon: "error",
+        title: "Error al registrar",
+        text:
+          error.response?.data?.msg ||
+          "Revisá los campos o contactá al administrador.",
+      });
     }
   };
 
@@ -124,7 +134,7 @@ const FormC = ({ idPage }) => {
       setErrores(erroresLogin);
       if (nombreUsuario && contrasenia) {
         const usuarioLogueado = await clienteAxios.post(
-          "/iniciarSesion",
+          "/login",
           {
             nombreUsuario,
             contrasenia,
@@ -206,6 +216,22 @@ const FormC = ({ idPage }) => {
               onChange={handleChangeDatosRegistro}
             />
             {errores.email && <p className="text-danger">{errores.email}</p>}
+          </Form.Group>
+        )}
+        {idPage === "registro" && (
+          <Form.Group className="mb-3" controlId="idEmail">
+            <Form.Label>Telefono</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese su telefono"
+              name="telefono"
+              className={
+                errores.telefono ? "form-control is-invalid" : "form-control"
+              }
+              value={registro.telefono}
+              onChange={handleChangeDatosRegistro}
+            />
+            {errores.telefono && <p className="text-danger">{errores.telefono}</p>}
           </Form.Group>
         )}
         <Form.Group className="mb-3" controlId="idContrasenia">
