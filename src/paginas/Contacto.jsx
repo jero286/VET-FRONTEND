@@ -1,4 +1,3 @@
-import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
 
 
 const Contacto = () => {
