@@ -1,19 +1,22 @@
 import { Col, Container, Row } from "react-bootstrap"
 import { NavLink } from "react-router"
+import "./footerC.css"
 
 
 const FooterC = () => {
   return (
-    <Container fluid className="bg-body-tertiary">
+    <Container fluid className="body-tertiary">
+   
+
         <Row>
             <Col className="d-flex justify-content-center align-items-center">
             <NavLink className={"nav-link"} to={"/"}>
-            <img src="/Logo.png" alt="Logo" style={{width: '80px'}} />
+            <img src="/logo3.jpeg" alt="Logo" style={{width: '80px'}} />
             </NavLink>
             </Col>
             <Col className="text-center d-flex align-items-center">
             <NavLink className={"nav-link"} to={"/error404"}>
-            <img src="/Instagram.png" alt="Instagram"/>
+            <img src="/instagram.png" alt="Instagram"/>
             <p>Instagram</p>
             </NavLink>
             <NavLink className={"nav-link mx-3"} to={"/error404"}>
