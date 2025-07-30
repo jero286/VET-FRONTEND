@@ -142,7 +142,7 @@ const FormC = ({ idPage }) => {
       setErrores(erroresLogin);
       if (nombreUsuario && contrasenia) {
         const usuarioLogueado = await clienteAxios.post(
-          "/usuarios",
+          "/usuarios/login",
           {
             nombreUsuario,
             contrasenia,
@@ -171,15 +171,16 @@ const FormC = ({ idPage }) => {
         } else {
           navigate("/panelAdmin");
         }
-      } else {
       }
     } catch (error) {
-      if (error) {
-        swal.fire({
-          icon: "error",
-          title: "¡Rellena todos los campos!",
-        });
-      }
+      console.log(error);
+      swal.fire({
+        icon: "error",
+        title: "Error al iniciar sesión",
+        text:
+          error.response?.data?.msg ||
+          "Algo salió mal. Revisá los datos o contactá al admin.",
+      });
     }
   };
 
@@ -218,12 +219,16 @@ const FormC = ({ idPage }) => {
               placeholder="Ingrese su apellido"
               name="apellidoUsuario"
               className={
-                errores.apellidoUsuario ? "form-control is-invalid" : "form-control"
+                errores.apellidoUsuario
+                  ? "form-control is-invalid"
+                  : "form-control"
               }
               value={registro.apellidoUsuario}
               onChange={handleChangeDatosRegistro}
             />
-            {errores.apellidoUsuario && <p className="text-danger">{errores.apellidoUsuario}</p>}
+            {errores.apellidoUsuario && (
+              <p className="text-danger">{errores.apellidoUsuario}</p>
+            )}
           </Form.Group>
         )}
         {idPage === "registro" && (
@@ -234,12 +239,16 @@ const FormC = ({ idPage }) => {
               placeholder="Ingrese su email"
               name="emailUsuario"
               className={
-                errores.emailUsuario ? "form-control is-invalid" : "form-control"
+                errores.emailUsuario
+                  ? "form-control is-invalid"
+                  : "form-control"
               }
               value={registro.emailUsuario}
               onChange={handleChangeDatosRegistro}
             />
-            {errores.emailUsuario && <p className="text-danger">{errores.emailUsuario}</p>}
+            {errores.emailUsuario && (
+              <p className="text-danger">{errores.emailUsuario}</p>
+            )}
           </Form.Group>
         )}
         {idPage === "registro" && (
