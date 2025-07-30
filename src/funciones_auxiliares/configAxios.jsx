@@ -3,7 +3,7 @@ import axios from "axios";
 const token = JSON.parse(sessionStorage.getItem("token"));
 
 const clienteAxios = axios.create({
-  baseURL: `${import.meta.env.URL_BACKEND}`,
+  baseURL: `${import.meta.env.VITE_URL_BACKEND}`,
 });
 
 export const configHeader = {
