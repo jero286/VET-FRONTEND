@@ -2,13 +2,16 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router';
+import "./navbar.css"
 
 const NavbarC = () => {
   return (
     <>
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Logo</Navbar.Brand>
+           <NavLink className={"nav-link"} to={"/"}>
+            <img src="/logo3.jpeg" alt="Logo" style={{width: '99px'}} />
+            </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

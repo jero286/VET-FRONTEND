@@ -1,0 +1,37 @@
+.planes-container {
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+.plan-card {
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+  margin-bottom: 2rem;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+}
+
+.lista-plan {
+  padding-left: 1rem;
+  list-style: none;
+}
+
+.lista-plan li::before {
+  content: "🐾 ";
+  margin-right: 0.5rem;
+}
+
+.plan-0 {
+  background-color: #d1f2eb;
+}
+
+.plan-1 {
+  background-color: #d6eaf8;
+}
+
+.plan-2 {
+  background-color: #f9e79f;
+}
