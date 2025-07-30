@@ -142,7 +142,7 @@ const FormC = ({ idPage }) => {
       setErrores(erroresLogin);
       if (nombreUsuario && contrasenia) {
         const usuarioLogueado = await clienteAxios.post(
-          "/login",
+          "/usuarios",
           {
             nombreUsuario,
             contrasenia,
