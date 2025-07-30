@@ -1,5 +1,5 @@
-import { Container } from "react-bootstrap"
-import FormT from "../componentes/form-turnos/FormT"
+import { Container } from "react-bootstrap";
+import FormT from "../componentes/form-turnos/FormT";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 export const reservarTurno = () => {
@@ -11,4 +11,4 @@ export const reservarTurno = () => {
       </Container>
     </>
   );
-}
+};
