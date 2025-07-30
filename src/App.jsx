@@ -14,6 +14,7 @@ import DetallePlan from "./paginas/detallePlan"
 const App = () => {
   return (
     <>
+<<<<<<< HEAD
       <Router>
         <NavbarC />
         <Routes>
@@ -28,6 +29,20 @@ const App = () => {
         </Routes>
         <FooterC />
       </Router>
+=======
+    <Router>
+      <NavbarC/>
+      <Routes>
+        <Route path="/" element={<PaginaPrincipal/>}/>
+        <Route path="/contacto" element={<Contacto/>}/>
+        <Route path="/acercaDeNosotros" element={<AcercaDeNosotros/>}/>
+        <Route path="/iniciarSesion" element={<IniciarSesion/>}/>
+        <Route path="/registrarse" element={<Registrarse/>}/>
+        <Route path="*" element={<Error404/>}/>
+      </Routes>
+      <FooterC/>
+    </Router>
+>>>>>>> 08d6e7345b23ea55a49aab37f4904b628c26a8ee
     </>
   )
 }
