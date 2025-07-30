@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import FormT from "../componentes/form-turnos/FormT";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
-export const reservarTurno = () => {
+const reservarTurno = () => {
   cambiarTituloPagina("ReservarTurno");
   return (
     <>
@@ -12,3 +12,5 @@ export const reservarTurno = () => {
     </>
   );
 };
+
+export default reservarTurno;
