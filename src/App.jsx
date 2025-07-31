@@ -9,7 +9,7 @@ import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
 import Planes from "./paginas/PaginaPlanes";
 import DetallePlan from "./paginas/detallePlan";
-import reservarTurno from "./paginas/reservarTurno";
+import ReservarTurno from "./paginas/reservarTurno";
 
 const App = () => {
   return (
@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/iniciarSesion" element={<IniciarSesion />} />
           <Route path="/registrarse" element={<Registrarse />} />
           <Route path="*" element={<Error404 />} />
-          <Route path="/reservarTurno" element={<reservarTurno />} />
+          <Route path="/reservarTurno" element={<ReservarTurno />} />
         </Routes>
         <FooterC />
       </Router>

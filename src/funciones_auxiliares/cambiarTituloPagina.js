@@ -18,7 +18,7 @@ export const cambiarTituloPagina = (idPagina) => {
     case "Error404":
       document.title = "Error 404";
       break;
-    case "ReservarTurno":
+    case "reservarTurno":
       document.title = "Reservar Turno";
       break;
     default:
