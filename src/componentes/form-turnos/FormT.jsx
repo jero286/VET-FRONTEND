@@ -8,6 +8,22 @@ import clienteAxios, {
 import Swal from "sweetalert2";
 
 const FormT = () => {
+  const horasPermitidas = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+  ];
+
+  const validarFecha = (fecha) => {
+    const fechaForm = new Date(fecha);
+    const dia = fechaForm.getDay();
+    return dia !== 0 && dia !== 6;
+  };
   const [errores, setErrores] = useState({});
   const [turnos, setTurnos] = useState({
     detalle: "",
@@ -33,6 +49,8 @@ const FormT = () => {
       }
       if (!fecha) {
         erroresTurnos.fecha = "Campo FECHA vacío";
+      } else if (!validarFecha(fecha)) {
+        erroresTurnos.fecha = "Fecha Inválida";
       }
       if (!hora) {
         erroresTurnos.hora = "Campo HORA vacío";
@@ -76,7 +94,16 @@ const FormT = () => {
   };
 
   const handleOnChangeDatosFormulario = async (ev) => {
-    setTurnos({ ...turnos, [ev.target.name]: ev.target.value });
+    const { name, value } = ev.target;
+    if (name === "fecha" && !validarFecha(value)) {
+      setErrores({
+        ...errores,
+        fecha: "Solo se permiten turnos de lunes a viernes",
+      });
+    } else {
+      setErrores({ ...errores, [name]: "" });
+    }
+    setTurnos({ ...turnos, [name]: value });
   };
 
   return (
@@ -126,7 +153,7 @@ const FormT = () => {
           <Form.Label>Fecha</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Seleccione la fecha"
+            placeholder="Solo de lunes a viernes"
             name="fecha"
             onChange={handleOnChangeDatosFormulario}
             value={turnos.fecha}
@@ -135,18 +162,23 @@ const FormT = () => {
             }
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPet">
+        <Form.Group className="mb-3" controlId="formBasicHora">
           <Form.Label>Hora</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="seleccione la hora"
+          <Form.Select
             name="hora"
             onChange={handleOnChangeDatosFormulario}
             value={turnos.hora}
             className={
               errores.hora ? "form-control is-invalid" : "form-control"
             }
-          />
+          >
+            <option value="">Selecciona una hora</option>
+            {horasPermitidas.map((hora) => (
+              <option key={hora} value={hora}>
+                {hora}
+              </option>
+            ))}
+          </Form.Select>
         </Form.Group>
         <Container className="text-center">
           <Button
