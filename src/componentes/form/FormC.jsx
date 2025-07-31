@@ -170,10 +170,10 @@ const FormC = ({ idPage }) => {
 
         if (usuarioLogueado.data.rol === "usuario") {
           setTimeout(() => {
-            navigate("/panelUsario");
+            navigate("/usuario");
           }, 1000);
         } else {
-          navigate("/panelAdmin");
+          navigate("/admin");
         }
       }
     } catch (error) {
