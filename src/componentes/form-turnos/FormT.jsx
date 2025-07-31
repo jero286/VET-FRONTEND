@@ -57,6 +57,7 @@ const FormT = () => {
       }
       setErrores(erroresTurnos);
       if (detalle && veterinario && mascota && fecha && hora) {
+         const idUsuario = JSON.parse(sessionStorage.getItem("idUsuario"));
         const crearTruno = await clienteAxios.post(
           "/turnos",
           {
@@ -65,6 +66,7 @@ const FormT = () => {
             mascota,
             fecha,
             hora,
+            idUsuario
           },
           configHeader
         );
@@ -83,7 +85,7 @@ const FormT = () => {
       }
     } catch (error) {
       console.log(error.response?.data || error.message);
-      swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Error al crear turno",
         text:
