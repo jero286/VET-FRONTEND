@@ -9,6 +9,10 @@ import FooterC from "./componentes/footer/FooterC"
 import Error404 from "./paginas/Error404"
 import Planes from "./paginas/PaginaPlanes"
 import DetallePlan from "./paginas/detallePlan"
+import Admin from "./paginas/Admin"
+import AdminPacientes from "./paginas/AdminPacientes"
+import AdminTurnos from "./paginas/AdminTurnos"
+import AdminProductos from "./paginas/AdminProductos"
 
 
 const App = () => {
@@ -23,6 +27,10 @@ const App = () => {
         <Route path="/iniciarSesion" element={<IniciarSesion/>}/>
         <Route path="/registrarse" element={<Registrarse/>}/>
         <Route path="*" element={<Error404/>}/>
+        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/adminPacientes" element={<AdminPacientes/>}/>
+        <Route path="/adminTurnos" element={<AdminTurnos/>}/>
+        <Route path="/adminProductos" element={<AdminProductos/>}/>
       </Routes>
       <FooterC/>
     </Router>
