@@ -32,8 +32,11 @@ function ObtenerClimaTucuman() {
   return (
     <div>
       <h2>Clima en {clima.location.name}</h2>
-      <p>Temperatura: {clima.current.temp_c} °C
-      <img src={clima.current.condition.icon} alt="Icono del clima"/>
+      <p>
+        Temperatura: {clima.current.temp_c} °C
+        {clima.current && clima.current.condition && (
+          <img src={clima.current.condition.icon} alt="Icono del clima" />
+        )}
       </p>
     </div>
   );
