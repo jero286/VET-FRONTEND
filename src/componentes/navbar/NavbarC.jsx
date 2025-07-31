@@ -37,8 +37,52 @@ const NavbarC = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {token && usuarioLogueadoRol === "usuario" ? (
+              <Nav className="ms-auto">
+                <NavLink className="nav-link" to="/user">
+                  Inicio
+                </NavLink>
+                <NavLink className="nav-link" to="/user/carrito">
+                  Carrito
+                </NavLink>
+                <NavLink className="nav-link" to="/user/mascotas">
+                  Mascotas
+                </NavLink>
+                <NavLink className="nav-link" to="/user/turnos">
+                  Turnos
+                </NavLink>
+              </Nav>
+            ) : token && usuarioLogueadoRol === "admin" ? (
+              <Nav className="ms-auto">
+                <NavLink className="nav-link" to="/admin">
+                  Inicio
+                </NavLink>
+                <NavLink className="nav-link" to="/admin/usuarios">
+                  Panel de Pacientes
+                </NavLink>
+                <NavLink className="nav-link" to="/admin/productos">
+                  Panel de Productos
+                </NavLink>
+                <NavLink className="nav-link" to="/admin/turnos">
+                  Panel de Turnos
+                </NavLink>
+              </Nav>
+            ) : (
+              <Nav className="ms-auto">
+                <NavLink className="nav-link" to="/">
+                  Inicio
+                </NavLink>
+                <NavLink className="nav-link" to="/contacto">
+                  Contacto
+                </NavLink>
+                <NavLink className="nav-link" to="/acercaDeNosotros">
+                  Acerca de Nosotros
+                </NavLink>
+              </Nav>
+            )}
+
+            {token && usuarioLogueadoRol === "usuario" ? (
               <Nav className="ms-auto d-flex align-items-center gap-3">
-                <Button variant="primary" as={NavLink} to="/reservar-turno">
+                <Button variant="primary" as={NavLink} to="/user/turnos">
                   Reservar turno
                 </Button>
                 <NavLink className="nav-link" to="#" onClick={cerrarSesion}>
@@ -53,17 +97,6 @@ const NavbarC = () => {
               </Nav>
             ) : (
               <>
-                <Nav className="ms-auto">
-                  <NavLink className="nav-link" to="/">
-                    Inicio
-                  </NavLink>
-                  <NavLink className="nav-link" to="/contacto">
-                    Contacto
-                  </NavLink>
-                  <NavLink className="nav-link" to="/acercaDeNosotros">
-                    Acerca de Nosotros
-                  </NavLink>
-                </Nav>
                 <Nav className="ms-auto">
                   <NavLink className="nav-link" to="/iniciarSesion">
                     Iniciar Sesión
@@ -83,3 +116,23 @@ const NavbarC = () => {
 
 export default NavbarC;
 
+/* 
+<Nav className="ms-auto">
+              <NavLink className={"nav-link"} to="/">
+                Inicio
+              </NavLink>
+              <NavLink className={"nav-link"} to="/contacto">
+                Contacto
+              </NavLink>
+              <NavLink className={"nav-link"} to="/acercaDeNosotros">
+                Acerca de Nosotros
+              </NavLink>
+            </Nav>
+            <Nav className="ms-auto">
+              <NavLink className={"nav-link"} to="/iniciarSesion">
+                Iniciar Sesion
+              </NavLink>
+              <NavLink className={"nav-link"} to="/registrarse">
+                Registrarse
+              </NavLink>
+            </Nav> */
