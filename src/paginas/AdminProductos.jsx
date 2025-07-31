@@ -8,7 +8,7 @@ const AdminProductos = () => {
   const [productos, setProductos] = useState([])
 
   const obtenerTodosLosProductos = async () => {
-    const productos = await clienteAxios.get("productos", configHeader)
+    const productos = await clienteAxios.get("/productos", configHeader)
     setProductos(productos.data.productos)}
 
     useEffect(() => {
