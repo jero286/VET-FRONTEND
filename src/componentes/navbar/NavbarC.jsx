@@ -14,6 +14,7 @@ const NavbarC = () => {
     ev.preventDefault();
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("rol");
+    sessionStorage.removeItem("idUsuario");
     setTimeout(() => {
       navigate("/");
     }, 1000);

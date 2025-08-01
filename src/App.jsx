@@ -14,6 +14,7 @@ import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
 import AdminProductos from "./paginas/AdminProductos";
 import PaginaUsuario from "./paginas/PaginaUsuario";
+import ReservarTurno from "./paginas/reservarTurno";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/registrarse" element={<Registrarse />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/usuario" element={<PaginaUsuario />} />
+          <Route path="/usuario/turnos" element={<ReservarTurno />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/adminPacientes" element={<AdminPacientes />} />
           <Route path="/adminTurnos" element={<AdminTurnos />} />
