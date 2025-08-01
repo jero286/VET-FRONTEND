@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import clienteAxios from "../../funciones_auxiliares/configAxios";
 import { configHeader } from "../../funciones_auxiliares/configAxios";
 import swal from "sweetalert2";
@@ -322,7 +322,7 @@ const FormC = ({ idPage }) => {
               label="Aceptar terminos y condiciones"
               name="terminosYCondiciones"
               onChange={handleChangeDatosRegistro}
-              value={registro.terminosYCondiciones}
+              checked={registro.terminosYCondiciones}
             />
             {errores.terminosYCondiciones && (
               <p className="text-danger">{errores.terminosYCondiciones}</p>
