@@ -1,6 +1,7 @@
 import "./PaginaPrincipal.css";
 import { Container, Button, Carousel, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 const productos = [
   {
@@ -42,6 +43,7 @@ const comprarProducto = async (producto) => {
 };
 
 const PaginaPrincipal = () => {
+  cambiarTituloPagina("Pagina Principal");
   const navigate = useNavigate();
 
   const planes = [

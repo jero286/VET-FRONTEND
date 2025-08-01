@@ -12,8 +12,10 @@
 
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { cambiarTituloPagina } from '../funciones_auxiliares/cambiarTituloPagina';
 
 const SobreNosotros = () => {
+  cambiarTituloPagina("AcercaDeNosotros");
   return (
     <Container className="my-5">
       <h1 className="text-center mb-4">Sobre Nosotros</h1>

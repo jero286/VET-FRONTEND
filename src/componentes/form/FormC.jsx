@@ -154,6 +154,10 @@ const FormC = ({ idPage }) => {
           JSON.stringify(usuarioLogueado.data.token)
         );
         sessionStorage.setItem("rol", JSON.stringify(usuarioLogueado.data.rol));
+        sessionStorage.setItem(
+          "idUsuario",
+          JSON.stringify(usuarioLogueado.data.idUsuario)
+        );
         swal.fire({
           title: `${usuarioLogueado.data.msg}`,
           icon: "success",
