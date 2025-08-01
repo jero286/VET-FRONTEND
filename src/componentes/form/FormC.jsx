@@ -12,7 +12,9 @@ const FormC = ({ idPage }) => {
   const [errores, setErrores] = useState({});
   const [registro, setRegistro] = useState({
     nombreUsuario: "",
-    email: "",
+    apellidoUsuario: "",
+    emailUsuario: "",
+    telefono: "",
     contrasenia: "",
     repContrasenia: "",
     terminosYCondiciones: false,
@@ -28,7 +30,9 @@ const FormC = ({ idPage }) => {
       const erroresFormulario = {};
       const {
         nombreUsuario,
-        email,
+        apellidoUsuario,
+        emailUsuario,
+        telefono,
         contrasenia,
         repContrasenia,
         terminosYCondiciones,
@@ -36,8 +40,14 @@ const FormC = ({ idPage }) => {
       if (!nombreUsuario) {
         erroresFormulario.nombreUsuario = "Campo USUARIO está vacío";
       }
-      if (!email) {
-        erroresFormulario.email = "Campo EMAIL está vacío";
+      if (!apellidoUsuario) {
+        erroresFormulario.apellidoUsuario = "Campo APELLIDO está vacío";
+      }
+      if (!emailUsuario) {
+        erroresFormulario.emailUsuario = "Campo EMAIL está vacío";
+      }
+      if (!telefono) {
+        erroresFormulario.telefono = "Campo TELEFONO está vacío";
       }
       if (!contrasenia) {
         erroresFormulario.contrasenia = "Campo CONTRASEÑA está vacío";
@@ -53,18 +63,22 @@ const FormC = ({ idPage }) => {
       setErrores(erroresFormulario);
       if (
         nombreUsuario &&
-        email &&
+        apellidoUsuario &&
+        emailUsuario &&
+        telefono &&
         contrasenia &&
         repContrasenia &&
         terminosYCondiciones
       ) {
         if (contrasenia === repContrasenia) {
           const usuarioRegistrado = await clienteAxios.post(
-            "/registrarse",
+            "/usuarios",
             {
               nombreUsuario,
-              email,
+              apellidoUsuario,
+              emailUsuario,
               contrasenia,
+              telefono,
             },
             configHeader
           );
@@ -75,7 +89,9 @@ const FormC = ({ idPage }) => {
           });
           setRegistro({
             nombreUsuario: "",
-            email: "",
+            apellidoUsuario: "",
+            emailUsuario: "",
+            telefono: "",
             contrasenia: "",
             repContrasenia: "",
             terminosYCondiciones: false,
@@ -91,12 +107,14 @@ const FormC = ({ idPage }) => {
         }
       }
     } catch (error) {
-      if (error) {
-        swal.fire({
-          icon: "error",
-          title: "¡Rellena todos los campos!",
-        });
-      }
+      console.log(error.response?.data || error.message);
+      swal.fire({
+        icon: "error",
+        title: "Error al registrar",
+        text:
+          error.response?.data?.msg ||
+          "Revisá los campos o contactá al administrador.",
+      });
     }
   };
 
@@ -124,7 +142,7 @@ const FormC = ({ idPage }) => {
       setErrores(erroresLogin);
       if (nombreUsuario && contrasenia) {
         const usuarioLogueado = await clienteAxios.post(
-          "/iniciarSesion",
+          "/usuarios/login",
           {
             nombreUsuario,
             contrasenia,
@@ -136,6 +154,10 @@ const FormC = ({ idPage }) => {
           JSON.stringify(usuarioLogueado.data.token)
         );
         sessionStorage.setItem("rol", JSON.stringify(usuarioLogueado.data.rol));
+        sessionStorage.setItem(
+          "idUsuario",
+          JSON.stringify(usuarioLogueado.data.idUsuario)
+        );
         swal.fire({
           title: `${usuarioLogueado.data.msg}`,
           icon: "success",
@@ -148,20 +170,21 @@ const FormC = ({ idPage }) => {
 
         if (usuarioLogueado.data.rol === "usuario") {
           setTimeout(() => {
-            navigate("/panelUsario");
+            navigate("/usuario");
           }, 1000);
         } else {
-          navigate("/panelAdmin");
+          navigate("/admin");
         }
-      } else {
       }
     } catch (error) {
-      if (error) {
-        swal.fire({
-          icon: "error",
-          title: "¡Rellena todos los campos!",
-        });
-      }
+      console.log(error);
+      swal.fire({
+        icon: "error",
+        title: "Error al iniciar sesión",
+        text:
+          error.response?.data?.msg ||
+          "Algo salió mal. Revisá los datos o contactá al admin.",
+      });
     }
   };
 
@@ -169,10 +192,10 @@ const FormC = ({ idPage }) => {
     <>
       <Form>
         <Form.Group className="mb-3" controlId="idUsuario">
-          <Form.Label>Usuario</Form.Label>
+          <Form.Label>Nombre</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ingrese su nombre de usuario"
+            placeholder="Ingrese su nombre"
             name="nombreUsuario"
             className={
               errores.nombreUsuario ? "form-control is-invalid" : "form-control"
@@ -193,19 +216,61 @@ const FormC = ({ idPage }) => {
           )}
         </Form.Group>
         {idPage === "registro" && (
+          <Form.Group className="mb-3" controlId="idApellido">
+            <Form.Label>Apellido</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese su apellido"
+              name="apellidoUsuario"
+              className={
+                errores.apellidoUsuario
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+              value={registro.apellidoUsuario}
+              onChange={handleChangeDatosRegistro}
+            />
+            {errores.apellidoUsuario && (
+              <p className="text-danger">{errores.apellidoUsuario}</p>
+            )}
+          </Form.Group>
+        )}
+        {idPage === "registro" && (
           <Form.Group className="mb-3" controlId="idEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               placeholder="Ingrese su email"
-              name="email"
+              name="emailUsuario"
               className={
-                errores.email ? "form-control is-invalid" : "form-control"
+                errores.emailUsuario
+                  ? "form-control is-invalid"
+                  : "form-control"
               }
-              value={registro.email}
+              value={registro.emailUsuario}
               onChange={handleChangeDatosRegistro}
             />
-            {errores.email && <p className="text-danger">{errores.email}</p>}
+            {errores.emailUsuario && (
+              <p className="text-danger">{errores.emailUsuario}</p>
+            )}
+          </Form.Group>
+        )}
+        {idPage === "registro" && (
+          <Form.Group className="mb-3" controlId="idTelefono">
+            <Form.Label>Telefono</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese su telefono"
+              name="telefono"
+              className={
+                errores.telefono ? "form-control is-invalid" : "form-control"
+              }
+              value={registro.telefono}
+              onChange={handleChangeDatosRegistro}
+            />
+            {errores.telefono && (
+              <p className="text-danger">{errores.telefono}</p>
+            )}
           </Form.Group>
         )}
         <Form.Group className="mb-3" controlId="idContrasenia">

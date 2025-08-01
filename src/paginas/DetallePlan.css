@@ -1,0 +1,56 @@
+/* src/paginas/DetallePlan.css */
+
+/* .detalle-plan-container {
+  background-color: #f0f9fa;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+} */
+.detalle-plan-container {
+  background-color: #f0f9fa;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  max-width: 500px; /* o 600px si lo querés un poco más ancho */
+  margin: 2rem auto; /* centra el contenedor */
+}
+
+.detalle-plan-container h2 {
+  color: #065084;
+  margin-bottom: 1rem;
+}
+
+.detalle-plan-container p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.detalle-plan-container .form-label {
+  font-weight: bold;
+  color: #0f828c;
+}
+
+.detalle-plan-container .form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.detalle-plan-container .form-control:focus {
+  border-color: #78b9b5;
+  box-shadow: 0 0 5px rgba(120, 185, 181, 0.5);
+}
+
+.detalle-plan-container button {
+  background-color: #320a6b;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.detalle-plan-container button:hover {
+  background-color: #4e1e94;
+}
