@@ -26,7 +26,7 @@ const NavbarC = () => {
             className={"nav-link"}
             to={
               token && usuarioLogueadoRol === "usuario"
-                ? "/user"
+                ? "/usuario"
                 : token && usuarioLogueadoRol === "admin"
                 ? "/admin"
                 : "/"
@@ -38,16 +38,16 @@ const NavbarC = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {token && usuarioLogueadoRol === "usuario" ? (
               <Nav className="ms-auto">
-                <NavLink className="nav-link" to="/user">
+                <NavLink className="nav-link" to="/usuario">
                   Inicio
                 </NavLink>
-                <NavLink className="nav-link" to="/user/carrito">
+                <NavLink className="nav-link" to="/usuario/carrito">
                   Carrito
                 </NavLink>
-                <NavLink className="nav-link" to="/user/mascotas">
+                <NavLink className="nav-link" to="/usuario/mascotas">
                   Mascotas
                 </NavLink>
-                <NavLink className="nav-link" to="/user/turnos">
+                <NavLink className="nav-link" to="/usuario/turnos">
                   Turnos
                 </NavLink>
               </Nav>
@@ -82,7 +82,7 @@ const NavbarC = () => {
 
             {token && usuarioLogueadoRol === "usuario" ? (
               <Nav className="ms-auto d-flex align-items-center gap-3">
-                <Button variant="primary" as={NavLink} to="/user/turnos">
+                <Button variant="primary" as={NavLink} to="/usuario/turnos">
                   Reservar turno
                 </Button>
                 <NavLink className="nav-link" to="#" onClick={cerrarSesion}>
@@ -115,24 +115,3 @@ const NavbarC = () => {
 };
 
 export default NavbarC;
-
-/* 
-<Nav className="ms-auto">
-              <NavLink className={"nav-link"} to="/">
-                Inicio
-              </NavLink>
-              <NavLink className={"nav-link"} to="/contacto">
-                Contacto
-              </NavLink>
-              <NavLink className={"nav-link"} to="/acercaDeNosotros">
-                Acerca de Nosotros
-              </NavLink>
-            </Nav>
-            <Nav className="ms-auto">
-              <NavLink className={"nav-link"} to="/iniciarSesion">
-                Iniciar Sesion
-              </NavLink>
-              <NavLink className={"nav-link"} to="/registrarse">
-                Registrarse
-              </NavLink>
-            </Nav> */

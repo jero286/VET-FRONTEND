@@ -1,6 +1,7 @@
 import PaginaPrincipal from "./PaginaPrincipal";
 
 const PaginaUsuario = () => {
+  
   return (
     <>
       <PaginaPrincipal />

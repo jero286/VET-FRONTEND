@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/iniciarSesion" element={<IniciarSesion />} />
           <Route path="/registrarse" element={<Registrarse />} />
           <Route path="*" element={<Error404 />} />
-          <Route path="/user" element={<PaginaUsuario />} />
+          <Route path="/usuario" element={<PaginaUsuario />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/adminPacientes" element={<AdminPacientes />} />
           <Route path="/adminTurnos" element={<AdminTurnos />} />
