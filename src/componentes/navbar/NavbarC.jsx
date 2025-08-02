@@ -33,7 +33,7 @@ const NavbarC = () => {
                 : "/"
             }
           >
-            <img src="/logo3.jpeg" alt="Logo" style={{ width: "99px" }} />
+            <img src="/logo3.jpeg" alt="Logo" style={{ width: "130px" }} />
           </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -57,7 +57,7 @@ const NavbarC = () => {
                 <NavLink className="nav-link" to="/admin">
                   Inicio
                 </NavLink>
-                <NavLink className="nav-link" to="/admin/usuarios">
+                <NavLink className="nav-link" to="/admin/pacientes">
                   Panel de Pacientes
                 </NavLink>
                 <NavLink className="nav-link" to="/admin/productos">
