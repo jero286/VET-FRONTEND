@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 export default function Contacto() {
+  cambiarTituloPagina("Contacto")
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
