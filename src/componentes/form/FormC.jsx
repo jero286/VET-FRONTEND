@@ -149,6 +149,7 @@ const FormC = ({ idPage }) => {
           },
           configHeader
         );
+        console.log("Datos recibidos:", usuarioLogueado.data);
         sessionStorage.setItem(
           "token",
           JSON.stringify(usuarioLogueado.data.token)

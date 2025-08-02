@@ -83,7 +83,11 @@ const NavbarC = () => {
 
             {token && usuarioLogueadoRol === "usuario" ? (
               <Nav className="ms-auto d-flex align-items-center gap-3">
-                <Button variant="primary" as={NavLink} to="/usuario/turnos">
+                <Button
+                  variant="primary"
+                  as={NavLink}
+                  to="/usuario/reservarTurnos"
+                >
                   Reservar turno
                 </Button>
                 <NavLink className="nav-link" to="#" onClick={cerrarSesion}>
