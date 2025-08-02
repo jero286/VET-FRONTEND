@@ -18,4 +18,4 @@ export const configHeaderImagen = {
   'auth': `${token}`,
 };
 
-export default clienteAxios;
+export default clienteAxios

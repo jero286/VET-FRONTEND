@@ -15,6 +15,9 @@ import AdminTurnos from "./paginas/AdminTurnos";
 import AdminProductos from "./paginas/AdminProductos";
 import PaginaUsuario from "./paginas/PaginaUsuario";
 import ReservarTurno from "./paginas/reservarTurno";
+import AdminCrearEditarUsuarios from "./paginas/AdminCrearEditarUsuarios";
+import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
+import AdminCrearEditarTurnos from "./paginas/AdminCrearEditarTurnos";
 
 const App = () => {
   return (
@@ -31,9 +34,12 @@ const App = () => {
           <Route path="/usuario" element={<PaginaUsuario />} />
           <Route path="/usuario/turnos" element={<ReservarTurno />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/adminPacientes" element={<AdminPacientes />} />
-          <Route path="/adminTurnos" element={<AdminTurnos />} />
-          <Route path="/adminProductos" element={<AdminProductos />} />
+          <Route path="/admin/pacientes" element={<AdminPacientes />} />
+          <Route path="/admin/turnos" element={<AdminTurnos />} />
+          <Route path="/admin/productos" element={<AdminProductos />} />
+          <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios/>} />
+          <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos/>} />
+          <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos/>} />
         </Routes>
         <FooterC />
       </Router>
