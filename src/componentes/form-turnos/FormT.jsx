@@ -57,7 +57,15 @@ const FormT = () => {
       }
       setErrores(erroresTurnos);
       if (detalle && veterinario && mascota && fecha && hora) {
-         const idUsuario = JSON.parse(sessionStorage.getItem("idUsuario"));
+        const idUsuario = JSON.parse(sessionStorage.getItem("idUsuario"));
+        if (!idUsuario) {
+          Swal.fire({
+            icon: "error",
+            title: "Error interno",
+            text: "No se encontró el ID del usuario. Iniciá sesión nuevamente.",
+          });
+          return;
+        }
         const crearTruno = await clienteAxios.post(
           "/turnos",
           {
@@ -66,7 +74,7 @@ const FormT = () => {
             mascota,
             fecha,
             hora,
-            idUsuario
+            idUsuario,
           },
           configHeader
         );
@@ -154,7 +162,7 @@ const FormT = () => {
         <Form.Group className="mb-3" controlId="formBasicDate">
           <Form.Label>Fecha</Form.Label>
           <Form.Control
-            type="text"
+            type="date"
             placeholder="Solo de lunes a viernes"
             name="fecha"
             onChange={handleOnChangeDatosFormulario}
