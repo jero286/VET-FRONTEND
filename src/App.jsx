@@ -7,8 +7,8 @@ import IniciarSesion from "./paginas/IniciarSesion";
 import Registrarse from "./paginas/Registrarse";
 import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
-import Planes from "./paginas/PaginaPlanes";
-import DetallePlan from "./paginas/detallePlan";
+/* import Planes from "./paginas/PaginaPlanes";
+import DetallePlan from "./paginas/detallePlan"; */
 import Admin from "./paginas/Admin";
 import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
