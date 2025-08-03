@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarC from "./componentes/navbar/NavbarC";
 import PaginaPrincipal from "./paginas/PaginaPrincipal";
 import Contacto from "./paginas/Contacto";
@@ -18,7 +18,7 @@ import ReservarTurno from "./paginas/reservarTurno";
 import AdminCrearEditarUsuarios from "./paginas/AdminCrearEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 import AdminCrearEditarTurnos from "./paginas/AdminCrearEditarTurnos";
-import TablaUsuarios from "./componentes/tablas/TablaUsuarios";
+/* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
 
 const App = () => {
