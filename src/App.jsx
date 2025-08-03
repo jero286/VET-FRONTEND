@@ -18,6 +18,8 @@ import ReservarTurno from "./paginas/reservarTurno";
 import AdminCrearEditarUsuarios from "./paginas/AdminCrearEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 import AdminCrearEditarTurnos from "./paginas/AdminCrearEditarTurnos";
+import TablaUsuarios from "./componentes/tablas/TablaUsuarios";
+import UsuarioTurnos from "./paginas/UsuarioTurnos";
 
 const App = () => {
   return (
@@ -33,13 +35,23 @@ const App = () => {
           <Route path="*" element={<Error404 />} />
           <Route path="/usuario" element={<PaginaUsuario />} />
           <Route path="/usuario/reservarTurnos" element={<ReservarTurno />} />
+          <Route path="/usuario/turnos" element={<UsuarioTurnos />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
-          <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios/>} />
-          <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos/>} />
-          <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos/>} />
+          <Route
+            path="/admin/usuarios/crearEditar"
+            element={<AdminCrearEditarUsuarios />}
+          />
+          <Route
+            path="/admin/productos/crearEditar"
+            element={<AdminCrearEditarProductos />}
+          />
+          <Route
+            path="/admin/turnos/crearEditar"
+            element={<AdminCrearEditarTurnos />}
+          />
         </Routes>
         <FooterC />
       </Router>
