@@ -1,11 +1,32 @@
+import { useEffect, useState } from "react";
 import TablaUsuarios from "../componentes/tablas/TablaUsuarios";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
-cambiarTituloPagina("turnosUsuario")
+import clienteAxios, {
+  configHeader,
+} from "../funciones_auxiliares/configAxios";
+cambiarTituloPagina("turnosUsuario");
 
 const UsuarioTurnos = () => {
+  const idUsuarioLog = JSON.parse(sessionStorage.getItem("idUsuario"));
+  const [turnos, setTurnos] = useState([]);
+  const obtenerTurnosDeUsuario = async () => {
+    const turnosDeUsuario = await clienteAxios.get(
+      `/turnos/usuarios/${idUsuarioLog}`,
+      configHeader
+    );
+    setTurnos(turnosDeUsuario.data.turnos);
+  };
+
+  useEffect(()=>{
+    obtenerTurnosDeUsuario()
+  },[])
   return (
     <>
-      <TablaUsuarios />
+      <TablaUsuarios
+        idPage="turnosUsuarios"
+        idDelUsuarioLog={idUsuarioLog}
+        arrayTurnos={turnos}
+      />
     </>
   );
 };
