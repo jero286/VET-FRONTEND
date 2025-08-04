@@ -170,6 +170,7 @@ const FormT = () => {
             className={
               errores.fecha ? "form-control is-invalid" : "form-control"
             }
+            min={new Date().toISOString().split("T")[0]}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicHora">

@@ -14,7 +14,7 @@ const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
           </tr>
         </thead>
         <tbody>
-          {arrayTurnos ? (
+          {arrayTurnos && arrayTurnos.length > 0 ? (
             arrayTurnos.map((turno, index) => (
               <tr key={turno._id}>
                 <td>{index + 1}</td>
