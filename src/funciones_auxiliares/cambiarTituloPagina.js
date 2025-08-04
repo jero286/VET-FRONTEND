@@ -24,6 +24,9 @@ export const cambiarTituloPagina = (idPagina) => {
     case "panelUsuario":
       document.title = "Panel de usuario";
       break;
+    case "turnosUsuario":
+      document.title = "Tus turnos";
+      break;
     default:
       document.title = "Pagina";
       break;

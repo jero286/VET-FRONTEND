@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarC from "./componentes/navbar/NavbarC";
 import PaginaPrincipal from "./paginas/PaginaPrincipal";
 import Contacto from "./paginas/Contacto";
@@ -7,8 +7,13 @@ import IniciarSesion from "./paginas/IniciarSesion";
 import Registrarse from "./paginas/Registrarse";
 import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
+<<<<<<< HEAD
 import Planes from "./paginas/PaginaPlanes";
 import DetallePlan from "./paginas/DetallePlan";
+=======
+/* import Planes from "./paginas/PaginaPlanes";
+import DetallePlan from "./paginas/detallePlan"; */
+>>>>>>> 75354011f4e7d3a12bd4dfbc7cafe28e5d0488b4
 import Admin from "./paginas/Admin";
 import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
@@ -18,6 +23,8 @@ import ReservarTurno from "./paginas/reservarTurno";
 import AdminCrearEditarUsuarios from "./paginas/AdminCrearEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 import AdminCrearEditarTurnos from "./paginas/AdminCrearEditarTurnos";
+/* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
+import UsuarioTurnos from "./paginas/UsuarioTurnos";
 
 const App = () => {
   return (
@@ -35,13 +42,29 @@ const App = () => {
           <Route path="*" element={<Error404 />} />
           <Route path="/usuario" element={<PaginaUsuario />} />
           <Route path="/usuario/reservarTurnos" element={<ReservarTurno />} />
+          <Route path="/usuario/turnos" element={<UsuarioTurnos />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
+<<<<<<< HEAD
           <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios />} />
           <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos />} />
           <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos />} />
+=======
+          <Route
+            path="/admin/usuarios/crearEditar"
+            element={<AdminCrearEditarUsuarios />}
+          />
+          <Route
+            path="/admin/productos/crearEditar"
+            element={<AdminCrearEditarProductos />}
+          />
+          <Route
+            path="/admin/turnos/crearEditar"
+            element={<AdminCrearEditarTurnos />}
+          />
+>>>>>>> 75354011f4e7d3a12bd4dfbc7cafe28e5d0488b4
         </Routes>
         <FooterC />
       </Router>
