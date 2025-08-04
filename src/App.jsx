@@ -8,7 +8,7 @@ import Registrarse from "./paginas/Registrarse";
 import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
 import Planes from "./paginas/PaginaPlanes";
-import DetallePlan from "./paginas/detallePlan";
+import DetallePlan from "./paginas/DetallePlan";
 import Admin from "./paginas/Admin";
 import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
@@ -26,6 +26,8 @@ const App = () => {
         <NavbarC />
         <Routes>
           <Route path="/" element={<PaginaPrincipal />} />
+          <Route path="/planes" element={<Planes />} />
+          <Route path="/planes/:nombrePlan" element={<DetallePlan />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/acercaDeNosotros" element={<AcercaDeNosotros />} />
           <Route path="/iniciarSesion" element={<IniciarSesion />} />
@@ -37,9 +39,9 @@ const App = () => {
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
-          <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios/>} />
-          <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos/>} />
-          <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos/>} />
+          <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios />} />
+          <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos />} />
+          <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos />} />
         </Routes>
         <FooterC />
       </Router>
