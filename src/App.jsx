@@ -7,13 +7,12 @@ import IniciarSesion from "./paginas/IniciarSesion";
 import Registrarse from "./paginas/Registrarse";
 import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
-<<<<<<< HEAD
 import Planes from "./paginas/PaginaPlanes";
 import DetallePlan from "./paginas/DetallePlan";
-=======
+
 /* import Planes from "./paginas/PaginaPlanes";
 import DetallePlan from "./paginas/detallePlan"; */
->>>>>>> 75354011f4e7d3a12bd4dfbc7cafe28e5d0488b4
+
 import Admin from "./paginas/Admin";
 import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
@@ -47,12 +46,12 @@ const App = () => {
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
-<<<<<<< HEAD
+
           <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios />} />
           <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos />} />
           <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos />} />
-=======
-          <Route
+
+          {/* <Route
             path="/admin/usuarios/crearEditar"
             element={<AdminCrearEditarUsuarios />}
           />
@@ -63,8 +62,8 @@ const App = () => {
           <Route
             path="/admin/turnos/crearEditar"
             element={<AdminCrearEditarTurnos />}
-          />
->>>>>>> 75354011f4e7d3a12bd4dfbc7cafe28e5d0488b4
+          /> */}
+
         </Routes>
         <FooterC />
       </Router>
