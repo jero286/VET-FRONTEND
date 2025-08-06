@@ -25,40 +25,21 @@ export default function Contacto() {
   };
 
   return (
-    <div className="position-relative min-vh-100 overflow-hidden h-100">
-      {/* Carrusel de fondo */}
-      <div
-        id="carouselFondo"
-        className="carousel slide position-absolute top-0 start-0 w-100 h-100 z-n1"
-        data-bs-ride="carousel"
-        data-bs-interval="5000"
-        style={{ minHeight: '100vh' }}
-      >
-        <div className="carousel-inner h-100">
-          <div className="carousel-item active h-100">
-            <img
-              src="https://escuelafarmacia.com/wp-content/uploads/cl%C3%ADnica-veterinaria.jpg"
-              className="d-block w-100 h-100 object-fit-cover"
-              alt="fondo1"
-            />
-          </div>
-          <div className="carousel-item h-100">
-            <img
-              src="https://hospitalveterinario.cr/wp-content/uploads/2020/04/Que-es-un-Medico-Veterinario-blog-1.jpg"
-              className="d-block w-100 h-100 object-fit-cover"
-              alt="fondo2"
-            />
-          </div>
-          <div className="carousel-item h-100">
-            <img
-              src="https://facultades.unab.cl/cienciasdelavida/wp-content/uploads/2022/02/AdobeStock_107432576-scaled.jpeg"
-              className="d-block w-100 h-100 object-fit-cover"
-              alt="fondo3"
-            />
-          </div>
-        </div>
-      </div>
-    
+    <div  style={{
+      backgroundImage:
+        "url('https://i.pinimg.com/1200x/d7/2d/23/d72d236e94f257af28b37f792e71a177.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      minHeight: "80vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "3rem",
+      color: "white",
+      position: "relative",}}
+     >
+  
     <div className="container mt-5 mb-5">
       <div className="row justify-content-center">
         <div className="col-lg-8 col-md-10">
@@ -123,13 +104,14 @@ export default function Contacto() {
                 <p><strong>📍 Dirección:</strong> General Paz 576, Tucumán</p>
                 <p><strong>📞 Teléfono:</strong> +54 381 123 4567</p>
                 <p><strong>📧 Email:</strong> contacto@vetcare.com</p>
-                <p><strong>🌐 Instagram:</strong> <a href="https://instagram.com/vetcare" className="text-decoration-none"> @vetapp</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
- </div>
+               
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ 
   );
 }
