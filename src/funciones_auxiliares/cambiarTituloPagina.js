@@ -12,8 +12,8 @@ export const cambiarTituloPagina = (idPagina) => {
     case "Iniciar Sesion":
       document.title = "Iniciar Sesion";
       break;
-    case "Registrarse":
-      document.title = "Registrarse";
+    case "Registro":
+      document.title = "Registro";
       break;
     case "Error404":
       document.title = "Error 404";

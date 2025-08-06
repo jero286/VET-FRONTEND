@@ -10,18 +10,20 @@ const AdminTurnos = () => {
 
   const obtenerTodosLosTurnos = async () => {
     const turnos = await clienteAxios.get("/turnos", configHeader)
-    setTurnos(turnos.data.turnos)}
+    console.log(turnos)
+    setTurnos(turnos.data.turnos)
+  }
 
-    useEffect(() => {
-      obtenerTodosLosTurnos
-    },[])
+  useEffect(() => {
+    obtenerTodosLosTurnos()
+  }, [])
   return (
     <>
-    <Container fluid className="my-5">
-      <TablaC idPagina="turnos" array={turnos}
-      obtenerTodosLosTurnos={obtenerTodosLosTurnos}
-      usuarioLogueado={usuarioLogueado} />
-    </Container>
+      <Container fluid className="my-5">
+        <TablaC idPagina="turnos" array={turnos}
+          obtenerTodosLosTurnos={obtenerTodosLosTurnos}
+          usuarioLogueado={usuarioLogueado} />
+      </Container>
     </>
   )
 }

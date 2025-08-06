@@ -3,7 +3,7 @@ import FormC from "../componentes/form/FormC";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 const Registrarse = () => {
-  cambiarTituloPagina("Registrarse");
+  cambiarTituloPagina("Registro");
   return (
     <>
       <Container className="d-flex justify-content-center my-4">

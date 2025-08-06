@@ -51,7 +51,8 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
         if (result.isConfirmed) {
           try {
             const res = await clienteAxios.delete(`/turnos/${idTurno}`)
-            if (res.status === 200) {
+            if (res.status === 200 || res.status === 204) {
+              
               Swal.fire({
                 title: "¡Turno eliminado!",
                 icon: "success"
@@ -120,7 +121,7 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
           if (idPagina === "turnos") {
             return (
               <tr key={index}>
-                <td>{item.motivo}</td>
+                <td>{item.detalle}</td>
                 <td>{item.veterinario}</td>
                 <td>{item.mascota}</td>
                 <td>{item.fecha}</td>
