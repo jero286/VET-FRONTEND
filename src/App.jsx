@@ -15,7 +15,7 @@ import AdminTurnos from "./paginas/AdminTurnos";
 import AdminProductos from "./paginas/AdminProductos";
 import PaginaUsuario from "./paginas/PaginaUsuario";
 import ReservarTurno from "./paginas/reservarTurno";
-import AdminCrearEditarUsuarios from "./paginas/AdminCrearEditarUsuarios";
+import AdminEditarUsuarios from "./paginas/AdminEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 import AdminCrearEditarTurnos from "./paginas/AdminCrearEditarTurnos";
 /* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
@@ -41,8 +41,8 @@ const App = () => {
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
           <Route
-            path="/admin/usuarios/crearEditar"
-            element={<AdminCrearEditarUsuarios />}
+            path="/admin/usuarios/Editar"
+            element={<AdminEditarUsuarios />}
           />
           <Route
             path="/admin/productos/crearEditar"

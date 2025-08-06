@@ -10,27 +10,28 @@ const AdminPacientes = () => {
 
   const obtenerTodosLosUsuarios = async () => {
     const usuarios = await clienteAxios.get("usuarios", configHeader)
-    setUsuarios(usuarios.data.usuarios)}
+    setUsuarios(usuarios.data.usuarios)
+  }
 
-    useEffect(() => {
-      obtenerTodosLosUsuarios()
-    },[])
+  useEffect(() => {
+    obtenerTodosLosUsuarios()
+  }, [])
   return (
     <>
-    {
-      usuarioLogueado && 
-      <>
-      <Container className='text-end my-5'>
-        <Link className="btn btn-primary" 
-        to={`/admin/usuarios/crearEditar`}>+ Añadir Nuevo Usuario</Link>
-      </Container>
-      <Container fluid className="my-5">
-      <TablaC idPagina="usuarios" array={usuarios}
-       obtenerTodosLosUsuarios={obtenerTodosLosUsuarios}
-       usuarioLogueado={usuarioLogueado}/>
-      </Container>
-      </>
-    }
+      {
+        usuarioLogueado &&
+        <>
+          <Container className='text-end my-5'>
+            <Link className="btn btn-primary"
+              to={`/registrarse`}>+ Añadir Nuevo Usuario</Link>
+          </Container>
+          <Container fluid className="my-5">
+            <TablaC idPagina="usuarios" array={usuarios}
+              obtenerTodosLosUsuarios={obtenerTodosLosUsuarios}
+              usuarioLogueado={usuarioLogueado} />
+          </Container>
+        </>
+      }
     </>
   )
 }
