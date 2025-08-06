@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from 'react-router';
 import clienteAxios, { configHeader } from '../funciones_auxiliares/configAxios';
+import Swal from 'sweetalert2';
 
 const AdminEditarUsuarios = () => {
   const navigate = useNavigate()
@@ -36,12 +37,24 @@ const AdminEditarUsuarios = () => {
   const handleClickFormEditarUsuario = async (e) => {
     e.preventDefault()
     try {
-      const res = await clienteAxios.put(`/usuarios/${id}`, formEditarUsuario);
-      alert("Usuario actualizado con éxito")
-      navigate("/admin/usuarios")
+      const res = await clienteAxios.put(`/usuarios/${id}`, formEditarUsuario)
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Usuario actualizado con éxito',
+        confirmButtonColor: '#3085d6',
+      }).then(() => {
+        navigate("/admin/pacientes")
+      });
     } catch (error) {
       console.error("Error al actualizar el usuario", error)
-      alert("No se pudo actualizar el usuario")
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo actualizar el usuario',
+        confirmButtonColor: '#d33',
+      });
     }
   };
 
