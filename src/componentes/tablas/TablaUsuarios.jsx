@@ -14,16 +14,16 @@ const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
           </tr>
         </thead>
         <tbody>
-          {arrayTurnos ? (
+          {arrayTurnos && arrayTurnos.length > 0 ? (
             arrayTurnos.map((turno, index) => (
               <tr key={turno._id}>
                 <td>{index + 1}</td>
                 <td>{turno.mascota}</td>
                 <td>{turno.veterinario}</td>
                 <td>{turno.detalle}</td>
-                <td>{new Date(turno.fecha).toLocaleDateString()}</td>
+                <td>{new Date(turno.fecha).toLocaleDateString("es-AR")}</td>
                 <td>
-                  {new Date(turno.hora).toLocaleTimeString([], {
+                  {new Date(turno.hora).toLocaleTimeString("es-AR", {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}
