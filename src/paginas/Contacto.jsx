@@ -25,13 +25,14 @@ export default function Contacto() {
   };
 
   return (
-    <div className="position-relative d-flex flex-column min-vh-100">
+    <div className="position-relative min-vh-100 overflow-hidden h-100">
       {/* Carrusel de fondo */}
       <div
         id="carouselFondo"
         className="carousel slide position-absolute top-0 start-0 w-100 h-100 z-n1"
         data-bs-ride="carousel"
         data-bs-interval="5000"
+        style={{ minHeight: '100vh' }}
       >
         <div className="carousel-inner h-100">
           <div className="carousel-item active h-100">
