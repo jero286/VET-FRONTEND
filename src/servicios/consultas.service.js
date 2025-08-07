@@ -20,3 +20,8 @@ export const enviarConsulta = async (datos) => {
     throw error;
   }
 };
+
+ export const obtenerConsultas = async () => {
+  const res = await fetch("http://localhost:5000/api/consultas");
+  return res.json();
+};

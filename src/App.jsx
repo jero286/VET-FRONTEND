@@ -9,10 +9,8 @@ import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
 import Planes from "./paginas/PaginaPlanes";
 import DetallePlan from "./paginas/DetallePlan";
-
-/* import Planes from "./paginas/PaginaPlanes";
-import DetallePlan from "./paginas/detallePlan"; */
-
+import RecuperarContrasena from "./paginas/RecuperarContrasena"
+import NuevaContrasena from "./paginas/NuevaContrasena"
 import Admin from "./paginas/Admin";
 import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
@@ -50,19 +48,11 @@ const App = () => {
           <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios />} />
           <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos />} />
           <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos />} />
+          <Route path="/recuperar" element={<RecuperarContrasena />} />
+          <Route path="/reestablecer/:token" element={<NuevaContrasena />} />
 
-          {/* <Route
-            path="/admin/usuarios/crearEditar"
-            element={<AdminCrearEditarUsuarios />}
-          />
-          <Route
-            path="/admin/productos/crearEditar"
-            element={<AdminCrearEditarProductos />}
-          />
-          <Route
-            path="/admin/turnos/crearEditar"
-            element={<AdminCrearEditarTurnos />}
-          /> */}
+
+
 
         </Routes>
         <FooterC />
