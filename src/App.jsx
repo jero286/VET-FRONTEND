@@ -7,8 +7,10 @@ import IniciarSesion from "./paginas/IniciarSesion";
 import Registrarse from "./paginas/Registrarse";
 import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
-/* import Planes from "./paginas/PaginaPlanes";
-import DetallePlan from "./paginas/detallePlan"; */
+import Planes from "./paginas/PaginaPlanes";
+import DetallePlan from "./paginas/DetallePlan";
+import RecuperarContrasena from "./paginas/RecuperarContrasena"
+import NuevaContrasena from "./paginas/NuevaContrasena"
 import Admin from "./paginas/Admin";
 import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
@@ -28,6 +30,8 @@ const App = () => {
         <NavbarC />
         <Routes>
           <Route path="/" element={<PaginaPrincipal />} />
+          <Route path="/planes" element={<Planes />} />
+          <Route path="/planes/:nombrePlan" element={<DetallePlan />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/acercaDeNosotros" element={<AcercaDeNosotros />} />
           <Route path="/iniciarSesion" element={<IniciarSesion />} />
@@ -40,6 +44,18 @@ const App = () => {
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
+
+
+          <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios />} />
+          <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos />} />
+          <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos />} />
+          <Route path="/recuperar" element={<RecuperarContrasena />} />
+          <Route path="/reestablecer/:token" element={<NuevaContrasena />} />
+
+
+
+
+
           <Route
             path="/admin/usuarios/Editar"
             element={<AdminEditarUsuarios />}
@@ -52,6 +68,7 @@ const App = () => {
             path="/admin/turnos/editar"
             element={<AdminEditarTurnos />}
           />
+
         </Routes>
         <FooterC />
       </Router>
