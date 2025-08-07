@@ -27,6 +27,8 @@ export const cambiarTituloPagina = (idPagina) => {
     case "turnosUsuario":
       document.title = "Tus turnos";
       break;
+    case "carrito":
+      document.title = "Carrito";
     default:
       document.title = "Pagina";
       break;
