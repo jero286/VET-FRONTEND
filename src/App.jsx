@@ -17,9 +17,9 @@ import PaginaUsuario from "./paginas/PaginaUsuario";
 import ReservarTurno from "./paginas/reservarTurno";
 import AdminEditarUsuarios from "./paginas/AdminEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
-import AdminCrearEditarTurnos from "./paginas/AdminCrearEditarTurnos";
 /* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
+import AdminEditarTurnos from "./paginas/AdminEditarTurnos";
 
 const App = () => {
   return (
@@ -49,8 +49,8 @@ const App = () => {
             element={<AdminCrearEditarProductos />}
           />
           <Route
-            path="/admin/turnos/crearEditar"
-            element={<AdminCrearEditarTurnos />}
+            path="/admin/turnos/editar"
+            element={<AdminEditarTurnos />}
           />
         </Routes>
         <FooterC />
