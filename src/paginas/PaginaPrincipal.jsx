@@ -1,7 +1,9 @@
+
 import "./PaginaPrincipal.css";
 import { Container, Button, Carousel, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
+
 
 const productos = [
   {
@@ -128,6 +130,7 @@ const PaginaPrincipal = () => {
             </Carousel.Item>
           ))}
         </Carousel>
+        
       </Container>
     </div>
   );

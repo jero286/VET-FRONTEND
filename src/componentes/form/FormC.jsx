@@ -7,6 +7,8 @@ import clienteAxios from "../../funciones_auxiliares/configAxios";
 import { configHeader } from "../../funciones_auxiliares/configAxios";
 import swal from "sweetalert2";
 
+
+
 const FormC = ({ idPage }) => {
   const navigate = useNavigate();
   const [errores, setErrores] = useState({});
@@ -331,10 +333,9 @@ const FormC = ({ idPage }) => {
           </Form.Group>
         )}
         {idPage === "inicioSesion" && (
-          <p>
-            Si olvidaste tu contraseña, haz click
-            <Link to={"/recuperarContraseña"}>aquí</Link>
-          </p>
+          <div className="text-center mt-3">
+            <Link to={"/emailRecuperarContrasenia"}>¿Olvidaste tu contraseña?</Link>
+          </div>
         )}
         <Container className="text-center">
           <Button

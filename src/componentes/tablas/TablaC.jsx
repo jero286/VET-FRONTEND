@@ -52,7 +52,7 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
           try {
             const res = await clienteAxios.delete(`/turnos/${idTurno}`)
             if (res.status === 200 || res.status === 204) {
-              
+
               Swal.fire({
                 title: "¡Turno eliminado!",
                 icon: "success"
@@ -129,7 +129,7 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
                 <td className='w-25'>
                   <Link
                     className='btn btn-warning mx-3'
-                    to={usuarioLogueado ? `/admin/turnos/crearEditar?id=${item._id}` : "#"}
+                    to={usuarioLogueado ? `/admin/turnos/editar?id=${item._id}` : "#"}
                   >
                     Editar
                   </Link>
