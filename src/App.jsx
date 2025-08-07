@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavbarC from "./componentes/navbar/NavbarC";
+import PaginaPrincipal from "./paginas/PaginaPrincipal";
+import Contacto from "./paginas/Contacto";
+import AcercaDeNosotros from "./paginas/AcercaDeNosotros";
+import IniciarSesion from "./paginas/IniciarSesion";
+import Registrarse from "./paginas/Registrarse";
+import FooterC from "./componentes/footer/FooterC";
+import Error404 from "./paginas/Error404";
+/* import Planes from "./paginas/PaginaPlanes";
+import DetallePlan from "./paginas/detallePlan"; */
+import Admin from "./paginas/Admin";
+import AdminPacientes from "./paginas/AdminPacientes";
+import AdminTurnos from "./paginas/AdminTurnos";
+import AdminProductos from "./paginas/AdminProductos";
+import PaginaUsuario from "./paginas/PaginaUsuario";
+import ReservarTurno from "./paginas/reservarTurno";
+import AdminEditarUsuarios from "./paginas/AdminEditarUsuarios";
+import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
+import AdminCrearEditarTurnos from "./paginas/AdminCrearEditarTurnos";
+/* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
+import UsuarioTurnos from "./paginas/UsuarioTurnos";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <NavbarC />
+        <Routes>
+          <Route path="/" element={<PaginaPrincipal />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/acercaDeNosotros" element={<AcercaDeNosotros />} />
+          <Route path="/iniciarSesion" element={<IniciarSesion />} />
+          <Route path="/registrarse" element={<Registrarse />} />
+          <Route path="*" element={<Error404 />} />
+          <Route path="/usuario" element={<PaginaUsuario />} />
+          <Route path="/usuario/reservarTurnos" element={<ReservarTurno />} />
+          <Route path="/usuario/turnos" element={<UsuarioTurnos />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/pacientes" element={<AdminPacientes />} />
+          <Route path="/admin/turnos" element={<AdminTurnos />} />
+          <Route path="/admin/productos" element={<AdminProductos />} />
+          <Route
+            path="/admin/usuarios/Editar"
+            element={<AdminEditarUsuarios />}
+          />
+          <Route
+            path="/admin/productos/crearEditar"
+            element={<AdminCrearEditarProductos />}
+          />
+          <Route
+            path="/admin/turnos/crearEditar"
+            element={<AdminCrearEditarTurnos />}
+          />
+        </Routes>
+        <FooterC />
+      </Router>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

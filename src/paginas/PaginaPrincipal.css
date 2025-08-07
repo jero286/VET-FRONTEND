@@ -1,0 +1,99 @@
+
+.fondo-principal {
+  background-image: url('/fondo-vetcare.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+}
+.fondo-principal h1 {
+  color: #FFEDB3; 
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.fondo-principal p {
+  color: #F8F9FA; 
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.carousel {
+  width: 100%;
+  max-width: 800px;
+  margin: 3rem auto;
+}
+
+.carousel-item img {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+}
+
+.carousel-caption h3,
+.carousel-caption p {
+  color: #f3e5e5;
+  margin-bottom: 0.5rem;
+}
+
+
+.carousel-caption button {
+  margin-top: 0.5rem;
+}
+
+.tabla-planes {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.table th,
+.table td {
+  color: white;
+  vertical-align: middle;
+}
+
+.table thead {
+  background-color: #065084;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card-title {
+  color: #065084; 
+  font-weight: bold;
+}
+
+.card-text {
+  color: #07494D; 
+}
+
+
+.card-text strong {
+  color:  #065084;; 
+}
