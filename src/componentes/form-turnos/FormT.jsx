@@ -57,7 +57,27 @@ const FormT = () => {
       }
       setErrores(erroresTurnos);
       if (detalle && veterinario && mascota && fecha && hora) {
-         const idUsuario = JSON.parse(sessionStorage.getItem("idUsuario"));
+        const idUsuario = JSON.parse(sessionStorage.getItem("idUsuario"));
+        if (!idUsuario) {
+          Swal.fire({
+            icon: "error",
+            title: "Error interno",
+            text: "No se encontró el ID del usuario. Iniciá sesión nuevamente.",
+          });
+          return;
+        }
+        const fechaHoraSeleccion = new Date(`${turnos.fecha}T${turnos.hora}`);
+        const hoy = new Date();
+        const esMismoDia = turnos.fecha === hoy.toISOString().split("T")[0];
+
+        if (esMismoDia && fechaHoraSeleccion.getTime() <= hoy.getTime()) {
+          Swal.fire({
+            icon: "error",
+            title: "Hora inválida",
+            text: "No podés elegir una hora pasada en el día de hoy.",
+          });
+          return;
+        }
         const crearTruno = await clienteAxios.post(
           "/turnos",
           {
@@ -66,7 +86,7 @@ const FormT = () => {
             mascota,
             fecha,
             hora,
-            idUsuario
+            idUsuario,
           },
           configHeader
         );
@@ -154,7 +174,7 @@ const FormT = () => {
         <Form.Group className="mb-3" controlId="formBasicDate">
           <Form.Label>Fecha</Form.Label>
           <Form.Control
-            type="text"
+            type="date"
             placeholder="Solo de lunes a viernes"
             name="fecha"
             onChange={handleOnChangeDatosFormulario}
@@ -162,6 +182,7 @@ const FormT = () => {
             className={
               errores.fecha ? "form-control is-invalid" : "form-control"
             }
+            min={new Date().toISOString().split("T")[0]}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicHora">

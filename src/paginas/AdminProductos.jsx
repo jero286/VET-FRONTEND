@@ -6,6 +6,7 @@ import TablaC from "../componentes/tablas/TablaC"
 
 const AdminProductos = () => {
   const [productos, setProductos] = useState([])
+  const usuarioLogueado = JSON.parse(sessionStorage.getItem("token")) || null
 
   const obtenerTodosLosProductos = async () => {
     const productos = await clienteAxios.get("/productos", configHeader)
@@ -18,7 +19,8 @@ const AdminProductos = () => {
     <>
     <Container fluid className="my-5">
       <TablaC idPagina="productos" array={productos}
-      obtenerTodosLosProductos={obtenerTodosLosProductos} />
+      obtenerTodosLosProductos={obtenerTodosLosProductos}
+      usuarioLogueado={usuarioLogueado} />
     </Container>
     </>
   )

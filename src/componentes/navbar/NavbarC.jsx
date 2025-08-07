@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { Button } from "react-bootstrap";
 
@@ -14,6 +14,7 @@ const NavbarC = () => {
     ev.preventDefault();
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("rol");
+    sessionStorage.removeItem("idUsuario");
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -32,7 +33,7 @@ const NavbarC = () => {
                 : "/"
             }
           >
-            <img src="/logo3.jpeg" alt="Logo" style={{ width: "99px" }} />
+            <img src="/logo3.jpeg" alt="Logo" style={{ width: "130px" }} />
           </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -56,7 +57,7 @@ const NavbarC = () => {
                 <NavLink className="nav-link" to="/admin">
                   Inicio
                 </NavLink>
-                <NavLink className="nav-link" to="/admin/usuarios">
+                <NavLink className="nav-link" to="/admin/pacientes">
                   Panel de Pacientes
                 </NavLink>
                 <NavLink className="nav-link" to="/admin/productos">
@@ -82,7 +83,11 @@ const NavbarC = () => {
 
             {token && usuarioLogueadoRol === "usuario" ? (
               <Nav className="ms-auto d-flex align-items-center gap-3">
-                <Button variant="primary" as={NavLink} to="/usuario/turnos">
+                <Button
+                  variant="primary"
+                  as={NavLink}
+                  to="/usuario/reservarTurnos"
+                >
                   Reservar turno
                 </Button>
                 <NavLink className="nav-link" to="#" onClick={cerrarSesion}>

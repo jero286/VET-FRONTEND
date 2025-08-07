@@ -9,12 +9,12 @@ const FooterC = () => {
         <Row>
             <Col className="d-flex justify-content-center align-items-center">
             <NavLink className={"nav-link"} to={"/"}>
-            <img src="/logo3.jpeg" alt="Logo" style={{width: '80px'}} />
+            <img src="/logo3.jpeg" alt="Logo" style={{width: '120px'}} />
             </NavLink>
             </Col>
             <Col className="text-center d-flex align-items-center">
             <NavLink className={"nav-link"} to={"/error404"}>
-            <img src="/instagram.png" alt="Instagram"/>
+            <img src="/Instagram.png" alt="Instagram"/>
             <p>Instagram</p>
             </NavLink>
             <NavLink className={"nav-link mx-3"} to={"/error404"}>
