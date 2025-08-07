@@ -333,9 +333,9 @@ const FormC = ({ idPage }) => {
           </Form.Group>
         )}
         {idPage === "inicioSesion" && (
-         <div className="text-center mt-3">
-    <Link to={"/recuperar"}>¿Olvidaste tu contraseña?</Link>
-  </div>
+          <div className="text-center mt-3">
+            <Link to={"/emailRecuperarContrasenia"}>¿Olvidaste tu contraseña?</Link>
+          </div>
         )}
         <Container className="text-center">
           <Button

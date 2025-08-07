@@ -9,8 +9,8 @@ import FooterC from "./componentes/footer/FooterC";
 import Error404 from "./paginas/Error404";
 import Planes from "./paginas/PaginaPlanes";
 import DetallePlan from "./paginas/DetallePlan";
-import RecuperarContrasena from "./paginas/RecuperarContrasena"
-import NuevaContrasena from "./paginas/NuevaContrasena"
+import RecuperarContraseniaEmail from "./paginas/RecuperarContraseniaEmail";
+import NuevaContrasenia from "./paginas/NuevaContrasenia"
 import Admin from "./paginas/Admin";
 import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
@@ -21,7 +21,7 @@ import AdminEditarUsuarios from "./paginas/AdminEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 /* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
-import AdminEditarTurnos from "./paginas/AdminEditarTurnos";
+import AdminEditarTurnos from "./paginas/AdminEditarTurnos"
 
 const App = () => {
   return (
@@ -44,18 +44,11 @@ const App = () => {
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
-
-
-          <Route path="/admin/usuarios/crearEditar" element={<AdminCrearEditarUsuarios />} />
+          <Route path="/admin/usuarios/crearEditar" element={<AdminEditarUsuarios />} />
           <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos />} />
-          <Route path="/admin/turnos/crearEditar" element={<AdminCrearEditarTurnos />} />
-          <Route path="/recuperar" element={<RecuperarContrasena />} />
-          <Route path="/reestablecer/:token" element={<NuevaContrasena />} />
-
-
-
-
-
+          <Route path="/admin/turnos/editarTurnos" element={<AdminEditarTurnos />} />
+          <Route path="/emailRecuperarContrasenia" element={<RecuperarContraseniaEmail />} />
+          <Route path="/recuperarContraseniaForm" element={<NuevaContrasenia />} />
           <Route
             path="/admin/usuarios/Editar"
             element={<AdminEditarUsuarios />}
@@ -65,7 +58,7 @@ const App = () => {
             element={<AdminCrearEditarProductos />}
           />
           <Route
-            path="/admin/turnos/editar"
+            path="/admin/turnos/editarTurnos"
             element={<AdminEditarTurnos />}
           />
 
