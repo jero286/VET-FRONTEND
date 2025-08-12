@@ -79,7 +79,11 @@ const AdminCrearEditarProductos = () => {
         Swal.fire("Error", "No se pudo crear el producto", "error")
       }
     } else {
-      Swal.fire("Campos incompletos", "warning")
+      Swal.fire({
+        title: "Campos incompletos",
+        text: "Por favor completa todos los campos",
+        icon: "error"
+      })
     }
   }
 
@@ -107,8 +111,6 @@ const AdminCrearEditarProductos = () => {
         console.error("Error al editar el producto", error)
         Swal.fire("Error", "No se pudo editar el producto", "error")
       }
-    } else {
-      Swal.fire("Campos incompletos", "warning")
     }
   }
 

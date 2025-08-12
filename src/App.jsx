@@ -44,7 +44,7 @@ const App = () => {
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
           <Route path="/admin/productos" element={<AdminProductos />} />
-          <Route path="/admin/usuarios/crearEditar" element={<AdminEditarUsuarios />} />
+          <Route path="/admin/usuarios/Editar" element={<AdminEditarUsuarios />} />
           <Route path="/admin/productos/crearEditar" element={<AdminCrearEditarProductos />} />
           <Route path="/admin/turnos/editarTurnos" element={<AdminEditarTurnos />} />
           <Route path="/emailRecuperarContrasenia" element={<RecuperarContraseniaEmail />} />
