@@ -23,6 +23,8 @@ import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 /* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
 import AdminEditarTurnos from "./paginas/AdminEditarTurnos"
+import UsuarioCrearEditarMascota from "./paginas/UsuarioCrearEditarMascota";
+import UsuarioMascotas from "./paginas/UsuarioMascotas";
 
 const App = () => {
   return (
@@ -62,6 +64,8 @@ const App = () => {
             path="/admin/turnos/editarTurnos"
             element={<AdminEditarTurnos />}
           />
+          <Route path="/usuario/mascotas" element={<UsuarioMascotas />} />
+          <Route path="/usuario/mascotas/crearEditarMascota" element={<UsuarioCrearEditarMascota />} />
 
         </Routes>
         <FooterC />
