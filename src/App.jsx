@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarC from "./componentes/navbar/NavbarC";
 import PaginaPrincipal from "./paginas/PaginaPrincipal";

@@ -1,0 +1,25 @@
+.container-iniciar-sesion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  margin-top: 100px; /* deja espacio para el navbar */
+  margin-bottom: 100px; /* deja espacio para el footer fijo */
+  min-height: calc(100vh - 200px); /* alto total menos navbar y footer */
+}
+
+/* Ajuste para pantallas medianas */
+@media (max-width: 992px) {
+  .container-iniciar-sesion {
+    margin-top: 40px; /* menos margen en tablets */
+  }
+}
+
+/* Ajuste para pantallas pequeñas (celulares) */
+@media (max-width: 576px) {
+  .container-iniciar-sesion {
+    margin-top: 20px; /* margen reducido en móviles */
+    padding: 15px; /* menos padding para que no se achique demasiado el formulario */
+  }
+}

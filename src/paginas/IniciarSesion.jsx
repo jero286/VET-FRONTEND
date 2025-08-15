@@ -1,13 +1,14 @@
 import { Container } from "react-bootstrap";
 import FormC from "../componentes/form/FormC";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
+import "./IniciarSesion.css"
 
 const IniciarSesion = () => {
   cambiarTituloPagina("Iniciar Sesion");
   return (
     <>
-      <Container className="d-flex justify-content-center my-4">
-        <FormC idPage="inicioSesion" />
+      <Container className="container-iniciar-sesion ">
+        <FormC idPage="inicioSesion" className="form-c " />
       </Container>
     </>
   );

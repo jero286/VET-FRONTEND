@@ -119,12 +119,7 @@ const PaginaPrincipal = () => {
                   <Card.Text>
                     <strong>${producto.precio}</strong>
                   </Card.Text>
-                  {/* <Button
-                    variant="primary"
-                    onClick={() => comprarProducto(producto)}
-                  >
-                    Comprar
-                  </Button> */}
+                  
                 </Card.Body>
               </Card>
             </Carousel.Item>

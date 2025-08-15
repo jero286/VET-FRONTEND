@@ -1,3 +1,4 @@
+
 import { Col, Container, Row } from "react-bootstrap"
 import { NavLink } from "react-router"
 import "./footerC.css"
@@ -9,20 +10,20 @@ const FooterC = () => {
       <Row>
         <Col className="d-flex justify-content-center align-items-center">
           <NavLink className={"nav-link"} to={"/"}>
-            <img src="/logo3.jpeg" alt="Logo" style={{ width: '120px' }} />
+            <img src="/logo3.jpeg" alt="Logo" style={{ width: '80px' }} />
           </NavLink>
         </Col>
-        <Col className="text-center d-flex align-items-center">
-          <NavLink className={"nav-link"} to={"/error404"}>
+        <Col className="text-center d-flex align-items-center justify-content-center">
+          <NavLink className="nav-link mx-2" to="/error404">
             <img src="/Instagram.png" alt="Instagram" />
             <p>Instagram</p>
           </NavLink>
-          <NavLink className={"nav-link mx-3"} to={"/error404"}>
+          <NavLink className="nav-link mx-2" to="/error404">
             <img src="/Facebook.png" alt="Facebook" />
             <p>Facebook</p>
           </NavLink>
-          <NavLink className={"nav-link"} to={"/error404"}>
-            <img src="/Tik-Tok.png" alt="Tik-Tok" />
+          <NavLink className="nav-link mx-2" to="/error404">
+            <img src="/Tik-Tok.png" alt="TikTok" />
             <p>Tik Tok</p>
           </NavLink>
         </Col>
