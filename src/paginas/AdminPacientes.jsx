@@ -3,8 +3,10 @@ import TablaC from "../componentes/tablas/TablaC"
 import { useEffect, useState } from "react"
 import clienteAxios, { configHeader } from "../funciones_auxiliares/configAxios"
 import { Link } from "react-router"
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
 
 const AdminPacientes = () => {
+  cambiarTituloPagina("Pacientes")
   const [usuarios, setUsuarios] = useState([])
   const usuarioLogueado = JSON.parse(sessionStorage.getItem("token")) || null
 

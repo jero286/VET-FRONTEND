@@ -1,6 +1,8 @@
-import React from 'react'
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
+
 
 const Admin = () => {
+  cambiarTituloPagina("Admin")
   return (
     <>Admin</>
   )

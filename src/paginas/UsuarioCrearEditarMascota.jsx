@@ -37,8 +37,9 @@ const UsuarioCrearEditarMascota = () => {
                 erroresForm.sexo = "Sexo de mascota no seleccionado"
             } setErrores(erroresForm)
             if (Object.keys(erroresForm).length > 0) return
+            const idUsuario = JSON.parse(sessionStorage.getItem("idUsuario"));
             await clienteAxios.post("/mascotas", {
-                nombre, edad, especie, raza, sexo
+                nombre, edad, especie, raza, sexo, idUsuario
             }, configHeader)
             Swal.fire({
                 title: "Mascota registrada",
