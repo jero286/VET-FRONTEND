@@ -102,7 +102,7 @@ const UsuarioCarrito = () => {
           <div className="fw-bold fs-5">Total: {formatearAPesosArs(total)}</div>
           <Button
             variant="success"
-            disabled={items.length === 0 || cargando}
+            disabled={productos.length === 0 || cargando}
             onClick={pagarProducto}
           >
             {cargando ? (

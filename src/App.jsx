@@ -23,6 +23,9 @@ import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
 import AdminEditarTurnos from "./paginas/AdminEditarTurnos";
 import UsuarioCarrito from "./paginas/UsuarioCarrito";
+import PagoExitoso from "./paginas/PagoExitoso";
+import PagoPendiente from "./paginas/PagoPendiente";
+import PagoFallido from "./paginas/PagoFallido";
 
 const App = () => {
   return (
@@ -42,6 +45,9 @@ const App = () => {
           <Route path="/usuario/reservarTurnos" element={<ReservarTurno />} />
           <Route path="/usuario/turnos" element={<UsuarioTurnos />} />
           <Route path="/usuario/carrito" element={<UsuarioCarrito />} />
+          <Route path="/pagoExitoso" element={<PagoExitoso />} />
+          <Route path="/pagoPendiente" element={<PagoPendiente />} />
+          <Route path="/pagoFallido" element={<PagoFallido />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/pacientes" element={<AdminPacientes />} />
           <Route path="/admin/turnos" element={<AdminTurnos />} />
