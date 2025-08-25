@@ -1,7 +1,9 @@
+
 import { useEffect, useState } from "react"
 import clienteAxios, { configHeader } from "../funciones_auxiliares/configAxios"
 import { Container } from "react-bootstrap"
 import TablaC from "../componentes/tablas/TablaC"
+import "./adminTurnos.css"
 
 
 const AdminTurnos = () => {
@@ -18,12 +20,13 @@ const AdminTurnos = () => {
     obtenerTodosLosTurnos()
   }, [])
   return (
-    <>
-      <Container fluid className="my-5">
+    <>  <div className="admin-turnos-bg">
+      <Container fluid className="admin-turnos-card my-5">
         <TablaC idPagina="turnos" array={turnos}
           obtenerTodosLosTurnos={obtenerTodosLosTurnos}
           usuarioLogueado={usuarioLogueado} />
       </Container>
+      </div>
     </>
   )
 }

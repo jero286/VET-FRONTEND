@@ -1,8 +1,10 @@
+
 import { Container } from "react-bootstrap"
 import TablaC from "../componentes/tablas/TablaC"
 import { useEffect, useState } from "react"
 import clienteAxios, { configHeader } from "../funciones_auxiliares/configAxios"
 import { Link } from "react-router"
+
 
 const AdminPacientes = () => {
   const [usuarios, setUsuarios] = useState([])
@@ -21,6 +23,7 @@ const AdminPacientes = () => {
       {
         usuarioLogueado &&
         <>
+        <div className="admin-pacientes-bg">
           <Container className='text-end my-5'>
             <Link className="btn btn-primary"
               to={`/registrarse`}>+ Añadir Nuevo Usuario</Link>
@@ -30,6 +33,8 @@ const AdminPacientes = () => {
               obtenerTodosLosUsuarios={obtenerTodosLosUsuarios}
               usuarioLogueado={usuarioLogueado} />
           </Container>
+          </div>
+          
         </>
       }
     </>
