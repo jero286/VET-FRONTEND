@@ -1,0 +1,19 @@
+
+.admin-turnos-bg {
+  background-color: #f0f2f5; 
+  min-height: 100vh;         
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 0;
+}
+
+
+.admin-turnos-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+}

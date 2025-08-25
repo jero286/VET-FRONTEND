@@ -3,7 +3,7 @@ import clienteAxios, { configHeader } from "../funciones_auxiliares/configAxios"
 import { Container } from "react-bootstrap"
 import { Link } from "react-router"
 import TablaProductos from "../componentes/tablas/TablaProductos"
-
+import "./adminProductos.css"
 
 const AdminProductos = () => {
   const [productos, setProductos] = useState([])
@@ -17,18 +17,25 @@ const AdminProductos = () => {
   useEffect(() => {
     obtenerTodosLosProductos()
   }, [])
+
   return (
-    <>
-      <Container className='text-end my-5'>
-        <Link className="btn btn-primary"
-          to={`/admin/productos/crearEditar`}>+ Añadir Nuevo Producto</Link>
-      </Container>
-      <Container fluid className="my-5">
-        <TablaProductos array={productos}
+    <div className="admin-productos-bg">
+      <Container className="admin-productos-card">
+        <div className="text-end mb-4">
+          <Link
+            className="btn btn-primary"
+            to={`/admin/productos/crearEditar`}
+          >
+            + Añadir Nuevo Producto
+          </Link>
+        </div>
+        <TablaProductos
+          array={productos}
           obtenerTodosLosProductos={obtenerTodosLosProductos}
-          usuarioLogueado={usuarioLogueado} />
+          usuarioLogueado={usuarioLogueado}
+        />
       </Container>
-    </>
+    </div>
   )
 }
 
