@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from "react-router"
 import clienteAxios, { configHeader, configHeaderImagen } from "../funciones_auxiliares/configAxios"
 import Swal from "sweetalert2"
 import { Button, Container, Form } from "react-bootstrap"
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
 
 const AdminCrearEditarProductos = () => {
+  cambiarTituloPagina("Productos")
   const navigate = useNavigate()
   const location = useLocation()
   const id = new URLSearchParams(location.search).get("id")

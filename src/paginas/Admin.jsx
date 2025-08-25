@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./admin.css"
+=======
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
+
+>>>>>>> 499388f25b26ff67626324a2bf3fdae10851c56b
 
 const Admin = () => {
+  cambiarTituloPagina("Admin")
   return (
     <Container className="admin-dashboard my-5">
       <h2 className="text-center mb-4">Panel de Administración</h2>

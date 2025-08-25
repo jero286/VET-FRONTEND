@@ -3,10 +3,15 @@ import { useEffect, useState } from "react"
 import clienteAxios, { configHeader } from "../funciones_auxiliares/configAxios"
 import { Container } from "react-bootstrap"
 import TablaC from "../componentes/tablas/TablaC"
+
 import "./adminTurnos.css"
+
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina"
+
 
 
 const AdminTurnos = () => {
+  cambiarTituloPagina("Turnos")
   const [turnos, setTurnos] = useState([])
   const usuarioLogueado = JSON.parse(sessionStorage.getItem("token")) || null
 
