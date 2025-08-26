@@ -1,20 +1,24 @@
 import axios from "axios";
 
-const token = JSON.parse(sessionStorage.getItem("token"));
-
 const clienteAxios = axios.create({
   baseURL: `${import.meta.env.VITE_URL_BACKEND}`,
 });
 
-export const configHeader = {
-  headers: {
-    "content-type": "application/json",
-    'auth': `${token}`,
+clienteAxios.interceptors.request.use(
+  (config) => {
+    let token = sessionStorage.getItem("token");
+    console.log("[axios interceptor] token:", token);
+    if (token) {
+      token = token.replace(/^"|"$/g, "");
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    if (!config.headers["Content-Type"] && !config.headers["content-type"]) {
+      config.headers["Content-Type"] = "application/json";
+    }
+    return config;
   },
-};
+  (err) => Promise.reject(err)
+);
 
-export const configHeaderImagen = {
-  "content-type": "multipart/form-data"
-};
-
-export default clienteAxios
+export default clienteAxios;

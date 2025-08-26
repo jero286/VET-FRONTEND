@@ -1,8 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
-import clienteAxios, {
-  configHeader,
-} from "../funciones_auxiliares/configAxios";
+import clienteAxios from "../funciones_auxiliares/configAxios";
 import TablaCarrito from "../componentes/tablas/TablaCarrito";
 import { Button, Spinner, Alert, Container } from "react-bootstrap";
 
@@ -23,7 +21,7 @@ const UsuarioCarrito = () => {
     try {
       setCargando(true);
       setError("");
-      const { data } = await clienteAxios.get("/carrito", configHeader);
+      const { data } = await clienteAxios.get("/carrito");
       const productos = data?.productos ?? data?.carrito?.productos ?? [];
       setProductos(productos);
     } catch (error) {
@@ -37,10 +35,7 @@ const UsuarioCarrito = () => {
   const eliminarProducto = async (productoId) => {
     try {
       setCargando(true);
-      await clienteAxios.delete(
-        `/carrito/eliminar/${productoId}`,
-        configHeader
-      );
+      await clienteAxios.delete(`/carrito/eliminar/${productoId}`);
       await cargarCarrito();
     } catch (error) {
       setError("No se pudo eliminar el producto");
@@ -63,11 +58,7 @@ const UsuarioCarrito = () => {
       if (productos.length === 0) return;
       setCargando(true);
       setError("");
-      const { data } = await clienteAxios.post(
-        `/carrito/pagarProducto`,
-        {},
-        configHeader
-      );
+      const { data } = await clienteAxios.post(`/carrito/pagarProducto`, {});
       if (data?.init_point) {
         window.location.href = data.init_point;
       } else {
