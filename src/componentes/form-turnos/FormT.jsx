@@ -76,17 +76,14 @@ const FormT = () => {
           });
           return;
         }
-        const crearTruno = await clienteAxios.post(
-          "/turnos",
-          {
-            detalle,
-            veterinario,
-            mascota,
-            fecha,
-            hora,
-            idUsuario,
-          },
-        );
+        const crearTruno = await clienteAxios.post("/turnos", {
+          detalle,
+          veterinario,
+          mascota,
+          fecha,
+          hora,
+          idUsuario,
+        });
         Swal.fire({
           title: `${crearTruno.data.msg}`,
           text: "¡Turno creado con éxito!",
