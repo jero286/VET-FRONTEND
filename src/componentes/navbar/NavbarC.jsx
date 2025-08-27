@@ -33,7 +33,7 @@ const NavbarC = () => {
                 : "/"
             }
           >
-            <img src="/logo3.jpeg" alt="Logo" style={{ width: "130px" }} />
+            <img src="/logo3.jpeg" alt="Logo" style={{ width: '60px' }} />
           </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

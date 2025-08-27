@@ -9,13 +9,12 @@ const clienteAxios = axios.create({
 export const configHeader = {
   headers: {
     "content-type": "application/json",
-    'auth': `${token}`,
+    'auth': `Bearer ${token}`,
   },
 };
 
 export const configHeaderImagen = {
-  "content-type": "multipart/form-data",
-  'auth': `${token}`,
+  "content-type": "multipart/form-data"
 };
 
 export default clienteAxios

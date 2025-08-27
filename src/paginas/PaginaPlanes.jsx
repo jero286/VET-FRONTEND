@@ -2,6 +2,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./PaginaPlanes.css";
 
+
 const planes = [
   {
     nombre: "🐶 Primeros Pasos",
@@ -49,7 +50,7 @@ const planes = [
 
 const Planes = () => {
   const navigate = useNavigate();
-
+  
   return (
     <div className="mt-5 planes-container">
       <h2 className="text-center mb-4">Nuestros Planes de Salud</h2>

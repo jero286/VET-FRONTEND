@@ -1,7 +1,9 @@
+
 import "./PaginaPrincipal.css";
 import { Container, Button, Carousel, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
+
 
 const productos = [
   {
@@ -117,17 +119,13 @@ const PaginaPrincipal = () => {
                   <Card.Text>
                     <strong>${producto.precio}</strong>
                   </Card.Text>
-                  {/* <Button
-                    variant="primary"
-                    onClick={() => comprarProducto(producto)}
-                  >
-                    Comprar
-                  </Button> */}
+                  
                 </Card.Body>
               </Card>
             </Carousel.Item>
           ))}
         </Carousel>
+        
       </Container>
     </div>
   );

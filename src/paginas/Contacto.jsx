@@ -18,7 +18,7 @@ export default function Contacto() {
     e.preventDefault();
     setError(null);
     try {
-      await axios.post("http://localhost:3000/api/contacto", formData);
+      await axios.post(`${import.meta.env.VITE_URL_BACKEND}/api/contacto`, formData);
       setEnviado(true);
       setFormData({ nombre: "", email: "", mensaje: "" });
     } catch (err) {
