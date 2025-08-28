@@ -26,6 +26,8 @@ import UsuarioCarrito from "./paginas/UsuarioCarrito";
 import PagoExitoso from "./paginas/PagoExitoso";
 import PagoPendiente from "./paginas/PagoPendiente";
 import PagoFallido from "./paginas/PagoFallido";
+import UsuarioCrearEditarMascota from "./paginas/UsuarioCrearEditarMascota";
+import UsuarioMascotas from "./paginas/UsuarioMascotas";
 
 const App = () => {
   return (
@@ -83,6 +85,11 @@ const App = () => {
           <Route
             path="/admin/turnos/editarTurnos"
             element={<AdminEditarTurnos />}
+          />
+          <Route path="/usuario/mascotas" element={<UsuarioMascotas />} />
+          <Route
+            path="/usuario/mascotas/crearEditarMascota"
+            element={<UsuarioCrearEditarMascota />}
           />
         </Routes>
         <FooterC />

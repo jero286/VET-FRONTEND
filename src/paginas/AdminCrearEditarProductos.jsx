@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from "react-router";
 import clienteAxios from "../funciones_auxiliares/configAxios";
 import Swal from "sweetalert2";
 import { Button, Container, Form } from "react-bootstrap";
+import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 const AdminCrearEditarProductos = () => {
+  cambiarTituloPagina("Productos");
   const navigate = useNavigate();
   const location = useLocation();
   const id = new URLSearchParams(location.search).get("id");
@@ -79,7 +81,11 @@ const AdminCrearEditarProductos = () => {
         Swal.fire("Error", "No se pudo crear el producto", "error");
       }
     } else {
-      Swal.fire("Campos incompletos", "warning");
+      Swal.fire({
+        title: "Campos incompletos",
+        text: "Por favor completa todos los campos",
+        icon: "error",
+      });
     }
   };
 
@@ -107,8 +113,6 @@ const AdminCrearEditarProductos = () => {
         console.error("Error al editar el producto", error);
         Swal.fire("Error", "No se pudo editar el producto", "error");
       }
-    } else {
-      Swal.fire("Campos incompletos", "warning");
     }
   };
 

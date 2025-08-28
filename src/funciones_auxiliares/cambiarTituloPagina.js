@@ -29,6 +29,17 @@ export const cambiarTituloPagina = (idPagina) => {
       break;
     case "carrito":
       document.title = "Tus productos";
+    case "Admin":
+      document.title = "Admin";
+      break;
+    case "Pacientes":
+      document.title = "Admin Pacientes";
+      break;
+    case "Productos":
+      document.title = "Admin Productos";
+      break;
+    case "Turnos":
+      document.title = "Admin Turnos";
       break;
     default:
       document.title = "Pagina";

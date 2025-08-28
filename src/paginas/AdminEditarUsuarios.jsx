@@ -18,7 +18,7 @@ const AdminEditarUsuarios = () => {
     telefono: "",
   });
 
-  const obtenerUsuarioPorId = async () => {
+  const obtenerUsuarioPorId = async (id) => {
     try {
       const res = await clienteAxios.get(`/usuarios/${id}`);
       const usuario = res.data.usuario;
@@ -30,7 +30,13 @@ const AdminEditarUsuarios = () => {
         telefono: usuario.telefono,
       });
     } catch (error) {
-      console.log("Error al obtener usuario por ID", error);
+      console.error("Error al obtener usuario por ID", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al cargar usuario',
+        text: 'Ocurrió un problema al obtener los datos del usuario.',
+        confirmButtonColor: '#d33',
+      })
     }
   };
 
