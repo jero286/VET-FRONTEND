@@ -4,10 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import clienteAxios from "../../funciones_auxiliares/configAxios";
-import { configHeader } from "../../funciones_auxiliares/configAxios";
 import swal from "sweetalert2";
-
-
 
 const FormC = ({ idPage }) => {
   const navigate = useNavigate();
@@ -73,17 +70,13 @@ const FormC = ({ idPage }) => {
         terminosYCondiciones
       ) {
         if (contrasenia === repContrasenia) {
-          const usuarioRegistrado = await clienteAxios.post(
-            "/usuarios",
-            {
-              nombreUsuario,
-              apellidoUsuario,
-              emailUsuario,
-              contrasenia,
-              telefono,
-            },
-            configHeader
-          );
+          const usuarioRegistrado = await clienteAxios.post("/usuarios", {
+            nombreUsuario,
+            apellidoUsuario,
+            emailUsuario,
+            contrasenia,
+            telefono,
+          });
           swal.fire({
             title: `${usuarioRegistrado.data.msg}`,
             text: "¡En breve recibiras un email de confirmación!",
@@ -143,14 +136,10 @@ const FormC = ({ idPage }) => {
       }
       setErrores(erroresLogin);
       if (nombreUsuario && contrasenia) {
-        const usuarioLogueado = await clienteAxios.post(
-          "/usuarios/login",
-          {
-            nombreUsuario,
-            contrasenia,
-          },
-          configHeader
-        );
+        const usuarioLogueado = await clienteAxios.post("/usuarios/login", {
+          nombreUsuario,
+          contrasenia,
+        });
         console.log("Datos recibidos:", usuarioLogueado.data);
         sessionStorage.setItem(
           "token",
@@ -334,7 +323,9 @@ const FormC = ({ idPage }) => {
         )}
         {idPage === "inicioSesion" && (
           <div className="text-center mt-3">
-            <Link to={"/emailRecuperarContrasenia"}>¿Olvidaste tu contraseña?</Link>
+            <Link to={"/emailRecuperarContrasenia"}>
+              ¿Olvidaste tu contraseña?
+            </Link>
           </div>
         )}
         <Container className="text-center">

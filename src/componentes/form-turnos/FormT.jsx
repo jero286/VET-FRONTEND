@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import clienteAxios, {
-  configHeader,
-} from "../../funciones_auxiliares/configAxios";
+import clienteAxios from "../../funciones_auxiliares/configAxios";
 import Swal from "sweetalert2";
 
 const FormT = () => {
@@ -78,18 +76,14 @@ const FormT = () => {
           });
           return;
         }
-        const crearTruno = await clienteAxios.post(
-          "/turnos",
-          {
-            detalle,
-            veterinario,
-            mascota,
-            fecha,
-            hora,
-            idUsuario,
-          },
-          configHeader
-        );
+        const crearTruno = await clienteAxios.post("/turnos", {
+          detalle,
+          veterinario,
+          mascota,
+          fecha,
+          hora,
+          idUsuario,
+        });
         Swal.fire({
           title: `${crearTruno.data.msg}`,
           text: "¡Turno creado con éxito!",
