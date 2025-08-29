@@ -4,9 +4,8 @@ import TablaCarrito from "../componentes/tablas/TablaCarrito";
 import { Button, Spinner, Alert, Container, Form } from "react-bootstrap";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
-cambiarTituloPagina("Carrito");
-
 const UsuarioCarrito = () => {
+  cambiarTituloPagina("carrito");
   const [productosCarrito, setProductosCarrito] = useState([]);
   const [productosDisponibles, setProductosDisponibles] = useState([]);
   const [productoSeleccionado, setProductoSeleccionado] = useState("");
@@ -94,6 +93,35 @@ const UsuarioCarrito = () => {
     [productosCarrito]
   );
 
+  const pagarProducto = async () => {
+    try {
+      if (productosCarrito.length === 0) return;
+      setCargando(true);
+      setError("");
+      const idUsuario = sessionStorage.getItem("idUsuario");
+      const { data } = await clienteAxios.post(
+        "/carrito/pagarProducto",
+        { idUsuario }, // opcional, tu backend puede tomarlo del token
+        {
+          headers: {
+            auth: sessionStorage.getItem("token"),
+          },
+        }
+      );
+
+      if (data?.init_point) {
+        window.location.href = data.init_point;
+      } else {
+        setError("No se pudo iniciar el pago (init_point no recibido)");
+      }
+    } catch (error) {
+      console.log(error);
+      setError("Error al iniciar el pago");
+    } finally {
+      setCargando(false);
+    }
+  };
+
   return (
     <Container className="py-4">
       {error && <Alert variant="danger">{error}</Alert>}
@@ -162,6 +190,7 @@ const UsuarioCarrito = () => {
         <Button
           variant="success"
           disabled={productosCarrito.length === 0 || cargando}
+          onClick={pagarProducto}
         >
           Pagar con Mercado Pago
         </Button>
