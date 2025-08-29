@@ -3,7 +3,6 @@ import { Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import clienteAxios from '../../funciones_auxiliares/configAxios';
-
 const TablaProductos = ({ idPagina, array, usuarioLogueado, obtenerTodosLosProductos }) => {
     const botonEliminarProducto = (idProducto) => {
         if (usuarioLogueado) {

@@ -1,14 +1,20 @@
-import { Button } from 'react-bootstrap';
-import Table from 'react-bootstrap/Table';
-import Swal from 'sweetalert2';
-import clienteAxios from '../../funciones_auxiliares/configAxios';
-import { Link } from 'react-router';
+import { Button } from "react-bootstrap";
+import Table from "react-bootstrap/Table";
+import Swal from "sweetalert2";
+import clienteAxios from "../../funciones_auxiliares/configAxios";
+import { Link } from "react-router";
 
-const TablaC = ({ idPagina, array, usuarioLogueado,
-  obtenerTodosLosUsuarios, obtenerTodosLosTurnos }) => {
-  const filtrarArray = idPagina === "usuarios"
-    ? array.filter(usuario => usuario.rolUsuario !== 'admin')
-    : array;
+const TablaC = ({
+  idPagina,
+  array,
+  usuarioLogueado,
+  obtenerTodosLosUsuarios,
+  obtenerTodosLosTurnos,
+}) => {
+  const filtrarArray =
+    idPagina === "usuarios"
+      ? array.filter((usuario) => usuario.rolUsuario !== "admin")
+      : array;
 
   const botonEliminarUsuario = (idUsuario) => {
     if (usuarioLogueado) {
@@ -20,16 +26,16 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Sí!",
-        cancelButtonText: "No!"
+        cancelButtonText: "No!",
       }).then(async (result) => {
         if (result.isConfirmed) {
           const res = await clienteAxios.delete(`/usuarios/${idUsuario}`);
           if (res.status === 200) {
             Swal.fire({
               title: "Usuario eliminado!",
-              icon: "success"
+              icon: "success",
             });
-            obtenerTodosLosUsuarios()
+            obtenerTodosLosUsuarios();
           }
         }
       });
@@ -46,16 +52,15 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "¡Sí!",
-        cancelButtonText: "¡No!"
+        cancelButtonText: "¡No!",
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res = await clienteAxios.delete(`/turnos/${idTurno}`)
+            const res = await clienteAxios.delete(`/turnos/${idTurno}`);
             if (res.status === 200 || res.status === 204) {
-
               Swal.fire({
                 title: "¡Turno eliminado!",
-                icon: "success"
+                icon: "success",
               });
               obtenerTodosLosTurnos();
             }
@@ -63,7 +68,7 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
             Swal.fire({
               title: "Error",
               text: "Hubo un problema al intentar eliminar el turno.",
-              icon: "error"
+              icon: "error",
             });
           }
         }
@@ -78,7 +83,7 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
           <tr>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th className='w-25'>Email</th>
+            <th className="w-25">Email</th>
             <th>Teléfono</th>
             <th>Mascota/s</th>
             <th>Acciones</th>
@@ -104,14 +109,21 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
                 <td>{item.emailUsuario}</td>
                 <td>{item.telefono}</td>
                 <td>{item.mascotas}</td>
-                <td className='w-25'>
+                <td className="w-25">
                   <Link
-                    className='btn btn-warning mx-3'
-                    to={usuarioLogueado ? `/admin/usuarios/Editar?id=${item._id}` : "#"}
+                    className="btn btn-warning mx-3"
+                    to={
+                      usuarioLogueado
+                        ? `/admin/usuarios/Editar?id=${item._id}`
+                        : "#"
+                    }
                   >
                     Editar
                   </Link>
-                  <Button variant='danger' onClick={() => botonEliminarUsuario(item._id)}>
+                  <Button
+                    variant="danger"
+                    onClick={() => botonEliminarUsuario(item._id)}
+                  >
                     Eliminar
                   </Button>
                 </td>
@@ -126,25 +138,32 @@ const TablaC = ({ idPagina, array, usuarioLogueado,
                 <td>{item.mascota}</td>
                 <td>{item.fecha}</td>
                 <td>{item.hora}</td>
-                <td className='w-25'>
+                <td className="w-25">
                   <Link
-                    className='btn btn-warning mx-3'
-                    to={usuarioLogueado ? `/admin/turnos/editar?id=${item._id}` : "#"}
+                    className="btn btn-warning mx-3"
+                    to={
+                      usuarioLogueado
+                        ? `/admin/turnos/editar?id=${item._id}`
+                        : "#"
+                    }
                   >
                     Editar
                   </Link>
-                  <Button variant='danger' onClick={() => botonEliminarTurno(item._id)}>
+                  <Button
+                    variant="danger"
+                    onClick={() => botonEliminarTurno(item._id)}
+                  >
                     Eliminar
                   </Button>
                 </td>
               </tr>
             );
           }
-          return null
+          return null;
         })}
       </tbody>
     </Table>
   );
 };
 
-export default TablaC
+export default TablaC;
