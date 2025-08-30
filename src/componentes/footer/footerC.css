@@ -1,3 +1,17 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ocupa toda la pantalla */
+}
+
+main {
+  flex: 1; /* ocupa el espacio sobrante y empuja el footer */
+}
 
 .body-tertiary { 
   background-color: #f7e0c2; 
