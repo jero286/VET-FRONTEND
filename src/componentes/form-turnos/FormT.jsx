@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import clienteAxios from "../../funciones_auxiliares/configAxios";
+import clienteAxios, {} 
+from "../../funciones_auxiliares/configAxios";
 import Swal from "sweetalert2";
 
 const FormT = () => {
@@ -76,14 +77,17 @@ const FormT = () => {
           });
           return;
         }
-        const crearTruno = await clienteAxios.post("/turnos", {
-          detalle,
-          veterinario,
-          mascota,
-          fecha,
-          hora,
-          idUsuario,
-        });
+        const crearTruno = await clienteAxios.post(
+          "/turnos",
+          {
+            detalle,
+            veterinario,
+            mascota,
+            fecha,
+            hora,
+            idUsuario,
+          }
+        );
         Swal.fire({
           title: `${crearTruno.data.msg}`,
           text: "¡Turno creado con éxito!",
@@ -140,18 +144,20 @@ const FormT = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicDoctor">
-          <Form.Label>Veterinario</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Escriba su veterinario"
-            name="veterinario"
-            onChange={handleOnChangeDatosFormulario}
-            value={turnos.veterinario}
-            className={
-              errores.veterinario ? "form-control is-invalid" : "form-control"
-            }
-          />
-        </Form.Group>
+  <Form.Label>Veterinario</Form.Label>
+  <Form.Select
+    name="veterinario"
+    onChange={handleOnChangeDatosFormulario}
+    value={turnos.veterinario}
+    className={
+      errores.veterinario ? "form-control is-invalid" : "form-control"
+    }
+  >
+    <option value="">Selecciona un veterinario</option>
+    <option value="Dr. Pérez">Dr. Pérez</option>
+    <option value="Dra. Gómez">Dra. Gómez</option>
+  </Form.Select>
+</Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPet">
           <Form.Label>Mascota</Form.Label>
           <Form.Control
