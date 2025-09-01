@@ -25,11 +25,6 @@ const UsuarioMascotas = () => {
           + Añadir Mascota
         </Link>
       </Container>
-      <Container>
-        {/* <TablaMascotas //array={mascotas}
-                obtenerTodasMisMascotas={obtenerTodasMisMascotas}
-                usuarioLogueado={usuarioLogueado} /> */}
-      </Container>
     </>
   );
 };

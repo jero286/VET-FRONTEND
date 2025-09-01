@@ -3,7 +3,7 @@ import axios from "axios";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 export default function Contacto() {
-  cambiarTituloPagina("Contacto")
+  cambiarTituloPagina("Contacto");
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -12,7 +12,8 @@ export default function Contacto() {
   const [enviado, setEnviado] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +29,6 @@ export default function Contacto() {
 
   return (
     <div className="position-relative d-flex flex-column min-vh-100">
-      {/* Carrusel de fondo */}
       <div
         id="carouselFondo"
         className="carousel slide position-absolute top-0 start-0 w-100 h-100 z-n1"
@@ -59,78 +59,107 @@ export default function Contacto() {
           </div>
         </div>
       </div>
-    
-    <div className="container mt-5 mb-5">
-      <div className="row justify-content-center">
-        <div className="col-lg-8 col-md-10">
-          <div className="card shadow-lg border-0 rounded-4">
-            <div className="card-body p-4">
-              <h2 className="card-title text-center mb-4 text-primary fw-bold">💌 Contáctanos</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="nombre" className="form-label fw-semibold">Nombre</label>
-                  <input
-                    type="text"
-                    name="nombre"
-                    className="form-control"
-                    value={formData.nombre}
-                    onChange={handleChange}
-                    placeholder="Tu nombre completo"
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label fw-semibold">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="tuemail@ejemplo.com"
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="mensaje" className="form-label fw-semibold">Mensaje</label>
-                  <textarea
-                    name="mensaje"
-                    className="form-control"
-                    rows="5"
-                    value={formData.mensaje}
-                    onChange={handleChange}
-                    placeholder="Escribinos tu consulta"
-                    required
-                  ></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary w-100">
-                  Enviar mensaje
-                </button>
-              </form>
 
-              {enviado && (
-                <div className="alert alert-success mt-3 text-center" role="alert">
-                  ¡Mensaje enviado con éxito! 💕
-                </div>
-              )}
-              {error && (
-                <div className="alert alert-danger mt-3 text-center" role="alert">
-                  {error}
-                </div>
-              )}
+      <div className="container mt-5 mb-5">
+        <div className="row justify-content-center">
+          <div className="col-lg-8 col-md-10">
+            <div className="card shadow-lg border-0 rounded-4">
+              <div className="card-body p-4">
+                <h2 className="card-title text-center mb-4 text-primary fw-bold">
+                  💌 Contáctanos
+                </h2>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label htmlFor="nombre" className="form-label fw-semibold">
+                      Nombre
+                    </label>
+                    <input
+                      type="text"
+                      name="nombre"
+                      className="form-control"
+                      value={formData.nombre}
+                      onChange={handleChange}
+                      placeholder="Tu nombre completo"
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label fw-semibold">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="form-control"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="tuemail@ejemplo.com"
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="mensaje" className="form-label fw-semibold">
+                      Mensaje
+                    </label>
+                    <textarea
+                      name="mensaje"
+                      className="form-control"
+                      rows="5"
+                      value={formData.mensaje}
+                      onChange={handleChange}
+                      placeholder="Escribinos tu consulta"
+                      required
+                    ></textarea>
+                  </div>
+                  <button type="submit" className="btn btn-primary w-100">
+                    Enviar mensaje
+                  </button>
+                </form>
 
-              <hr className="mt-5" />
-              <div className="text-center small text-muted">
-                <p><strong>📍 Dirección:</strong> General Paz 576, Tucumán</p>
-                <p><strong>📞 Teléfono:</strong> +54 381 123 4567</p>
-                <p><strong>📧 Email:</strong> contacto@vetcare.com</p>
-                <p><strong>🌐 Instagram:</strong> <a href="https://instagram.com/vetcare" className="text-decoration-none"> @vetapp</a></p>
+                {enviado && (
+                  <div
+                    className="alert alert-success mt-3 text-center"
+                    role="alert"
+                  >
+                    ¡Mensaje enviado con éxito! 💕
+                  </div>
+                )}
+                {error && (
+                  <div
+                    className="alert alert-danger mt-3 text-center"
+                    role="alert"
+                  >
+                    {error}
+                  </div>
+                )}
+
+                <hr className="mt-5" />
+                <div className="text-center small text-muted">
+                  <p>
+                    <strong>📍 Dirección:</strong> General Paz 576, Tucumán
+                  </p>
+                  <p>
+                    <strong>📞 Teléfono:</strong> +54 381 123 4567
+                  </p>
+                  <p>
+                    <strong>📧 Email:</strong> contacto@vetcare.com
+                  </p>
+                  <p>
+                    <strong>🌐 Instagram:</strong>{" "}
+                    <a
+                      href="https://instagram.com/vetcare"
+                      className="text-decoration-none"
+                    >
+                      {" "}
+                      @vetapp
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
- </div>
   );
 }
