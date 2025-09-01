@@ -19,7 +19,6 @@ const UsuarioCarrito = () => {
       currency: "ARS",
     }).format(number ?? 0);
 
-  // Cargar carrito
   const cargarCarrito = async () => {
     try {
       setCargando(true);
@@ -40,7 +39,6 @@ const UsuarioCarrito = () => {
     }
   };
 
-  // Cargar productos disponibles
   const cargarProductos = async () => {
     try {
       const { data } = await clienteAxios.get("/productos");
@@ -56,7 +54,6 @@ const UsuarioCarrito = () => {
     cargarProductos();
   }, []);
 
-  // Agregar producto al carrito
   const agregarAlCarrito = async () => {
     if (!productoSeleccionado) return;
 
@@ -71,7 +68,7 @@ const UsuarioCarrito = () => {
         { productoId: productoSeleccionado, cantidad },
         { headers: { auth: token } }
       );
-      await cargarCarrito(); // refresca la tabla
+      await cargarCarrito();
       setCantidad(1);
       setProductoSeleccionado("");
     } catch (err) {
@@ -82,7 +79,6 @@ const UsuarioCarrito = () => {
     }
   };
 
-  // Calcular total
   const total = useMemo(
     () =>
       productosCarrito.reduce((acc, item) => {
@@ -107,7 +103,7 @@ const UsuarioCarrito = () => {
 
       const { data } = await clienteAxios.post(
         "/carrito/pagarProducto",
-        {}, // No necesitas enviar idUsuario si el backend lo obtiene del token
+        {},
         {
           headers: {
             auth: sessionStorage.getItem("token"),
