@@ -95,13 +95,19 @@ const UsuarioCarrito = () => {
 
   const pagarProducto = async () => {
     try {
-      if (productosCarrito.length === 0) return;
+      if (productosCarrito.length === 0) {
+        setError("El carrito está vacío");
+        return;
+      }
+
       setCargando(true);
       setError("");
-      const idUsuario = sessionStorage.getItem("idUsuario");
+
+      console.log("Iniciando proceso de pago...");
+
       const { data } = await clienteAxios.post(
         "/carrito/pagarProducto",
-        { idUsuario }, // opcional, tu backend puede tomarlo del token
+        {}, // No necesitas enviar idUsuario si el backend lo obtiene del token
         {
           headers: {
             auth: sessionStorage.getItem("token"),
@@ -109,14 +115,27 @@ const UsuarioCarrito = () => {
         }
       );
 
+      console.log("Respuesta del backend:", data);
+
       if (data?.init_point) {
+        console.log("Redirigiendo a:", data.init_point);
         window.location.href = data.init_point;
       } else {
-        setError("No se pudo iniciar el pago (init_point no recibido)");
+        setError(
+          "No se pudo iniciar el pago: " + (data?.msg || "Razón desconocida")
+        );
       }
     } catch (error) {
-      console.log(error);
-      setError("Error al iniciar el pago");
+      console.error("Error en pagarProducto:", error);
+      if (error.response) {
+        setError(
+          `Error del servidor: ${
+            error.response.data?.msg || error.response.status
+          }`
+        );
+      } else {
+        setError("Error de conexión al iniciar el pago");
+      }
     } finally {
       setCargando(false);
     }
