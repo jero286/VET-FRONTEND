@@ -28,12 +28,14 @@ const AdminPacientes = () => {
             </Link>
           </Container>
           <Container fluid className="my-5">
-            <TablaC
+            <div className="table-responsive">
+              <TablaC
               idPagina="usuarios"
               array={usuarios}
               obtenerTodosLosUsuarios={obtenerTodosLosUsuarios}
               usuarioLogueado={usuarioLogueado}
             />
+            </div>
           </Container>
         </>
       )}
