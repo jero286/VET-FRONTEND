@@ -19,11 +19,13 @@ const UsuarioTurnos = () => {
   }, []);
   return (
     <>
-      <TablaUsuarios
+      <div className="table-responsive">
+        <TablaUsuarios
         idPage="turnosUsuarios"
         idDelUsuarioLog={idUsuarioLog}
         arrayTurnos={turnos}
       />
+      </div>
     </>
   );
 };
