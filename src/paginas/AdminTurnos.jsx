@@ -21,12 +21,14 @@ const AdminTurnos = () => {
   return (
     <>
       <Container fluid className="my-5">
-        <TablaC
+       <div className="table-responsive">
+         <TablaC
           idPagina="turnos"
           array={turnos}
           obtenerTodosLosTurnos={obtenerTodosLosTurnos}
           usuarioLogueado={usuarioLogueado}
         />
+       </div>
       </Container>
     </>
   );
