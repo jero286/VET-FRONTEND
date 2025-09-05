@@ -4,7 +4,7 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  /* Altura ajustada dinámicamente al footer */
+
   min-height: calc(100vh - var(--footer-height, 150px));
 
   display: flex;
@@ -16,11 +16,11 @@
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   padding: 2rem;
 
-  /* Padding inferior para que el footer no tape contenido */
+  
   padding-bottom: var(--footer-height, 150px);
 }
 
-/* Tus estilos existentes */
+
 .fondo-principal h1 {
   color: #FFEDB3; 
   font-weight: bold;

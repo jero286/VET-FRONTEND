@@ -1,3 +1,17 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ocupa toda la pantalla */
+}
+
+main {
+  flex: 1; /* ocupa el espacio sobrante y empuja el footer */
+}
 
 .body-tertiary { 
   background-color: #f7e0c2; 
@@ -29,14 +43,14 @@
   box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
 .nav-link img {
-  width: 50px;   /* Tamaño de iconos redes sociales */
+  width: 50px;  
   height: 50px;
   object-fit: contain;
   transition: transform 0.2s ease-in-out;
 }
 
 .nav-link img:hover {
-  transform: scale(1.15); /* Efecto hover */
+  transform: scale(1.15); 
 }
 
 .nav-link p {

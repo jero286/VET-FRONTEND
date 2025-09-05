@@ -9,6 +9,7 @@ export default function Contacto() {
     email: "",
     mensaje: "",
   });
+
   const [enviado, setEnviado] = useState(false);
   const [error, setError] = useState(null);
 
