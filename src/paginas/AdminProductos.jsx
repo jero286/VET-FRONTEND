@@ -24,11 +24,13 @@ const AdminProductos = () => {
         </Link>
       </Container>
       <Container fluid className="my-5">
-        <TablaProductos
+        <div className="table-responsive">
+          <TablaProductos
           array={productos}
           obtenerTodosLosProductos={obtenerTodosLosProductos}
           usuarioLogueado={usuarioLogueado}
         />
+        </div>
       </Container>
     </>
   );
