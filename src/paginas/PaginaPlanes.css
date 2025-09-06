@@ -5,18 +5,32 @@
 
 .plan-card {
   border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s;
-  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.22s ease;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .plan-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
+
 
 .lista-plan {
   padding-left: 1rem;
   list-style: none;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.lista-plan li {
+  margin-bottom: 0.45rem;
+  word-break: break-word;    
+  hyphens: auto;
+  font-size: 0.95rem;
 }
 
 .lista-plan li::before {
@@ -24,14 +38,37 @@
   margin-right: 0.5rem;
 }
 
-.plan-0 {
-  background-color: #d1f2eb;
+.plan-0 { background-color: #d1f2eb; }
+.plan-1 { background-color: #d6eaf8; }
+.plan-2 { background-color: #f9e79f; }
+
+.plan-card .card-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
 }
 
-.plan-1 {
-  background-color: #d6eaf8;
+.plan-card .card-subtitle {
+  font-size: 0.88rem;
 }
 
-.plan-2 {
-  background-color: #f9e79f;
+.plan-card .card-text {
+  margin-bottom: 0.5rem;
 }
+
+.plan-card .btn {
+  width: 100%;
+  border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  .planes-container { padding: 1rem; }
+  .lista-plan li { font-size: 0.9rem; }
+  .plan-card { border-radius: 12px; }
+  .plan-card .card-title { font-size: 1.05rem; }
+  .plan-card .card-subtitle { font-size: 0.8rem; }
+}
+
+@media (min-width: 992px) {
+  .plan-card { min-height: 320px; } 
+}
+
