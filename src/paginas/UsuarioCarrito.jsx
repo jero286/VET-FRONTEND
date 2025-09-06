@@ -180,7 +180,8 @@ const UsuarioCarrito = () => {
         </Button>
       </Form>
 
-      <TablaCarrito
+      <div className="table-responsive">
+        <TablaCarrito
         items={productosCarrito}
         onEliminar={async (idProducto) => {
           try {
@@ -199,6 +200,7 @@ const UsuarioCarrito = () => {
         }}
         formatearARS={formatearAPesosArs}
       />
+      </div>
 
       <div className="d-flex justify-content-between align-items-center mt-3">
         <div className="fw-bold fs-5">Total: {formatearAPesosArs(total)}</div>
