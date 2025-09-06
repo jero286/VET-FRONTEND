@@ -19,7 +19,6 @@ import PaginaUsuario from "./paginas/PaginaUsuario";
 import ReservarTurno from "./paginas/reservarTurno";
 import AdminEditarUsuarios from "./paginas/AdminEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
-/* import TablaUsuarios from "./componentes/tablas/TablaUsuarios"; */
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
 import AdminEditarTurnos from "./paginas/AdminEditarTurnos";
 import UsuarioCarrito from "./paginas/UsuarioCarrito";
@@ -31,10 +30,10 @@ import UsuarioMascotas from "./paginas/UsuarioMascotas";
 
 const App = () => {
   return (
-    <div className="app">   {/* contenedor principal con flex */}
+    <div className="app">   
       <Router>
         <NavbarC />
-        <main>   {/* acá se renderizan las rutas */}
+        <main>   
           <Routes>
             <Route path="/" element={<PaginaPrincipal />} />
             <Route path="/planes" element={<Planes />} />

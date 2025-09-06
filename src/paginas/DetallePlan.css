@@ -1,19 +1,11 @@
-/* src/paginas/DetallePlan.css */
-
-/* .detalle-plan-container {
-  background-color: #f0f9fa;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-} */
 .detalle-plan-container {
   background-color: #f0f9fa;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  max-width: 500px; /* o 600px si lo querés un poco más ancho */
-  margin: 2rem auto; /* centra el contenedor */
+
+  max-width: 500px;
+  margin: 2rem auto;
 }
 
 .detalle-plan-container h2 {

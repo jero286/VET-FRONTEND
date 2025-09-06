@@ -19,7 +19,6 @@ const UsuarioCarrito = () => {
       currency: "ARS",
     }).format(number ?? 0);
 
-  // Cargar carrito
   const cargarCarrito = async () => {
     try {
       setCargando(true);
@@ -40,7 +39,6 @@ const UsuarioCarrito = () => {
     }
   };
 
-  // Cargar productos disponibles
   const cargarProductos = async () => {
     try {
       const { data } = await clienteAxios.get("/productos");
@@ -56,7 +54,6 @@ const UsuarioCarrito = () => {
     cargarProductos();
   }, []);
 
-  // Agregar producto al carrito
   const agregarAlCarrito = async () => {
     if (!productoSeleccionado) return;
 
@@ -71,7 +68,7 @@ const UsuarioCarrito = () => {
         { productoId: productoSeleccionado, cantidad },
         { headers: { auth: token } }
       );
-      await cargarCarrito(); // refresca la tabla
+      await cargarCarrito();
       setCantidad(1);
       setProductoSeleccionado("");
     } catch (err) {
@@ -82,7 +79,6 @@ const UsuarioCarrito = () => {
     }
   };
 
-  // Calcular total
   const total = useMemo(
     () =>
       productosCarrito.reduce((acc, item) => {
@@ -95,13 +91,19 @@ const UsuarioCarrito = () => {
 
   const pagarProducto = async () => {
     try {
-      if (productosCarrito.length === 0) return;
+      if (productosCarrito.length === 0) {
+        setError("El carrito está vacío");
+        return;
+      }
+
       setCargando(true);
       setError("");
-      const idUsuario = sessionStorage.getItem("idUsuario");
+
+      console.log("Iniciando proceso de pago...");
+
       const { data } = await clienteAxios.post(
         "/carrito/pagarProducto",
-        { idUsuario }, // opcional, tu backend puede tomarlo del token
+        {},
         {
           headers: {
             auth: sessionStorage.getItem("token"),
@@ -109,14 +111,27 @@ const UsuarioCarrito = () => {
         }
       );
 
+      console.log("Respuesta del backend:", data);
+
       if (data?.init_point) {
+        console.log("Redirigiendo a:", data.init_point);
         window.location.href = data.init_point;
       } else {
-        setError("No se pudo iniciar el pago (init_point no recibido)");
+        setError(
+          "No se pudo iniciar el pago: " + (data?.msg || "Razón desconocida")
+        );
       }
     } catch (error) {
-      console.log(error);
-      setError("Error al iniciar el pago");
+      console.error("Error en pagarProducto:", error);
+      if (error.response) {
+        setError(
+          `Error del servidor: ${
+            error.response.data?.msg || error.response.status
+          }`
+        );
+      } else {
+        setError("Error de conexión al iniciar el pago");
+      }
     } finally {
       setCargando(false);
     }
@@ -165,7 +180,8 @@ const UsuarioCarrito = () => {
         </Button>
       </Form>
 
-      <TablaCarrito
+      <div className="table-responsive">
+        <TablaCarrito
         items={productosCarrito}
         onEliminar={async (idProducto) => {
           try {
@@ -184,6 +200,7 @@ const UsuarioCarrito = () => {
         }}
         formatearARS={formatearAPesosArs}
       />
+      </div>
 
       <div className="d-flex justify-content-between align-items-center mt-3">
         <div className="fw-bold fs-5">Total: {formatearAPesosArs(total)}</div>
