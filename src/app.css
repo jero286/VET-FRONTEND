@@ -1,17 +1,17 @@
-/* src/index.css (o src/App.css) -- importalo en index.jsx o App.jsx si no está importado */
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
 }
 
 .app {
-  min-height: 100vh;        /* que el contenedor ocupe toda la ventana */
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;   /* navbar / main / footer en columna */
+  flex-direction: column;
 }
 
-/* main debe crecer para empujar el footer al final */
 main {
-  flex: 1 0 auto;           /* flex-grow:1; flex-shrink:0; flex-basis:auto */
-  display: block;           /* por si acaso */
+  flex: 1 0 auto;
+  display: block;
 }
