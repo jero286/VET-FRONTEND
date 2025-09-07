@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import clienteAxios from "../../funciones_auxiliares/configAxios";
 import swal from "sweetalert2";
+import "./formC.css";
 
 const FormC = ({ idPage }) => {
   const navigate = useNavigate();
@@ -181,7 +182,19 @@ const FormC = ({ idPage }) => {
   };
 
   return (
-    <>
+    <div className="formc-container">
+      {/* opcional: header temático */}
+      <div className="formc-header">
+        <img src="/logo3.jpeg" alt="Logo vet" />
+        <div>
+          <h4 style={{ margin: 0, color: "#234a38" }}>
+            {idPage === "registro" ? "Registro de usuario" : "Iniciar sesión"}
+          </h4>
+          <small style={{ color: "#4b6b57" }}>
+            Centro veterinario • Farmacia
+          </small>
+        </div>
+      </div>
       <Form>
         <Form.Group className="mb-3" controlId="idUsuario">
           <Form.Label>Nombre</Form.Label>
@@ -330,7 +343,8 @@ const FormC = ({ idPage }) => {
         )}
         <Container className="text-center">
           <Button
-            variant="primary"
+            variant="success"
+            className="formc-btn"
             type="submit"
             onClick={
               idPage === "registro"
@@ -342,7 +356,8 @@ const FormC = ({ idPage }) => {
           </Button>
         </Container>
       </Form>
-    </>
+      <span className="formc-accent" />
+    </div>
   );
 };
 
