@@ -1,17 +1,16 @@
 .body-tertiary {
   background-color: #f7e0c2;
-  padding: 50px 0;
-  min-height: 90px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+  min-height: 64px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
-.body-tertiary img {
-  max-height: 70px;
-  width: auto;
+.navbar-brand-logo .logo-img {
+  width: 60px;
+  max-height: 56px;
   transition: transform 0.2s ease-in-out;
 }
-
-.body-tertiary img:hover {
+.navbar-brand-logo .logo-img:hover {
   transform: scale(1.05);
 }
 
@@ -19,22 +18,93 @@
   color: #333 !important;
   font-weight: 500;
   font-size: 1rem;
-  padding: 8px 15px;
-  transition: color 0.3s ease;
+  padding: 8px 12px;
+  transition: color 0.2s ease;
 }
-
 .nav-link:hover {
   color: #007bff !important;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  padding: 8px 15px;
-  transition: all 0.3s ease;
+.nav-main {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+.actions-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-reservar {
+  border: 1px solid #007bff;
+  color: #007bff !important;
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.btn-reservar:hover {
+  background-color: #007bff;
+  color: #fff !important;
+}
+
+.btn-outline-custom {
+  border: 1px solid #007bff;
+  color: #007bff !important;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-outline-custom:hover {
+  background-color: #007bff;
+  color: #fff !important;
+}
+
+.action-link {
+  color: #000 !important;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 12px;
+  transition: color 0.2s ease;
+}
+
+.action-link:hover {
+  color: #007bff !important;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .nav-main {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .nav-main .nav-link {
+    text-align: center;
+    width: auto;
+  }
+
+  .actions-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 10px;
+  }
+
+  .actions-wrapper .btn-reservar,
+  .actions-wrapper .btn-outline-custom,
+  .actions-wrapper .action-link {
+    width: auto;
+    max-width: 200px;
+    text-align: center;
+  }
 }
