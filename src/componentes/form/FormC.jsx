@@ -183,7 +183,6 @@ const FormC = ({ idPage }) => {
 
   return (
     <div className="formc-container">
-      {/* opcional: header temático */}
       <div className="formc-header">
         <img src="/logo3.jpeg" alt="Logo vet" />
         <div>
