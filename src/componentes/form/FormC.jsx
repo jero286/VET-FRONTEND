@@ -340,7 +340,7 @@ const FormC = ({ idPage }) => {
             </Link>
           </div>
         )}
-        <Container className="text-center">
+        <Container className="text-center my-2">
           <Button
             variant="success"
             className="formc-btn"
