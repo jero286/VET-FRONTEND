@@ -199,7 +199,7 @@ const FormC = ({ idPage }) => {
           <Form.Label>Nombre Usuario</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ingrese su usuario único"
+            placeholder="Ingrese su nombre (es único)"
             name="nombreUsuario"
             className={
               errores.nombreUsuario ? "form-control is-invalid" : "form-control"
