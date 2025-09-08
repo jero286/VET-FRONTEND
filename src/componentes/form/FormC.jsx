@@ -196,10 +196,10 @@ const FormC = ({ idPage }) => {
       </div>
       <Form>
         <Form.Group className="mb-3" controlId="idUsuario">
-          <Form.Label>Nombre</Form.Label>
+          <Form.Label>Nombre Usuario</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ingrese su nombre"
+            placeholder="Ingrese su usuario único"
             name="nombreUsuario"
             className={
               errores.nombreUsuario ? "form-control is-invalid" : "form-control"
