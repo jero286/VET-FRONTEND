@@ -1,17 +1,17 @@
-
 .form-recuperar {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 400px;
+  width: 100%;
   margin: 0 auto;
+  padding: 20px;
 }
 
-/* Estilo del input */
 .input-recuperar {
   width: 100%;
   padding: 14px 18px;
-  border: 1px solid #d1d5db; /* gris suave */
+  border: 1px solid #d1d5db;
   border-radius: 12px;
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -19,14 +19,23 @@
 }
 
 .input-recuperar:focus {
-  border-color: #3b82f6; /* azul */
+  border-color: #3b82f6;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
   outline: none;
 }
 
-/* Estilo del botón */
 .boton-recuperar {
   width: 100%;
   padding: 14px;
-  background-color: #0284c7; /
-  }
+  background-color: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.boton-recuperar:hover {
+  background-color: #0369a1;
+}

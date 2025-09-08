@@ -19,26 +19,27 @@ const RecuperarContraseniaEmail = () => {
   };
   return (
     <>
-      <Container className="my-5 w-50">
-        <Form>
-          <Form.Group className="mb-3" controlId="idEmail">
-            <Form.Label>Ingresa tu Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Ingrese su email"
-              name="emailUsuario"
-              onChange={(ev) => setEmailUsuario(ev.target.value)}
-            />
-            <Container className="text-center">
+      <Container className="my-5 d-flex justify-content-center">
+        <div className="form-recuperar">
+          <Form>
+            <Form.Group className="mb-3" controlId="idEmail">
+              <Form.Label>Ingresa tu Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Ingrese su email"
+                name="emailUsuario"
+                className="input-recuperar"
+                onChange={(ev) => setEmailUsuario(ev.target.value)}
+              />
               <Button
-                className="mt-3"
+                className="mt-3 boton-recuperar"
                 onClick={handleClickFormRecuperarContrasenia}
               >
                 Enviar Correo
               </Button>
-            </Container>
-          </Form.Group>
-        </Form>
+            </Form.Group>
+          </Form>
+        </div>
       </Container>
     </>
   );
