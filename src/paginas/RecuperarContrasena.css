@@ -1,41 +1,89 @@
 .form-recuperar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   max-width: 400px;
   width: 100%;
+  padding: 28px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fdf7 100%);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(45, 106, 79, 0.08);
   margin: 0 auto;
-  padding: 20px;
+  transition: all 0.3s;
+}
+
+.icon-input {
+  background-color: #d8efe0;
+  border: 1px solid #d8efe0;
+  border-radius: 12px 0 0 12px;
+  color: #2d6a4f;
 }
 
 .input-recuperar {
+  border-radius: 0 12px 12px 0;
+}
+
+.btn-success.formc-btn {
   width: 100%;
-  padding: 14px 18px;
-  border: 1px solid #d1d5db;
+  font-weight: 600;
   border-radius: 12px;
-  font-size: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  background-color: #fff;
+  padding: 12px;
+  background: linear-gradient(90deg, #2d8f63 0%, #2d6a4f 100%);
+  border: 1px solid rgba(20, 80, 50, 0.2);
+  color: #fff;
+  transition: all 0.3s;
 }
 
-.input-recuperar:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-  outline: none;
+.btn-success.formc-btn:hover {
+  background: linear-gradient(90deg, #2d6a4f 0%, #256347 100%);
+  transform: translateY(-1px);
 }
 
-.boton-recuperar {
-  width: 100%;
-  padding: 14px;
-  background-color: #0284c7;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+@media (max-width: 768px) {
+  .form-recuperar {
+    padding: 22px;
+  }
 }
 
-.boton-recuperar:hover {
-  background-color: #0369a1;
+@media (max-width: 576px) {
+  .form-recuperar {
+    padding: 18px;
+    margin: 16px;
+  }
+
+  .form-recuperar h2 {
+    font-size: 1.5rem;
+  }
+
+  .input-recuperar,
+  .icon-input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn-success.formc-btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 200px) {
+  .form-recuperar {
+    padding: 12px;
+    border-radius: 10px;
+    margin: 8px;
+  }
+
+  .form-recuperar h2 {
+    font-size: 1.2rem;
+  }
+
+  .input-recuperar,
+  .icon-input {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .btn-success.formc-btn {
+    padding: 6px;
+    font-size: 12px;
+  }
 }
