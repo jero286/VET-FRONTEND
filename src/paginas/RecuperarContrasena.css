@@ -21,6 +21,10 @@
   border-radius: 0 12px 12px 0;
 }
 
+.input-error {
+  border: 2px solid red !important;
+}
+
 .btn-success.formc-btn {
   width: 100%;
   font-weight: 600;
