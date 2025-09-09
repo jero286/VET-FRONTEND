@@ -2,7 +2,6 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./PaginaPlanes.css";
 
-
 const planes = [
   {
     nombre: "🐶 Primeros Pasos",
@@ -15,8 +14,8 @@ const planes = [
       "✔️ Identificación con microchip",
       "✔️ Regalo de bienvenida",
       "✔️ Asesoramiento nutricional",
-      "✔️ Consejos de crianza y comportamiento"
-    ]
+      "✔️ Consejos de crianza y comportamiento",
+    ],
   },
   {
     nombre: "🐕 Madurando",
@@ -29,8 +28,8 @@ const planes = [
       "✔️ Control de peso y alimentación",
       "✔️ Examen de sangre preventivo",
       "✔️ Actividad física recomendada",
-      "✔️ 10% de descuento en farmacia"
-    ]
+      "✔️ 10% de descuento en farmacia",
+    ],
   },
   {
     nombre: "🐾 Adultos",
@@ -43,14 +42,14 @@ const planes = [
       "✔️ Evaluación articular y dolor",
       "✔️ Nutrición adaptada",
       "✔️ Examen de próstata o mama",
-      "✔️ Atención preferencial sin turno"
-    ]
-  }
+      "✔️ Atención preferencial sin turno",
+    ],
+  },
 ];
 
 const Planes = () => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="mt-5 planes-container">
       <h2 className="text-center mb-4">Nuestros Planes de Salud</h2>
@@ -64,12 +63,13 @@ const Planes = () => {
                   {plan.edad}
                 </Card.Subtitle>
                 <Card.Text className="flex-grow-1">
-                  <ul className="lista-plan">
-                    {plan.descripcion.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
+                  Beneficios incluidos:
                 </Card.Text>
+                <ul className="lista-plan flex-grow-1">
+                  {plan.descripcion.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
                 <h5 className="text-primary">{plan.precio}</h5>
                 <Button
                   variant="success"
@@ -88,4 +88,3 @@ const Planes = () => {
 };
 
 export default Planes;
-

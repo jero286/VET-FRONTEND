@@ -8,14 +8,15 @@ const SobreNosotros = () => {
       <h1 className="text-center mb-4">Sobre Nosotros</h1>
 
       <Row className="mb-5">
-        <Col className="d-flex align-items-center">
-          <p>
-            <p className="text-center">
-              Somos un equipo de estudiantes de programación comprometidos con
-              el aprendizaje, la tecnología y el trabajo en equipo.
-              Desarrollamos proyectos con dedicación, buscando mejorar día a día
-              y aplicar nuestros conocimientos en soluciones reales.
-            </p>
+        <Col className="d-flex justify-content-center">
+          <p
+            className="lead fs-5 text-center text-md-start mx-auto mb-4"
+            style={{ maxWidth: "700px" }}
+          >
+            Somos un equipo de estudiantes de programación comprometidos con el
+            aprendizaje, la tecnología y el trabajo en equipo. Desarrollamos
+            proyectos con dedicación, buscando mejorar día a día y aplicar
+            nuestros conocimientos en soluciones reales.
           </p>
         </Col>
       </Row>
