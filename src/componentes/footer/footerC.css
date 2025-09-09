@@ -1,30 +1,12 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* ocupa toda la pantalla */
-}
-
-main {
-  flex: 1; /* ocupa el espacio sobrante y empuja el footer */
-}
-
-.body-tertiary { 
-  background-color: #f7e0c2; 
+.body-tertiary {
+  background-color: #f7e0c2;
   color: #222;
-  /* position: fixed; */
-  bottom: 0;
-  left: 0;
   width: 100%;
-  z-index: 1000;
-  padding: 10px 0;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+  padding: 20px 10px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
+<<<<<<< HEAD
 .mapa-responsive {
   position: relative;
   width: 100%;
@@ -67,22 +49,79 @@ main {
 .nav-link img {
   width: 50px;  
   height: 50px;
+=======
+.footer-logo {
+  display: block;
+  width: 140px;
+  height: auto;
+  max-width: none;
+}
+
+.body-tertiary .nav-link img {
+  width: 40px;
+  height: 40px;
+>>>>>>> c8349805fa29d285fb152a830440bcb82c6a8962
   object-fit: contain;
   transition: transform 0.2s ease-in-out;
 }
 
-.nav-link img:hover {
-  transform: scale(1.15); 
+.body-tertiary .nav-link img:hover {
+  transform: scale(1.15);
 }
 
-.nav-link p {
+.body-tertiary .nav-link p {
   margin: 0;
   font-size: 14px;
+  text-align: center;
+}
+
+.footer-map {
+  width: 100%;
+  max-width: 300px;
+  height: 160px;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-links .nav-link {
+  margin: 5px;
 }
 
 @media (max-width: 768px) {
-  .body-tertiary iframe {
-    width: 100%;
-    height: 160px;
+  .footer-logo {
+    width: 100px;
+    height: auto;
+    max-width: none;
   }
-} 
+}
+
+@media (min-width: 769px) and (max-width: 1199px) {
+  .footer-logo {
+    width: 120px;
+    height: auto;
+    max-width: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer-logo {
+    width: 140px;
+    height: auto;
+    max-width: none;
+  }
+}

@@ -3,7 +3,7 @@ import axios from "axios";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 export default function Contacto() {
-  cambiarTituloPagina("Contacto")
+  cambiarTituloPagina("Contacto");
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -13,7 +13,8 @@ export default function Contacto() {
   const [enviado, setEnviado] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -130,14 +130,26 @@ const TablaC = ({
               </tr>
             );
           }
+
           if (idPagina === "turnos") {
+            const fechaObj = new Date(item.fecha);
+            const fechaFormateada = fechaObj.toLocaleDateString("es-AR", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            });
+            const horaFormateada = fechaObj.toLocaleTimeString("es-AR", {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
             return (
               <tr key={index}>
                 <td>{item.detalle}</td>
                 <td>{item.veterinario}</td>
                 <td>{item.mascota}</td>
-                <td>{item.fecha}</td>
-                <td>{item.hora}</td>
+                <td>{fechaFormateada}</td>
+                <td>{horaFormateada}</td>
                 <td className="w-25">
                   <Link
                     className="btn btn-warning mx-3"
@@ -159,6 +171,7 @@ const TablaC = ({
               </tr>
             );
           }
+
           return null;
         })}
       </tbody>
