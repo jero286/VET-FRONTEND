@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import clienteAxios from "../funciones_auxiliares/configAxios";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
 
 export default function Contacto() {
@@ -19,7 +19,7 @@ export default function Contacto() {
     e.preventDefault();
     setError(null);
     try {
-      await axios.post("http://localhost:3000/api/contacto", formData);
+      await clienteAxios.post("/api/consultas", formData);
       setEnviado(true);
       setFormData({ nombre: "", email: "", mensaje: "" });
     } catch (err) {
