@@ -1,5 +1,4 @@
 import Table from "react-bootstrap/Table";
-<<<<<<< HEAD
 import { Button, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import clienteAxios, {
@@ -84,12 +83,6 @@ const TablaUsuarios = ({
   // 📋 Vista para turnos
   if (idPage === "turnosUsuarios") {
     return (
-=======
-import dayjs from "dayjs";
-const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
-  return (
-    <>
->>>>>>> fix/Contacto
       <Table striped bordered hover className="my-3">
         <thead>
           <tr>
