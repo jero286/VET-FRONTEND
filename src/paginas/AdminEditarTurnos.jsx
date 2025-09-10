@@ -20,8 +20,7 @@ const AdminEditarTurnos = () => {
   ];
 
   const validarFecha = (fecha) => {
-    const fechaForm = new Date(fecha);
-    const dia = fechaForm.getDay();
+    const dia = new Date(fecha).getDay();
     return dia !== 0 && dia !== 6;
   };
 
@@ -38,10 +37,26 @@ const AdminEditarTurnos = () => {
     const obtenerTurno = async () => {
       try {
         const respuesta = await clienteAxios.get(`/turnos/${id}`);
+        console.log(respuesta.data);
+        const turno = respuesta.data.msg;
+
+        const fechaString = new Date(turno.fecha).toISOString().split("T")[0];
+
+        const horaLocal = new Date(turno.hora);
+        const horaString = horaLocal
+          .toLocaleTimeString("es-AR", {
+            hour12: false,
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+          .slice(0, 5);
+
         setTurnos({
-          ...respuesta.data.msg,
-          fecha: respuesta.data.msg.fecha.split("T")[0],
-          hora: new Date(respuesta.data.msg.hora).toTimeString().slice(0, 5),
+          detalle: turno.detalle,
+          veterinario: turno.veterinario,
+          mascota: turno.mascota,
+          fecha: fechaString,
+          hora: horaString,
         });
       } catch (error) {
         Swal.fire({
@@ -84,20 +99,25 @@ const AdminEditarTurnos = () => {
 
     if (Object.keys(erroresTurnos).length === 0) {
       try {
+        // --- ENVIAR hora COMO "HH:mm" (string) ---
         const datos = {
-          ...turnos,
-          fecha: new Date(fecha),
-          hora: new Date(`${fecha}T${hora}`),
+          detalle,
+          veterinario,
+          mascota,
+          fecha, // "YYYY-MM-DD"
+          hora, // "HH:mm" (el select ya lo tiene así)
         };
 
-        const actualizar = await clienteAxios.put(`/turnos/${id}`, datos);
+        // opcional: debug rápido para ver qué llega al backend
+        console.log("Enviando datos actualización:", datos);
+
+        await clienteAxios.put(`/turnos/${id}`, datos);
 
         Swal.fire({
           icon: "success",
-          title: actualizar.data.msg,
+          title: "Turno actualizado",
           text: "El turno fue actualizado correctamente",
         });
-
         navigate("/admin/turnos");
       } catch (error) {
         console.error("Error al actualizar turno:", error);
@@ -111,89 +131,87 @@ const AdminEditarTurnos = () => {
   };
 
   return (
-    <>
-      <Container className="w-25 my-5">
-        <Form onSubmit={handleActualizarTurno}>
-          <Form.Group className="mb-3">
-            <Form.Label>Razón del turno</Form.Label>
-            <Form.Control
-              type="text"
-              name="detalle"
-              value={turnos.detalle}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.detalle ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+    <Container className="w-25 my-5">
+      <Form onSubmit={handleActualizarTurno}>
+        <Form.Group className="mb-3">
+          <Form.Label>Razón del turno</Form.Label>
+          <Form.Control
+            type="text"
+            name="detalle"
+            value={turnos.detalle}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.detalle ? "form-control is-invalid" : "form-control"
+            }
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Veterinario</Form.Label>
-            <Form.Control
-              type="text"
-              name="veterinario"
-              value={turnos.veterinario}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.veterinario ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Veterinario</Form.Label>
+          <Form.Control
+            type="text"
+            name="veterinario"
+            value={turnos.veterinario}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.veterinario ? "form-control is-invalid" : "form-control"
+            }
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Mascota</Form.Label>
-            <Form.Control
-              type="text"
-              name="mascota"
-              value={turnos.mascota}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.mascota ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Mascota</Form.Label>
+          <Form.Control
+            type="text"
+            name="mascota"
+            value={turnos.mascota}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.mascota ? "form-control is-invalid" : "form-control"
+            }
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Fecha</Form.Label>
-            <Form.Control
-              type="date"
-              name="fecha"
-              value={turnos.fecha}
-              onChange={handleOnChangeDatosFormulario}
-              min={new Date().toISOString().split("T")[0]}
-              className={
-                errores.fecha ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Fecha</Form.Label>
+          <Form.Control
+            type="date"
+            name="fecha"
+            value={turnos.fecha}
+            onChange={handleOnChangeDatosFormulario}
+            min={new Date().toISOString().split("T")[0]}
+            className={
+              errores.fecha ? "form-control is-invalid" : "form-control"
+            }
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Hora</Form.Label>
-            <Form.Select
-              name="hora"
-              value={turnos.hora}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.hora ? "form-control is-invalid" : "form-control"
-              }
-            >
-              <option value="">Selecciona una hora</option>
-              {horasPermitidas.map((hora) => (
-                <option key={hora} value={hora}>
-                  {hora}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Hora</Form.Label>
+          <Form.Select
+            name="hora"
+            value={turnos.hora || ""}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.hora ? "form-control is-invalid" : "form-control"
+            }
+          >
+            <option value="">Selecciona una hora</option>
+            {horasPermitidas.map((h) => (
+              <option key={h} value={h}>
+                {h}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
 
-          <Container className="text-center">
-            <Button variant="warning" type="submit">
-              Actualizar turno
-            </Button>
-          </Container>
-        </Form>
-      </Container>
-    </>
+        <Container className="text-center">
+          <Button variant="warning" type="submit">
+            Actualizar turno
+          </Button>
+        </Container>
+      </Form>
+    </Container>
   );
 };
 
