@@ -136,7 +136,6 @@ const TablaC = ({
                 <td>{item.veterinario}</td>
                 <td>{item.mascota}</td>
 
-                {/* Fecha: usar item.fecha */}
                 <td>
                   {item.fecha
                     ? new Date(item.fecha).toLocaleDateString("es-AR", {
@@ -147,7 +146,6 @@ const TablaC = ({
                     : "-"}
                 </td>
 
-                {/* Hora: usar item.hora (si existe), forzar 24h */}
                 <td>
                   {item.hora
                     ? new Date(item.hora).toLocaleTimeString("es-AR", {
