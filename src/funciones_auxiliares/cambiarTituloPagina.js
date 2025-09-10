@@ -28,9 +28,6 @@ export const cambiarTituloPagina = (idPagina) => {
       document.title = "Tus turnos";
       break;
     case "carrito":
-<<<<<<< HEAD
-      document.title = "Carrito";
-=======
       document.title = "Tus productos";
       break;
     case "Admin":
@@ -45,7 +42,6 @@ export const cambiarTituloPagina = (idPagina) => {
     case "Turnos":
       document.title = "Admin Turnos";
       break;
->>>>>>> fix/Contacto
     default:
       document.title = "Pagina";
       break;
