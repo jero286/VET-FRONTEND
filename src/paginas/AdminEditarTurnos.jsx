@@ -38,7 +38,15 @@ const AdminEditarTurnos = () => {
     const obtenerTurno = async () => {
       try {
         const respuesta = await clienteAxios.get(`/turnos/${id}`);
-        setTurnos(respuesta.data.turno);
+        setTurnos(
+          respuesta.data.msg || {
+            detalle: "",
+            veterinario: "",
+            mascota: "",
+            fecha: "",
+            hora: "",
+          }
+        );
       } catch (error) {
         Swal.fire({
           icon: "error",

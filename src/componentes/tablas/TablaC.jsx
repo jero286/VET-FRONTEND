@@ -152,9 +152,7 @@ const TablaC = ({
                   <Link
                     className="btn btn-warning mx-3"
                     to={
-                      usuarioLogueado
-                        ? `/admin/turnos/editar?id=${item._id}`
-                        : "#"
+                      usuarioLogueado ? `/admin/turnos/editar/${item._id}` : "#"
                     }
                   >
                     Editar
