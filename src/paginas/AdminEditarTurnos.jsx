@@ -38,15 +38,11 @@ const AdminEditarTurnos = () => {
     const obtenerTurno = async () => {
       try {
         const respuesta = await clienteAxios.get(`/turnos/${id}`);
-        setTurnos(
-          respuesta.data.msg || {
-            detalle: "",
-            veterinario: "",
-            mascota: "",
-            fecha: "",
-            hora: "",
-          }
-        );
+        setTurnos({
+          ...respuesta.data.msg,
+          fecha: respuesta.data.msg.fecha.split("T")[0],
+          hora: new Date(respuesta.data.msg.hora).toTimeString().slice(0, 5),
+        });
       } catch (error) {
         Swal.fire({
           icon: "error",
@@ -55,6 +51,7 @@ const AdminEditarTurnos = () => {
         });
       }
     };
+
     obtenerTurno();
   }, [id]);
 
@@ -93,7 +90,7 @@ const AdminEditarTurnos = () => {
           title: actualizar.data.msg,
           text: "El turno fue actualizado correctamente",
         });
-        navigate("/turnos");
+        navigate("admin/turnos");
       } catch (error) {
         console.error(error);
         Swal.fire({
