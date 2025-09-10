@@ -85,7 +85,6 @@ const TablaC = ({
             <th>Apellido</th>
             <th className="w-25">Email</th>
             <th>Teléfono</th>
-            <th>Mascota/s</th>
             <th>Acciones</th>
           </tr>
         ) : idPagina === "turnos" ? (
@@ -108,7 +107,6 @@ const TablaC = ({
                 <td>{item.apellidoUsuario}</td>
                 <td>{item.emailUsuario}</td>
                 <td>{item.telefono}</td>
-                <td>{item.mascotas}</td>
                 <td className="w-25">
                   <Link
                     className="btn btn-warning mx-3"
