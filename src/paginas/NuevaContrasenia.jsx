@@ -9,7 +9,9 @@ const NuevaContrasenia = () => {
   const [confirmarNuevaContrasenia, setConfirmarNuevaContrasenia] =
     useState("");
   const [error, setError] = useState(false);
-  const token = new URLSearchParams(window.location.search).get("token");
+  const token = new URLSearchParams(window.location.search)
+    .get("token")
+    ?.trim();
 
   const handleClickFormNuevaContrasenia = async (ev) => {
     ev.preventDefault();
@@ -47,6 +49,8 @@ const NuevaContrasenia = () => {
       setNuevaContrasenia("");
       setConfirmarNuevaContrasenia("");
     } catch (error) {
+      const serverMessage =
+        error.response?.data?.error || error.response?.data?.msg;
       Swal.fire({
         icon: "error",
         title: "Error",
