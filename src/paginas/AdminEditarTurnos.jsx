@@ -77,22 +77,30 @@ const AdminEditarTurnos = () => {
     if (!veterinario) erroresTurnos.veterinario = "Campo VETERINARIO vacío";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
     if (!fecha) erroresTurnos.fecha = "Campo FECHA vacío";
-    else if (!validarFecha(fecha)) erroresTurnos.fecha = "Fecha Inválida";
+    else if (!validarFecha(fecha)) erroresTurnos.fecha = "Fecha inválida";
     if (!hora) erroresTurnos.hora = "Campo HORA vacío";
 
     setErrores(erroresTurnos);
 
     if (Object.keys(erroresTurnos).length === 0) {
       try {
-        const actualizar = await clienteAxios.put(`/turnos/${id}`, turnos);
+        const datos = {
+          ...turnos,
+          fecha: new Date(fecha),
+          hora: new Date(`${fecha}T${hora}`),
+        };
+
+        const actualizar = await clienteAxios.put(`/turnos/${id}`, datos);
+
         Swal.fire({
           icon: "success",
           title: actualizar.data.msg,
           text: "El turno fue actualizado correctamente",
         });
-        navigate("admin/turnos");
+
+        navigate("/admin/turnos");
       } catch (error) {
-        console.error(error);
+        console.error("Error al actualizar turno:", error);
         Swal.fire({
           icon: "error",
           title: "Error al actualizar",
@@ -101,6 +109,7 @@ const AdminEditarTurnos = () => {
       }
     }
   };
+
   return (
     <>
       <Container className="w-25 my-5">
