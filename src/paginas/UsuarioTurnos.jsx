@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import TablaUsuarios from "../componentes/tablas/TablaUsuarios";
 import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
-import clienteAxios, {
-  configHeader,
-} from "../funciones_auxiliares/configAxios";
+import clienteAxios from "../funciones_auxiliares/configAxios";
 cambiarTituloPagina("turnosUsuario");
 
 const UsuarioTurnos = () => {
@@ -11,22 +9,23 @@ const UsuarioTurnos = () => {
   const [turnos, setTurnos] = useState([]);
   const obtenerTurnosDeUsuario = async () => {
     const turnosDeUsuario = await clienteAxios.get(
-      `/turnos/usuarios/${idUsuarioLog}`,
-      configHeader
+      `/turnos/usuarios/${idUsuarioLog}`
     );
     setTurnos(turnosDeUsuario.data.turnos);
   };
 
-  useEffect(()=>{
-    obtenerTurnosDeUsuario()
-  },[])
+  useEffect(() => {
+    obtenerTurnosDeUsuario();
+  }, []);
   return (
     <>
-      <TablaUsuarios
+      <div className="table-responsive">
+        <TablaUsuarios
         idPage="turnosUsuarios"
         idDelUsuarioLog={idUsuarioLog}
         arrayTurnos={turnos}
       />
+      </div>
     </>
   );
 };

@@ -14,8 +14,8 @@ const planes = [
       "✔️ Identificación con microchip",
       "✔️ Regalo de bienvenida",
       "✔️ Asesoramiento nutricional",
-      "✔️ Consejos de crianza y comportamiento"
-    ]
+      "✔️ Consejos de crianza y comportamiento",
+    ],
   },
   {
     nombre: "🐕 Madurando",
@@ -28,8 +28,8 @@ const planes = [
       "✔️ Control de peso y alimentación",
       "✔️ Examen de sangre preventivo",
       "✔️ Actividad física recomendada",
-      "✔️ 10% de descuento en farmacia"
-    ]
+      "✔️ 10% de descuento en farmacia",
+    ],
   },
   {
     nombre: "🐾 Adultos",
@@ -42,9 +42,9 @@ const planes = [
       "✔️ Evaluación articular y dolor",
       "✔️ Nutrición adaptada",
       "✔️ Examen de próstata o mama",
-      "✔️ Atención preferencial sin turno"
-    ]
-  }
+      "✔️ Atención preferencial sin turno",
+    ],
+  },
 ];
 
 const Planes = () => {
@@ -55,22 +55,26 @@ const Planes = () => {
       <h2 className="text-center mb-4">Nuestros Planes de Salud</h2>
       <Row>
         {planes.map((plan, idx) => (
-          <Col md={4} key={idx}>
-            <Card className={`plan-card plan-${idx}`}>
-              <Card.Body>
+          <Col xs={12} sm={6} lg={4} key={idx} className="mb-4">
+            <Card className={`plan-card plan-${idx} h-100`}>
+              <Card.Body className="d-flex flex-column">
                 <Card.Title>{plan.nombre}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{plan.edad}</Card.Subtitle>
-                <Card.Text>
-                  <ul className="lista-plan">
-                    {plan.descripcion.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {plan.edad}
+                </Card.Subtitle>
+                <Card.Text className="flex-grow-1">
+                  Beneficios incluidos:
                 </Card.Text>
+                <ul className="lista-plan flex-grow-1">
+                  {plan.descripcion.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
                 <h5 className="text-primary">{plan.precio}</h5>
                 <Button
                   variant="success"
                   onClick={() => navigate(`/planes/${plan.nombre}`)}
+                  className="mt-auto"
                 >
                   Más detalle
                 </Button>
@@ -79,10 +83,8 @@ const Planes = () => {
           </Col>
         ))}
       </Row>
-      </div>
-    
+    </div>
   );
 };
 
 export default Planes;
-

@@ -1,4 +1,5 @@
 import Table from "react-bootstrap/Table";
+<<<<<<< HEAD
 import { Button, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import clienteAxios, {
@@ -83,6 +84,12 @@ const TablaUsuarios = ({
   // 📋 Vista para turnos
   if (idPage === "turnosUsuarios") {
     return (
+=======
+import dayjs from "dayjs";
+const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
+  return (
+    <>
+>>>>>>> fix/Contacto
       <Table striped bordered hover className="my-3">
         <thead>
           <tr>
@@ -102,13 +109,10 @@ const TablaUsuarios = ({
                 <td>{turno.mascota}</td>
                 <td>{turno.veterinario}</td>
                 <td>{turno.detalle}</td>
-                <td>{new Date(turno.fecha).toLocaleDateString("es-AR")}</td>
                 <td>
-                  {new Date(turno.hora).toLocaleTimeString("es-AR", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {turno.fecha ? dayjs(turno.fecha).format("DD/MM/YYYY") : ""}
                 </td>
+                <td>{turno.hora ? dayjs(turno.hora).format("HH:mm") : ""}</td>
               </tr>
             ))
           ) : (

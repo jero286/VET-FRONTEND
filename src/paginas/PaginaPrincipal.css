@@ -1,10 +1,12 @@
-
 .fondo-principal {
   background-image: url('/fondo-vetcare.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+
+
+  min-height: calc(100vh - var(--footer-height, 150px));
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +15,12 @@
   text-align: center;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   padding: 2rem;
+
+  
+  padding-bottom: var(--footer-height, 150px);
 }
+
+
 .fondo-principal h1 {
   color: #FFEDB3; 
   font-weight: bold;
@@ -25,7 +32,6 @@
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
 }
-
 
 .carousel {
   width: 100%;
@@ -52,7 +58,6 @@
   margin-bottom: 0.5rem;
 }
 
-
 .carousel-caption button {
   margin-top: 0.5rem;
 }
@@ -64,8 +69,9 @@
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
-
 .table th,
 .table td {
   color: white;
@@ -93,7 +99,7 @@
   color: #07494D; 
 }
 
-
 .card-text strong {
-  color:  #065084;; 
+  color: #065084;
 }
+

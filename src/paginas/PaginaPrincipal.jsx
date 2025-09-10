@@ -73,7 +73,6 @@ const PaginaPrincipal = () => {
           pensados para cada etapa de su vida.
         </p>
 
-        {/* Tabla de planes */}
         <h2 className="mt-5">Planes para cada etapa</h2>
         <div className="tabla-planes mt-3 mb-4">
           <table className="table table-striped table-bordered table-hover text-white">
@@ -96,11 +95,14 @@ const PaginaPrincipal = () => {
           </table>
         </div>
 
-        <Button variant="primary" onClick={() => navigate("/planes")} className="mb-5">
-          Más información 
+        <Button
+          variant="primary"
+          onClick={() => navigate("/planes")}
+          className="mb-5"
+        >
+          Más información
         </Button>
 
-        {/* Carrusel de productos */}
         <h2 className="mt-5">Productos destacados</h2>
         <Carousel className="mt-4" indicators={false} controls={true}>
           {productos.map((producto) => (
@@ -117,12 +119,6 @@ const PaginaPrincipal = () => {
                   <Card.Text>
                     <strong>${producto.precio}</strong>
                   </Card.Text>
-                  {/* <Button
-                    variant="primary"
-                    onClick={() => comprarProducto(producto)}
-                  >
-                    Comprar
-                  </Button> */}
                 </Card.Body>
               </Card>
             </Carousel.Item>
