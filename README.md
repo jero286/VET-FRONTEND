@@ -1,12 +1,53 @@
-# React + Vite
+🐶🐱 Página Web Veterinaria – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Descripción
+Este es el frontend de la página web de una veterinaria, desarrollado con React + Vite.
+La aplicación permite a los usuarios:
 
-Currently, two official plugins are available:
+Navegar por secciones como Inicio, Servicios, Contacto y Turnos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Contar con un Navbar y Footer personalizados.
 
-## Expanding the ESLint configuration
+🛠️ Requisitos / Dependencias
+Para ejecutar el proyecto correctamente se necesita:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-Node.js >= 18
+-npm >= 9
+
+Dependencias del proyecto
+Instaladas con npm install:
+
+-React ^19.1.0
+-React DOM ^19.1.0
+-React Router ^7.7.1
+-React Router DOM ^7.7.1
+-Bootstrap ^5.3.7
+-React-Bootstrap ^2.10.10
+-React-Bootstrap-Icons ^1.11.6
+-Axios ^1.11.0
+-Dotenv ^17.2.1
+-SweetAlert ^2.1.2
+-SweetAlert2 ^11.22.2
+
+⚙️ Instalación y ejecución
+
+# Clonar el repositorio
+
+git clone <url-del-repo>
+cd frontend
+
+# Ejecutar en modo desarrollo
+
+npm run dev
+
+📂 Estructura principal
+-src/: Contiene todos los componentes React, páginas y assets.
+-public/: Archivos estáticos.
+-vite.config.js: Configuración de Vite.
+
+🧑‍💻 Autores
+-Tamara Galindo
+-Jeronimo Cruz
+-Mariano Torres Mari
+-Jorge Medina
+-Canelo Magali
