@@ -1,5 +1,4 @@
 import Table from "react-bootstrap/Table";
-import dayjs from "dayjs";
 const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
   return (
     <>
@@ -22,10 +21,13 @@ const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
                 <td>{turno.mascota}</td>
                 <td>{turno.veterinario}</td>
                 <td>{turno.detalle}</td>
+                <td>{new Date(turno.fecha).toLocaleDateString("es-AR")}</td>
                 <td>
-                  {turno.fecha ? dayjs(turno.fecha).format("DD/MM/YYYY") : ""}
+                  {new Date(turno.hora).toLocaleTimeString("es-AR", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </td>
-                <td>{turno.hora ? dayjs(turno.hora).format("HH:mm") : ""}</td>
               </tr>
             ))
           ) : (
@@ -37,81 +39,8 @@ const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
           )}
         </tbody>
       </Table>
-    );
-  }
-
-
-  if (idPage === "carrito") {
-    return (
-      <>
-        <Container className="my-3">
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripción</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {productos && productos.length > 0 ? (
-                productos.map((prod, index) => (
-                  <tr key={prod.producto._id}>
-                    <td>{index + 1}</td>
-                    <td>{prod.producto.nombre}</td>
-                    <td>${prod.producto.precio}</td>
-                    <td>{prod.producto.descripcion}</td>
-                    <td>{prod.cantidad}</td>
-                    <td>${prod.cantidad * prod.producto.precio}</td>
-                    <td className="text-center">
-                      <Button
-                        variant="danger"
-                        onClick={(ev) =>
-                          handleClickDeleteProdCart(ev, prod.producto._id)
-                        }
-                      >
-                        Eliminar
-                      </Button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="7" className="text-center">
-                    Carrito vacío
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </Table>
-
-          {productos.length > 0 && (
-            <>
-              <div className="text-center my-3">
-                <Button variant="success" onClick={handleClickPay}>
-                  Pagar con MercadoPago
-                </Button>
-              </div>
-              <div className="d-flex justify-content-center">
-                <Wallet
-                  initialization={{
-                    preferenceId: idPreferencia,
-                    redirectMode: "modal",
-                  }}
-                />
-              </div>
-            </>
-          )}
-        </Container>
-      </>
-    );
-  }
-
-  return null;
+    </>
+  );
 };
 
 export default TablaUsuarios;
