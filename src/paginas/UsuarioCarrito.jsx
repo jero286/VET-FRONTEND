@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import TablaUsuarios from "../componentes/tablas/TablaUsuarios";
-import { cambiarTituloPagina } from "../funciones_auxiliares/cambiarTituloPagina";
-import clienteAxios, {
-  configHeader,
-} from "../funciones_auxiliares/configAxios";
-
-const UsuarioCarrito = () => {
-  cambiarTituloPagina("carrito");
-  const idUsuarioLog = JSON.parse(sessionStorage.getItem("idUsuario"));
-  const [productos, setProductos] = useState([]);
-
-  const obtenerProductosDeCarrito = async () => {
-    try {
-      const res = await clienteAxios.get("/carrito", configHeader);
-      setProductos(res.data.productos);
-    } catch (error) {
-      console.error("Error al obtener productos del carrito:", error);
-=======
 import { useEffect, useState, useMemo } from "react";
 import clienteAxios from "../funciones_auxiliares/configAxios";
 import TablaCarrito from "../componentes/tablas/TablaCarrito";
@@ -65,24 +46,10 @@ const UsuarioCarrito = () => {
     } catch (err) {
       console.log(err);
       setError("No se pudieron cargar los productos");
->>>>>>> fix/Contacto
     }
   };
 
   useEffect(() => {
-<<<<<<< HEAD
-    obtenerProductosDeCarrito();
-  }, []);
-
-  return (
-    <>
-      <TablaUsuarios
-        idPage="carrito"
-        idDelUsuarioLog={idUsuarioLog}
-        arrayProductos={productos}
-      />
-    </>
-=======
     cargarCarrito();
     cargarProductos();
   }, []);
@@ -246,7 +213,6 @@ const UsuarioCarrito = () => {
         </Button>
       </div>
     </Container>
->>>>>>> fix/Contacto
   );
 };
 

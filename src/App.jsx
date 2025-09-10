@@ -20,9 +20,6 @@ import ReservarTurno from "./paginas/reservarTurno";
 import AdminEditarUsuarios from "./paginas/AdminEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
-<<<<<<< HEAD
-import UsuarioCarrito from "./paginas/UsuarioCarrito";
-=======
 import AdminEditarTurnos from "./paginas/AdminEditarTurnos";
 import UsuarioCarrito from "./paginas/UsuarioCarrito";
 import PagoExitoso from "./paginas/PagoExitoso";
@@ -31,43 +28,12 @@ import PagoFallido from "./paginas/PagoFallido";
 import UsuarioCrearEditarMascota from "./paginas/UsuarioCrearEditarMascota";
 import UsuarioMascotas from "./paginas/UsuarioMascotas";
 
->>>>>>> fix/Contacto
 
 const App = () => {
   return (
     <div className="app">   
       <Router>
         <NavbarC />
-<<<<<<< HEAD
-        <Routes>
-          <Route path="/" element={<PaginaPrincipal />} />
-          <Route path="/contacto" element={<Contacto />} />
-          <Route path="/acercaDeNosotros" element={<AcercaDeNosotros />} />
-          <Route path="/iniciarSesion" element={<IniciarSesion />} />
-          <Route path="/registrarse" element={<Registrarse />} />
-          <Route path="*" element={<Error404 />} />
-          <Route path="/usuario" element={<PaginaUsuario />} />
-          <Route path="/usuario/reservarTurnos" element={<ReservarTurno />} />
-          <Route path="/usuario/turnos" element={<UsuarioTurnos />} />
-          <Route path="/usuario/carrito" element={<UsuarioCarrito />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/pacientes" element={<AdminPacientes />} />
-          <Route path="/admin/turnos" element={<AdminTurnos />} />
-          <Route path="/admin/productos" element={<AdminProductos />} />
-          <Route
-            path="/admin/usuarios/crearEditar"
-            element={<AdminCrearEditarUsuarios />}
-          />
-          <Route
-            path="/admin/productos/crearEditar"
-            element={<AdminCrearEditarProductos />}
-          />
-          <Route
-            path="/admin/turnos/crearEditar"
-            element={<AdminCrearEditarTurnos />}
-          />
-        </Routes>
-=======
         <main>   
           <Routes>
             <Route path="/" element={<PaginaPrincipal />} />
@@ -128,7 +94,6 @@ const App = () => {
             />
           </Routes>
         </main>
->>>>>>> fix/Contacto
         <FooterC />
       </Router>
     </div>
