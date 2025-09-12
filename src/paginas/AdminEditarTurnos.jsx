@@ -20,9 +20,12 @@ const AdminEditarTurnos = () => {
   ];
 
   const validarFecha = (fecha) => {
-    const dia = new Date(fecha).getDay();
-    return dia !== 0 && dia !== 6;
+    const [year, month, day] = fecha.split("-").map(Number);
+    const fechaForm = new Date(year, month - 1, day); 
+    const dia = fechaForm.getDay();
+    return dia !== 0 && dia !== 6; 
   };
+
 
   const veterinariosPermitidos = ["Dr. Pérez", "Dra. Gómez"];
 
@@ -96,23 +99,26 @@ const AdminEditarTurnos = () => {
       erroresTurnos.veterinario = "Veterinario no válido";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
     if (!fecha) erroresTurnos.fecha = "Campo FECHA vacío";
-    else if (!validarFecha(fecha)) erroresTurnos.fecha = "Fecha inválida";
     if (!hora) erroresTurnos.hora = "Campo HORA vacío";
 
     setErrores(erroresTurnos);
 
+    if (fecha && !validarFecha(fecha)) {
+      setErrores({
+        ...erroresTurnos,
+        fecha: "Solo se permiten turnos de lunes a viernes",
+      });
+      Swal.fire({
+        icon: "error",
+        title: "Fecha inválida",
+        text: "No se pueden crear turnos los sábados ni domingos",
+      });
+      return;
+    }
+
     if (Object.keys(erroresTurnos).length === 0) {
       try {
-        const datos = {
-          detalle,
-          veterinario,
-          mascota,
-          fecha,
-          hora,
-        };
-
-        console.log("Enviando datos actualización:", datos);
-
+        const datos = { detalle, veterinario, mascota, fecha, hora };
         await clienteAxios.put(`/turnos/${id}`, datos);
 
         Swal.fire({
