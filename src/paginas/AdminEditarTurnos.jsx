@@ -99,16 +99,14 @@ const AdminEditarTurnos = () => {
 
     if (Object.keys(erroresTurnos).length === 0) {
       try {
-        // --- ENVIAR hora COMO "HH:mm" (string) ---
         const datos = {
           detalle,
           veterinario,
           mascota,
-          fecha, // "YYYY-MM-DD"
-          hora, // "HH:mm" (el select ya lo tiene así)
+          fecha,
+          hora,
         };
 
-        // opcional: debug rápido para ver qué llega al backend
         console.log("Enviando datos actualización:", datos);
 
         await clienteAxios.put(`/turnos/${id}`, datos);
