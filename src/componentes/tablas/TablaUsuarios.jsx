@@ -18,8 +18,8 @@ const TablaUsuarios = ({
       text: "Esta acción no se puede deshacer.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sí, cancelar",
-      cancelButtonText: "No, mantener",
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
       confirmButtonColor: "#d33",
       reverseButtons: true,
     });
@@ -39,7 +39,7 @@ const TablaUsuarios = ({
       });
 
       if (typeof refreshTurnos === "function") {
-        refreshTurnos();
+        await refreshTurnos();
       }
     } catch (error) {
       console.error("Error al cancelar turno:", error);
