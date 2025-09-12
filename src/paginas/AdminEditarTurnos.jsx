@@ -24,6 +24,8 @@ const AdminEditarTurnos = () => {
     return dia !== 0 && dia !== 6;
   };
 
+  const veterinariosPermitidos = ["Dr. Pérez", "Dra. Gómez"];
+
   const [errores, setErrores] = useState({});
   const [turnos, setTurnos] = useState({
     detalle: "",
@@ -90,6 +92,8 @@ const AdminEditarTurnos = () => {
 
     if (!detalle) erroresTurnos.detalle = "Campo DETALLE vacío";
     if (!veterinario) erroresTurnos.veterinario = "Campo VETERINARIO vacío";
+    else if (!veterinariosPermitidos.includes(veterinario))
+      erroresTurnos.veterinario = "Veterinario no válido";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
     if (!fecha) erroresTurnos.fecha = "Campo FECHA vacío";
     else if (!validarFecha(fecha)) erroresTurnos.fecha = "Fecha inválida";
@@ -146,15 +150,21 @@ const AdminEditarTurnos = () => {
 
         <Form.Group className="mb-3">
           <Form.Label>Veterinario</Form.Label>
-          <Form.Control
-            type="text"
+          <Form.Select
             name="veterinario"
             value={turnos.veterinario}
             onChange={handleOnChangeDatosFormulario}
             className={
               errores.veterinario ? "form-control is-invalid" : "form-control"
             }
-          />
+          >
+            <option value="">Selecciona un veterinario</option>
+            {veterinariosPermitidos.map((vet) => (
+              <option key={vet} value={vet}>
+                {vet}
+              </option>
+            ))}
+          </Form.Select>
         </Form.Group>
 
         <Form.Group className="mb-3">
