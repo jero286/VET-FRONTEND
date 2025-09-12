@@ -20,9 +20,14 @@ const AdminEditarTurnos = () => {
   ];
 
   const validarFecha = (fecha) => {
-    const dia = new Date(fecha).getDay();
-    return dia !== 0 && dia !== 6;
+    const [year, month, day] = fecha.split("-").map(Number);
+    const fechaForm = new Date(year, month - 1, day); 
+    const dia = fechaForm.getDay();
+    return dia !== 0 && dia !== 6; 
   };
+
+
+  const veterinariosPermitidos = ["Dr. Pérez", "Dra. Gómez"];
 
   const [errores, setErrores] = useState({});
   const [turnos, setTurnos] = useState({
@@ -90,27 +95,30 @@ const AdminEditarTurnos = () => {
 
     if (!detalle) erroresTurnos.detalle = "Campo DETALLE vacío";
     if (!veterinario) erroresTurnos.veterinario = "Campo VETERINARIO vacío";
+    else if (!veterinariosPermitidos.includes(veterinario))
+      erroresTurnos.veterinario = "Veterinario no válido";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
     if (!fecha) erroresTurnos.fecha = "Campo FECHA vacío";
-    else if (!validarFecha(fecha)) erroresTurnos.fecha = "Fecha inválida";
     if (!hora) erroresTurnos.hora = "Campo HORA vacío";
 
     setErrores(erroresTurnos);
 
+    if (fecha && !validarFecha(fecha)) {
+      setErrores({
+        ...erroresTurnos,
+        fecha: "Solo se permiten turnos de lunes a viernes",
+      });
+      Swal.fire({
+        icon: "error",
+        title: "Fecha inválida",
+        text: "No se pueden crear turnos los sábados ni domingos",
+      });
+      return;
+    }
+
     if (Object.keys(erroresTurnos).length === 0) {
       try {
-        // --- ENVIAR hora COMO "HH:mm" (string) ---
-        const datos = {
-          detalle,
-          veterinario,
-          mascota,
-          fecha, // "YYYY-MM-DD"
-          hora, // "HH:mm" (el select ya lo tiene así)
-        };
-
-        // opcional: debug rápido para ver qué llega al backend
-        console.log("Enviando datos actualización:", datos);
-
+        const datos = { detalle, veterinario, mascota, fecha, hora };
         await clienteAxios.put(`/turnos/${id}`, datos);
 
         Swal.fire({
@@ -148,15 +156,21 @@ const AdminEditarTurnos = () => {
 
         <Form.Group className="mb-3">
           <Form.Label>Veterinario</Form.Label>
-          <Form.Control
-            type="text"
+          <Form.Select
             name="veterinario"
             value={turnos.veterinario}
             onChange={handleOnChangeDatosFormulario}
             className={
               errores.veterinario ? "form-control is-invalid" : "form-control"
             }
-          />
+          >
+            <option value="">Selecciona un veterinario</option>
+            {veterinariosPermitidos.map((vet) => (
+              <option key={vet} value={vet}>
+                {vet}
+              </option>
+            ))}
+          </Form.Select>
         </Form.Group>
 
         <Form.Group className="mb-3">
