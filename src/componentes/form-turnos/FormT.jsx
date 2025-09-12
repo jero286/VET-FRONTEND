@@ -19,7 +19,8 @@ const FormT = () => {
   ];
 
   const validarFecha = (fecha) => {
-    const fechaForm = new Date(fecha);
+    const [year, month, day] = fecha.split("-").map(Number);
+    const fechaForm = new Date(year, month - 1, day);
     const dia = fechaForm.getDay();
     return dia !== 0 && dia !== 6;
   };
