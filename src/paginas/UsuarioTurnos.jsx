@@ -21,10 +21,11 @@ const UsuarioTurnos = () => {
     <>
       <div className="table-responsive">
         <TablaUsuarios
-        idPage="turnosUsuarios"
-        idDelUsuarioLog={idUsuarioLog}
-        arrayTurnos={turnos}
-      />
+          idPage="turnosUsuarios"
+          idDelUsuarioLog={idUsuarioLog}
+          arrayTurnos={turnos}
+          refreshTurnos={obtenerTurnosDeUsuario}
+        />
       </div>
     </>
   );

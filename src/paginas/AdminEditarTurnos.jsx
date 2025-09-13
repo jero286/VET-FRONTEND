@@ -20,10 +20,14 @@ const AdminEditarTurnos = () => {
   ];
 
   const validarFecha = (fecha) => {
-    const fechaForm = new Date(fecha);
+    const [year, month, day] = fecha.split("-").map(Number);
+    const fechaForm = new Date(year, month - 1, day); 
     const dia = fechaForm.getDay();
-    return dia !== 0 && dia !== 6;
+    return dia !== 0 && dia !== 6; 
   };
+
+
+  const veterinariosPermitidos = ["Dr. Pérez", "Dra. Gómez"];
 
   const [errores, setErrores] = useState({});
   const [turnos, setTurnos] = useState({
@@ -38,7 +42,27 @@ const AdminEditarTurnos = () => {
     const obtenerTurno = async () => {
       try {
         const respuesta = await clienteAxios.get(`/turnos/${id}`);
-        setTurnos(respuesta.data.turno);
+        console.log(respuesta.data);
+        const turno = respuesta.data.msg;
+
+        const fechaString = new Date(turno.fecha).toISOString().split("T")[0];
+
+        const horaLocal = new Date(turno.hora);
+        const horaString = horaLocal
+          .toLocaleTimeString("es-AR", {
+            hour12: false,
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+          .slice(0, 5);
+
+        setTurnos({
+          detalle: turno.detalle,
+          veterinario: turno.veterinario,
+          mascota: turno.mascota,
+          fecha: fechaString,
+          hora: horaString,
+        });
       } catch (error) {
         Swal.fire({
           icon: "error",
@@ -47,6 +71,7 @@ const AdminEditarTurnos = () => {
         });
       }
     };
+
     obtenerTurno();
   }, [id]);
 
@@ -70,24 +95,40 @@ const AdminEditarTurnos = () => {
 
     if (!detalle) erroresTurnos.detalle = "Campo DETALLE vacío";
     if (!veterinario) erroresTurnos.veterinario = "Campo VETERINARIO vacío";
+    else if (!veterinariosPermitidos.includes(veterinario))
+      erroresTurnos.veterinario = "Veterinario no válido";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
     if (!fecha) erroresTurnos.fecha = "Campo FECHA vacío";
-    else if (!validarFecha(fecha)) erroresTurnos.fecha = "Fecha Inválida";
     if (!hora) erroresTurnos.hora = "Campo HORA vacío";
 
     setErrores(erroresTurnos);
 
+    if (fecha && !validarFecha(fecha)) {
+      setErrores({
+        ...erroresTurnos,
+        fecha: "Solo se permiten turnos de lunes a viernes",
+      });
+      Swal.fire({
+        icon: "error",
+        title: "Fecha inválida",
+        text: "No se pueden crear turnos los sábados ni domingos",
+      });
+      return;
+    }
+
     if (Object.keys(erroresTurnos).length === 0) {
       try {
-        const actualizar = await clienteAxios.put(`/turnos/${id}`, turnos);
+        const datos = { detalle, veterinario, mascota, fecha, hora };
+        await clienteAxios.put(`/turnos/${id}`, datos);
+
         Swal.fire({
           icon: "success",
-          title: actualizar.data.msg,
+          title: "Turno actualizado",
           text: "El turno fue actualizado correctamente",
         });
-        navigate("/turnos");
+        navigate("/admin/turnos");
       } catch (error) {
-        console.error(error);
+        console.error("Error al actualizar turno:", error);
         Swal.fire({
           icon: "error",
           title: "Error al actualizar",
@@ -96,90 +137,95 @@ const AdminEditarTurnos = () => {
       }
     }
   };
+
   return (
-    <>
-      <Container className="w-25 my-5">
-        <Form onSubmit={handleActualizarTurno}>
-          <Form.Group className="mb-3">
-            <Form.Label>Razón del turno</Form.Label>
-            <Form.Control
-              type="text"
-              name="detalle"
-              value={turnos.detalle}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.detalle ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+    <Container className="w-25 my-5">
+      <Form onSubmit={handleActualizarTurno}>
+        <Form.Group className="mb-3">
+          <Form.Label>Razón del turno</Form.Label>
+          <Form.Control
+            type="text"
+            name="detalle"
+            value={turnos.detalle}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.detalle ? "form-control is-invalid" : "form-control"
+            }
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Veterinario</Form.Label>
-            <Form.Control
-              type="text"
-              name="veterinario"
-              value={turnos.veterinario}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.veterinario ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Veterinario</Form.Label>
+          <Form.Select
+            name="veterinario"
+            value={turnos.veterinario}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.veterinario ? "form-control is-invalid" : "form-control"
+            }
+          >
+            <option value="">Selecciona un veterinario</option>
+            {veterinariosPermitidos.map((vet) => (
+              <option key={vet} value={vet}>
+                {vet}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Mascota</Form.Label>
-            <Form.Control
-              type="text"
-              name="mascota"
-              value={turnos.mascota}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.mascota ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Mascota</Form.Label>
+          <Form.Control
+            type="text"
+            name="mascota"
+            value={turnos.mascota}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.mascota ? "form-control is-invalid" : "form-control"
+            }
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Fecha</Form.Label>
-            <Form.Control
-              type="date"
-              name="fecha"
-              value={turnos.fecha}
-              onChange={handleOnChangeDatosFormulario}
-              min={new Date().toISOString().split("T")[0]}
-              className={
-                errores.fecha ? "form-control is-invalid" : "form-control"
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Fecha</Form.Label>
+          <Form.Control
+            type="date"
+            name="fecha"
+            value={turnos.fecha}
+            onChange={handleOnChangeDatosFormulario}
+            min={new Date().toISOString().split("T")[0]}
+            className={
+              errores.fecha ? "form-control is-invalid" : "form-control"
+            }
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Hora</Form.Label>
-            <Form.Select
-              name="hora"
-              value={turnos.hora}
-              onChange={handleOnChangeDatosFormulario}
-              className={
-                errores.hora ? "form-control is-invalid" : "form-control"
-              }
-            >
-              <option value="">Selecciona una hora</option>
-              {horasPermitidas.map((hora) => (
-                <option key={hora} value={hora}>
-                  {hora}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Hora</Form.Label>
+          <Form.Select
+            name="hora"
+            value={turnos.hora || ""}
+            onChange={handleOnChangeDatosFormulario}
+            className={
+              errores.hora ? "form-control is-invalid" : "form-control"
+            }
+          >
+            <option value="">Selecciona una hora</option>
+            {horasPermitidas.map((h) => (
+              <option key={h} value={h}>
+                {h}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
 
-          <Container className="text-center">
-            <Button variant="warning" type="submit">
-              Actualizar turno
-            </Button>
-          </Container>
-        </Form>
-      </Container>
-    </>
+        <Container className="text-center">
+          <Button variant="warning" type="submit">
+            Actualizar turno
+          </Button>
+        </Container>
+      </Form>
+    </Container>
   );
 };
 
