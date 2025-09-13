@@ -38,7 +38,6 @@ const DetallePlan = () => {
     } catch (err) {
       setError("Hubo un problema al enviar tu consulta. Intentá de nuevo.");
       setExito(false);
-      console.error(err);
     }
   };
 

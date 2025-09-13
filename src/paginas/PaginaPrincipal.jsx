@@ -37,9 +37,7 @@ const comprarProducto = async (producto) => {
     });
     const data = await res.json();
     window.location.href = data.init_point;
-  } catch (error) {
-    console.error("Error al comprar:", error);
-  }
+  } catch (error) {}
 };
 
 const PaginaPrincipal = () => {

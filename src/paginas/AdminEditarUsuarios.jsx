@@ -19,31 +19,46 @@ const AdminEditarUsuarios = () => {
   });
 
   const obtenerUsuarioPorId = async (id) => {
+    if (!id) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "ID de usuario no válido.",
+        confirmButtonColor: "#d33",
+      });
+      return;
+    }
+
     try {
       const res = await clienteAxios.get(`/usuarios/${id}`);
-      const usuario = res.data.usuario;
+      const usuario = res.data.usuario || res.data;
 
       setFormEditarUsuario({
-        nombreUsuario: usuario.nombreUsuario,
-        apellidoUsuario: usuario.apellidoUsuario,
-        emailUsuario: usuario.emailUsuario,
-        telefono: usuario.telefono,
+        nombreUsuario: usuario.nombreUsuario || "",
+        apellidoUsuario: usuario.apellidoUsuario || "",
+        emailUsuario: usuario.emailUsuario || "",
+        telefono: usuario.telefono || "",
       });
     } catch (error) {
-      console.error("Error al obtener usuario por ID", error);
+      let mensaje = "Error al cargar los datos del usuario.";
+      if (error.response?.status === 404) {
+        mensaje = "Usuario no encontrado.";
+      }
+
       Swal.fire({
-        icon: 'error',
-        title: 'Error al cargar usuario',
-        text: 'Ocurrió un problema al obtener los datos del usuario.',
-        confirmButtonColor: '#d33',
-      })
+        icon: "error",
+        title: "Error al cargar usuario",
+        text: mensaje,
+        confirmButtonColor: "#d33",
+      });
     }
   };
 
   const handleClickFormEditarUsuario = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await clienteAxios.put(`/usuarios/${id}`, formEditarUsuario);
+      await clienteAxios.put(`/usuarios/${id}`, formEditarUsuario);
 
       Swal.fire({
         icon: "success",
@@ -54,7 +69,6 @@ const AdminEditarUsuarios = () => {
         navigate("/admin/pacientes");
       });
     } catch (error) {
-      console.error("Error al actualizar el usuario", error);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -66,81 +80,84 @@ const AdminEditarUsuarios = () => {
 
   useEffect(() => {
     if (id) {
-      obtenerUsuarioPorId();
+      obtenerUsuarioPorId(id);
     }
   }, [id]);
+
   return (
-    <>
-      <Container className="w-25 my-5">
-        <Form onSubmit={handleClickFormEditarUsuario}>
-          <Form.Group className="mb-3" controlId="nombre">
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Nombre"
-              value={formEditarUsuario.nombreUsuario}
-              onChange={(e) =>
-                setFormEditarUsuario({
-                  ...formEditarUsuario,
-                  nombreUsuario: e.target.value,
-                })
-              }
-            />
-          </Form.Group>
+    <Container className="w-25 my-5">
+      <Form onSubmit={handleClickFormEditarUsuario}>
+        <Form.Group className="mb-3" controlId="nombre">
+          <Form.Label>Nombre</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Nombre"
+            value={formEditarUsuario.nombreUsuario}
+            onChange={(e) =>
+              setFormEditarUsuario({
+                ...formEditarUsuario,
+                nombreUsuario: e.target.value,
+              })
+            }
+            required
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="apellido">
-            <Form.Label>Apellido</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Apellido"
-              value={formEditarUsuario.apellidoUsuario}
-              onChange={(e) =>
-                setFormEditarUsuario({
-                  ...formEditarUsuario,
-                  apellidoUsuario: e.target.value,
-                })
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="apellido">
+          <Form.Label>Apellido</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Apellido"
+            value={formEditarUsuario.apellidoUsuario}
+            onChange={(e) =>
+              setFormEditarUsuario({
+                ...formEditarUsuario,
+                apellidoUsuario: e.target.value,
+              })
+            }
+            required
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Email"
-              value={formEditarUsuario.emailUsuario}
-              onChange={(e) =>
-                setFormEditarUsuario({
-                  ...formEditarUsuario,
-                  emailUsuario: e.target.value,
-                })
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            value={formEditarUsuario.emailUsuario}
+            onChange={(e) =>
+              setFormEditarUsuario({
+                ...formEditarUsuario,
+                emailUsuario: e.target.value,
+              })
+            }
+            required
+          />
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="telefono">
-            <Form.Label>Telefono</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Telefono"
-              value={formEditarUsuario.telefono}
-              onChange={(e) =>
-                setFormEditarUsuario({
-                  ...formEditarUsuario,
-                  telefono: e.target.value,
-                })
-              }
-            />
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="telefono">
+          <Form.Label>Telefono</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Telefono"
+            value={formEditarUsuario.telefono}
+            onChange={(e) =>
+              setFormEditarUsuario({
+                ...formEditarUsuario,
+                telefono: e.target.value,
+              })
+            }
+            required
+          />
+        </Form.Group>
 
-          <div className="text-center">
-            <Button variant="primary" type="submit">
-              Guardar Datos
-            </Button>
-          </div>
-        </Form>
-      </Container>
-    </>
+        <div className="text-center">
+          <Button variant="primary" type="submit">
+            Guardar Datos
+          </Button>
+        </div>
+      </Form>
+    </Container>
   );
 };
 

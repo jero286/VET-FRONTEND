@@ -28,12 +28,13 @@ import PagoFallido from "./paginas/PagoFallido";
 import UsuarioCrearEditarMascota from "./paginas/UsuarioCrearEditarMascota";
 import UsuarioMascotas from "./paginas/UsuarioMascotas";
 
+
 const App = () => {
   return (
-    <div className="app">   
+    <div className="app">
       <Router>
         <NavbarC />
-        <main>   
+        <main>
           <Routes>
             <Route path="/" element={<PaginaPrincipal />} />
             <Route path="/planes" element={<Planes />} />
@@ -83,7 +84,7 @@ const App = () => {
               element={<AdminCrearEditarProductos />}
             />
             <Route
-              path="/admin/turnos/editarTurnos"
+              path="/admin/turnos/editar/:id"
               element={<AdminEditarTurnos />}
             />
             <Route path="/usuario/mascotas" element={<UsuarioMascotas />} />

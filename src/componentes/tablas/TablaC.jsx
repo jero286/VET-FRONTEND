@@ -85,7 +85,6 @@ const TablaC = ({
             <th>Apellido</th>
             <th className="w-25">Email</th>
             <th>Teléfono</th>
-            <th>Mascota/s</th>
             <th>Acciones</th>
           </tr>
         ) : idPagina === "turnos" ? (
@@ -108,7 +107,6 @@ const TablaC = ({
                 <td>{item.apellidoUsuario}</td>
                 <td>{item.emailUsuario}</td>
                 <td>{item.telefono}</td>
-                <td>{item.mascotas}</td>
                 <td className="w-25">
                   <Link
                     className="btn btn-warning mx-3"
@@ -132,31 +130,37 @@ const TablaC = ({
           }
 
           if (idPagina === "turnos") {
-            const fechaObj = new Date(item.fecha);
-            const fechaFormateada = fechaObj.toLocaleDateString("es-AR", {
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-            });
-            const horaFormateada = fechaObj.toLocaleTimeString("es-AR", {
-              hour: "2-digit",
-              minute: "2-digit",
-            });
-
             return (
               <tr key={index}>
                 <td>{item.detalle}</td>
                 <td>{item.veterinario}</td>
                 <td>{item.mascota}</td>
-                <td>{fechaFormateada}</td>
-                <td>{horaFormateada}</td>
+
+                <td>
+                  {item.fecha
+                    ? new Date(item.fecha).toLocaleDateString("es-AR", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })
+                    : "-"}
+                </td>
+
+                <td>
+                  {item.hora
+                    ? new Date(item.hora).toLocaleTimeString("es-AR", {
+                        hour12: false,
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : "-"}
+                </td>
+
                 <td className="w-25">
                   <Link
                     className="btn btn-warning mx-3"
                     to={
-                      usuarioLogueado
-                        ? `/admin/turnos/editar?id=${item._id}`
-                        : "#"
+                      usuarioLogueado ? `/admin/turnos/editar/${item._id}` : "#"
                     }
                   >
                     Editar

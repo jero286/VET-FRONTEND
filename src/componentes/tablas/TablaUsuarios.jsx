@@ -1,5 +1,57 @@
 import Table from "react-bootstrap/Table";
-const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import Swal from "sweetalert2";
+import clienteAxios from "../../funciones_auxiliares/configAxios";
+
+const TablaUsuarios = ({
+  idPage,
+  idDelUsuarioLog,
+  arrayTurnos,
+  refreshTurnos,
+}) => {
+  const [deletingId, setDeletingId] = useState(null);
+
+  const handleCancelar = async (turnoId) => {
+    const confirm = await Swal.fire({
+      title: "¿Cancelar turno?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+      confirmButtonColor: "#d33",
+      reverseButtons: true,
+    });
+
+    if (!confirm.isConfirmed) return;
+
+    try {
+      setDeletingId(turnoId);
+      await clienteAxios.delete(`/turnos/${turnoId}`);
+
+      await Swal.fire({
+        title: "Turno cancelado",
+        text: "Tu turno fue eliminado correctamente.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      if (typeof refreshTurnos === "function") {
+        await refreshTurnos();
+      }
+    } catch (error) {
+      await Swal.fire({
+        title: "Error",
+        text: "No se pudo cancelar el turno.",
+        icon: "error",
+      });
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   return (
     <>
       <Table striped bordered hover className="my-3">
@@ -11,6 +63,7 @@ const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
             <th>Motivo</th>
             <th>Fecha</th>
             <th>Hora</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -28,11 +81,21 @@ const TablaUsuarios = ({ idPage, idDelUsuarioLog, arrayTurnos }) => {
                     minute: "2-digit",
                   })}
                 </td>
+                <td>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleCancelar(turno._id)}
+                    disabled={deletingId === turno._id}
+                  >
+                    {deletingId === turno._id ? "Cancelando..." : "Cancelar"}
+                  </Button>
+                </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6" className="text-center">
+              <td colSpan={7} className="text-center">
                 No hay turnos agendados
               </td>
             </tr>

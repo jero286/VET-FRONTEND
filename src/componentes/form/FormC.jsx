@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import clienteAxios from "../../funciones_auxiliares/configAxios";
 import swal from "sweetalert2";
+import "./formC.css";
 
 const FormC = ({ idPage }) => {
   const navigate = useNavigate();
@@ -102,7 +103,6 @@ const FormC = ({ idPage }) => {
         }
       }
     } catch (error) {
-      console.log(error.response?.data || error.message);
       swal.fire({
         icon: "error",
         title: "Error al registrar",
@@ -140,7 +140,7 @@ const FormC = ({ idPage }) => {
           nombreUsuario,
           contrasenia,
         });
-        console.log("Datos recibidos:", usuarioLogueado.data);
+
         sessionStorage.setItem(
           "token",
           JSON.stringify(usuarioLogueado.data.token)
@@ -169,7 +169,6 @@ const FormC = ({ idPage }) => {
         }
       }
     } catch (error) {
-      console.log(error);
       swal.fire({
         icon: "error",
         title: "Error al iniciar sesión",
@@ -181,13 +180,24 @@ const FormC = ({ idPage }) => {
   };
 
   return (
-    <>
+    <div className="formc-container">
+      <div className="formc-header">
+        <img src="/logo3.jpeg" alt="Logo vet" />
+        <div>
+          <h4 style={{ margin: 0, color: "#234a38" }}>
+            {idPage === "registro" ? "Registro de usuario" : "Iniciar sesión"}
+          </h4>
+          <small style={{ color: "#4b6b57" }}>
+            Centro veterinario • Farmacia
+          </small>
+        </div>
+      </div>
       <Form>
         <Form.Group className="mb-3" controlId="idUsuario">
-          <Form.Label>Nombre</Form.Label>
+          <Form.Label>Nombre Usuario</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ingrese su nombre"
+            placeholder="Ingrese su nombre (es único)"
             name="nombreUsuario"
             className={
               errores.nombreUsuario ? "form-control is-invalid" : "form-control"
@@ -328,9 +338,10 @@ const FormC = ({ idPage }) => {
             </Link>
           </div>
         )}
-        <Container className="text-center">
+        <Container className="text-center my-2">
           <Button
-            variant="primary"
+            variant="success"
+            className="formc-btn"
             type="submit"
             onClick={
               idPage === "registro"
@@ -342,7 +353,8 @@ const FormC = ({ idPage }) => {
           </Button>
         </Container>
       </Form>
-    </>
+      <span className="formc-accent" />
+    </div>
   );
 };
 
