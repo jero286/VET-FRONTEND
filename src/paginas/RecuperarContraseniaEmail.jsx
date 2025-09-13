@@ -45,7 +45,21 @@ const RecuperarContraseniaEmail = () => {
   };
 
   return (
-    <Container className="my-5 d-flex justify-content-center">
+    <div
+      style={{
+        backgroundImage:
+          "url('https://i.pinimg.com/1200x/d7/2d/23/d72d236e94f257af28b37f792e71a177.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "1rem",
+        boxSizing: "border-box",
+      }}
+    >
       <div className="formc-container form-recuperar">
         <h2 className="text-center mb-4">Recuperar Contraseña</h2>
         <Form>
@@ -59,7 +73,9 @@ const RecuperarContraseniaEmail = () => {
                 type="email"
                 placeholder="Ingrese su email"
                 name="emailUsuario"
-                className={`form-control ${error ? "input-error" : ""}`}
+                className={`form-control input-recuperar ${
+                  error ? "input-error" : ""
+                }`}
                 value={emailUsuario}
                 onChange={(ev) => setEmailUsuario(ev.target.value)}
               />
@@ -73,7 +89,7 @@ const RecuperarContraseniaEmail = () => {
           </Button>
         </Form>
       </div>
-    </Container>
+    </div>
   );
 };
 
