@@ -7,9 +7,24 @@ const IniciarSesion = () => {
   cambiarTituloPagina("Iniciar Sesion");
   return (
     <>
-      <Container className="container-iniciar-sesion ">
-        <FormC idPage="inicioSesion" className="form-c " />
-      </Container>
+      <div
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/1200x/d7/2d/23/d72d236e94f257af28b37f792e71a177.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "3rem",
+        }}
+      >
+        <Container className="container-iniciar-sesion">
+          <FormC idPage="inicioSesion" className="form-c" />
+        </Container>
+      </div>
     </>
   );
 };

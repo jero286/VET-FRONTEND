@@ -61,51 +61,69 @@ const NuevaContrasenia = () => {
   };
 
   return (
-    <Container className="my-5 d-flex justify-content-center">
-      <div className="formc-container form-recuperar">
-        <h2 className="text-center mb-4">Restablecer Contraseña</h2>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Nueva Contraseña</Form.Label>
-            <InputGroup>
-              <Form.Control
-                type="password"
-                placeholder="Ingrese nueva contraseña"
-                className={`form-control input-recuperar ${
-                  error ? "input-error" : ""
-                }`}
-                value={nuevaContrasenia}
-                onChange={(ev) => setNuevaContrasenia(ev.target.value)}
-              />
-            </InputGroup>
-          </Form.Group>
+    <div
+      style={{
+        backgroundImage:
+          "url('https://i.pinimg.com/1200x/d7/2d/23/d72d236e94f257af28b37f792e71a177.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh", 
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "1rem", 
+        boxSizing: "border-box",
+      }}
+    >
+      <Container className="my-5 d-flex justify-content-center">
+        <div className="formc-container form-recuperar">
+          <h2 className="text-center mb-4">Restablecer Contraseña</h2>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Nueva Contraseña</Form.Label>
+              <InputGroup>
+                <Form.Control
+                  type="password"
+                  placeholder="Ingrese nueva contraseña"
+                  className={`form-control input-recuperar ${
+                    error ? "input-error" : ""
+                  }`}
+                  value={nuevaContrasenia}
+                  onChange={(ev) => setNuevaContrasenia(ev.target.value)}
+                />
+              </InputGroup>
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword2">
-            <Form.Label>Repetir Nueva Contraseña</Form.Label>
-            <InputGroup>
-              <Form.Control
-                type="password"
-                placeholder="Confirme su contraseña"
-                className={`form-control input-recuperar ${
-                  error ? "input-error" : ""
-                }`}
-                value={confirmarNuevaContrasenia}
-                onChange={(ev) => setConfirmarNuevaContrasenia(ev.target.value)}
-              />
-            </InputGroup>
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword2">
+              <Form.Label>Repetir Nueva Contraseña</Form.Label>
+              <InputGroup>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirme su contraseña"
+                  className={`form-control input-recuperar ${
+                    error ? "input-error" : ""
+                  }`}
+                  value={confirmarNuevaContrasenia}
+                  onChange={(ev) =>
+                    setConfirmarNuevaContrasenia(ev.target.value)
+                  }
+                />
+              </InputGroup>
+            </Form.Group>
 
-          <Container className="text-center">
-            <Button
-              className="mt-3 btn-success formc-btn"
-              onClick={handleClickFormNuevaContrasenia}
-            >
-              Restablecer Contraseña
-            </Button>
-          </Container>
-        </Form>
-      </div>
-    </Container>
+            <Container className="text-center">
+              <Button
+                className="mt-3 btn-success formc-btn"
+                onClick={handleClickFormNuevaContrasenia}
+              >
+                Restablecer Contraseña
+              </Button>
+            </Container>
+          </Form>
+        </div>
+      </Container>
+    </div>
   );
 };
 

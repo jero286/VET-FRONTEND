@@ -50,7 +50,7 @@ const SobreNosotros = () => {
             descripcion: "Empática, resolutiva y siempre dispuesta a ayudar.",
           },
           {
-            nombre: "Mariano Torres",
+            nombre: "Mariano Torres Mari",
             rol: "",
             img: "https://i.pinimg.com/170x/08/08/45/0808451bc6ef6ff426bb39880f956551.jpg",
             descripcion: "Resolutivo, curioso y con mentalidad de crecimiento.",
