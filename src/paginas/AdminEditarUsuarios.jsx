@@ -21,10 +21,10 @@ const AdminEditarUsuarios = () => {
   const obtenerUsuarioPorId = async (id) => {
     if (!id) {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'ID de usuario no válido.',
-        confirmButtonColor: '#d33',
+        icon: "error",
+        title: "Error",
+        text: "ID de usuario no válido.",
+        confirmButtonColor: "#d33",
       });
       return;
     }
@@ -39,27 +39,24 @@ const AdminEditarUsuarios = () => {
         emailUsuario: usuario.emailUsuario || "",
         telefono: usuario.telefono || "",
       });
-      
     } catch (error) {
-      console.error("Error al obtener usuario por ID", error);
-      
       let mensaje = "Error al cargar los datos del usuario.";
       if (error.response?.status === 404) {
         mensaje = "Usuario no encontrado.";
       }
-      
+
       Swal.fire({
-        icon: 'error',
-        title: 'Error al cargar usuario',
+        icon: "error",
+        title: "Error al cargar usuario",
         text: mensaje,
-        confirmButtonColor: '#d33',
+        confirmButtonColor: "#d33",
       });
     }
   };
 
   const handleClickFormEditarUsuario = async (e) => {
     e.preventDefault();
-    
+
     try {
       await clienteAxios.put(`/usuarios/${id}`, formEditarUsuario);
 
@@ -72,7 +69,6 @@ const AdminEditarUsuarios = () => {
         navigate("/admin/pacientes");
       });
     } catch (error) {
-      console.error("Error al actualizar el usuario", error);
       Swal.fire({
         icon: "error",
         title: "Error",
