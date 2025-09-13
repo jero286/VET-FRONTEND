@@ -106,7 +106,6 @@ const FormT = () => {
         hora: "",
       });
     } catch (error) {
-      console.log(error.response?.data || error.message);
       Swal.fire({
         icon: "error",
         title: "Error al crear turno",

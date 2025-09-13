@@ -32,7 +32,6 @@ const UsuarioCarrito = () => {
       const productos = data?.productos ?? [];
       setProductosCarrito(productos);
     } catch (err) {
-      console.log(err);
       setError("No se pudo obtener el carrito");
     } finally {
       setCargando(false);
@@ -44,7 +43,6 @@ const UsuarioCarrito = () => {
       const { data } = await clienteAxios.get("/productos");
       setProductosDisponibles(data?.productos ?? []);
     } catch (err) {
-      console.log(err);
       setError("No se pudieron cargar los productos");
     }
   };
@@ -72,7 +70,6 @@ const UsuarioCarrito = () => {
       setCantidad(1);
       setProductoSeleccionado("");
     } catch (err) {
-      console.log(err);
       setError("No se pudo agregar el producto");
     } finally {
       setCargando(false);
@@ -99,8 +96,6 @@ const UsuarioCarrito = () => {
       setCargando(true);
       setError("");
 
-      console.log("Iniciando proceso de pago...");
-
       const { data } = await clienteAxios.post(
         "/carrito/pagarProducto",
         {},
@@ -111,10 +106,7 @@ const UsuarioCarrito = () => {
         }
       );
 
-      console.log("Respuesta del backend:", data);
-
       if (data?.init_point) {
-        console.log("Redirigiendo a:", data.init_point);
         window.location.href = data.init_point;
       } else {
         setError(
@@ -122,7 +114,6 @@ const UsuarioCarrito = () => {
         );
       }
     } catch (error) {
-      console.error("Error en pagarProducto:", error);
       if (error.response) {
         setError(
           `Error del servidor: ${
@@ -182,24 +173,23 @@ const UsuarioCarrito = () => {
 
       <div className="table-responsive">
         <TablaCarrito
-        items={productosCarrito}
-        onEliminar={async (idProducto) => {
-          try {
-            setCargando(true);
-            const token = sessionStorage.getItem("token");
-            await clienteAxios.delete(`/carrito/eliminar/${idProducto}`, {
-              headers: { auth: token },
-            });
-            await cargarCarrito();
-          } catch (err) {
-            console.log(err);
-            setError("No se pudo eliminar el producto");
-          } finally {
-            setCargando(false);
-          }
-        }}
-        formatearARS={formatearAPesosArs}
-      />
+          items={productosCarrito}
+          onEliminar={async (idProducto) => {
+            try {
+              setCargando(true);
+              const token = sessionStorage.getItem("token");
+              await clienteAxios.delete(`/carrito/eliminar/${idProducto}`, {
+                headers: { auth: token },
+              });
+              await cargarCarrito();
+            } catch (err) {
+              setError("No se pudo eliminar el producto");
+            } finally {
+              setCargando(false);
+            }
+          }}
+          formatearARS={formatearAPesosArs}
+        />
       </div>
 
       <div className="d-flex justify-content-between align-items-center mt-3">

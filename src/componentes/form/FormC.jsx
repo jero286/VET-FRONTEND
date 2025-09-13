@@ -103,7 +103,6 @@ const FormC = ({ idPage }) => {
         }
       }
     } catch (error) {
-      console.log(error.response?.data || error.message);
       swal.fire({
         icon: "error",
         title: "Error al registrar",
@@ -141,7 +140,7 @@ const FormC = ({ idPage }) => {
           nombreUsuario,
           contrasenia,
         });
-        console.log("Datos recibidos:", usuarioLogueado.data);
+
         sessionStorage.setItem(
           "token",
           JSON.stringify(usuarioLogueado.data.token)
@@ -170,7 +169,6 @@ const FormC = ({ idPage }) => {
         }
       }
     } catch (error) {
-      console.log(error);
       swal.fire({
         icon: "error",
         title: "Error al iniciar sesión",

@@ -21,11 +21,10 @@ const AdminEditarTurnos = () => {
 
   const validarFecha = (fecha) => {
     const [year, month, day] = fecha.split("-").map(Number);
-    const fechaForm = new Date(year, month - 1, day); 
+    const fechaForm = new Date(year, month - 1, day);
     const dia = fechaForm.getDay();
-    return dia !== 0 && dia !== 6; 
+    return dia !== 0 && dia !== 6;
   };
-
 
   const veterinariosPermitidos = ["Dr. Pérez", "Dra. Gómez"];
 
@@ -42,7 +41,7 @@ const AdminEditarTurnos = () => {
     const obtenerTurno = async () => {
       try {
         const respuesta = await clienteAxios.get(`/turnos/${id}`);
-        console.log(respuesta.data);
+
         const turno = respuesta.data.msg;
 
         const fechaString = new Date(turno.fecha).toISOString().split("T")[0];
@@ -128,7 +127,6 @@ const AdminEditarTurnos = () => {
         });
         navigate("/admin/turnos");
       } catch (error) {
-        console.error("Error al actualizar turno:", error);
         Swal.fire({
           icon: "error",
           title: "Error al actualizar",

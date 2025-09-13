@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 const apiKey = import.meta.env.VITE_API_KEY_CLIMA;
 const ciudad = "Tucuman";
 
@@ -7,16 +7,15 @@ function ObtenerClimaTucuman() {
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${ciudad}&aqi=no`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${ciudad}&aqi=no`;
 
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setClima(data);
         setCargando(false);
       })
-      .catch(error => {
-        console.log("Error al obtener el clima:", error);
+      .catch((error) => {
         setCargando(false);
       });
   }, []);
@@ -42,4 +41,4 @@ function ObtenerClimaTucuman() {
   );
 }
 
-export default ObtenerClimaTucuman
+export default ObtenerClimaTucuman;
