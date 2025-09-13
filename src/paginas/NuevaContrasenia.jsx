@@ -68,11 +68,11 @@ const NuevaContrasenia = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        minHeight: "100vh", 
+        minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "1rem", 
+        padding: "1rem",
         boxSizing: "border-box",
       }}
     >
