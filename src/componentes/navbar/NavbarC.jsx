@@ -42,9 +42,6 @@ const NavbarC = () => {
                 <NavLink className="nav-link" to="/usuario/carrito">
                   Carrito
                 </NavLink>
-                <NavLink className="nav-link" to="/usuario/mascotas">
-                  Mascotas
-                </NavLink>
                 <NavLink className="nav-link" to="/usuario/turnos">
                   Turnos
                 </NavLink>
