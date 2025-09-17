@@ -25,15 +25,6 @@ const FormT = () => {
     return dia !== 0 && dia !== 6;
   };
 
-  const [errores, setErrores] = useState({});
-  const [turnos, setTurnos] = useState({
-    detalle: "",
-    veterinario: "",
-    mascota: "",
-    fecha: "",
-    hora: "",
-  });
-
   const handleOnClickMandarDatosTurno = async (ev) => {
     ev.preventDefault();
 
@@ -56,7 +47,6 @@ const FormT = () => {
     if (!hora) erroresTurnos.hora = "Campo HORA vacío";
 
     setErrores(erroresTurnos);
-
     if (Object.keys(erroresTurnos).length > 0) return;
 
     try {
@@ -70,20 +60,22 @@ const FormT = () => {
         return;
       }
 
-      const fechaHoraSeleccion = new Date(`${turnos.fecha}T${turnos.hora}`);
-      const hoy = new Date();
-      const esMismoDia = turnos.fecha === hoy.toISOString().split("T")[0];
+      const [hh, mm] = hora.split(":").map(Number);
+      const [year, month, day] = fecha.split("-").map(Number);
+      const fechaHoraSeleccion = new Date(year, month - 1, day, hh, mm);
 
-      if (esMismoDia && fechaHoraSeleccion.getTime() <= hoy.getTime()) {
+      const ahora = new Date();
+
+      if (fechaHoraSeleccion.getTime() <= ahora.getTime()) {
         Swal.fire({
           icon: "error",
           title: "Hora inválida",
-          text: "No podés elegir una hora pasada en el día de hoy.",
+          text: "No podés elegir una fecha y hora pasada.",
         });
         return;
       }
 
-      const crearTruno = await clienteAxios.post("/turnos", {
+      const crearTurno = await clienteAxios.post("/turnos", {
         detalle,
         veterinario,
         mascota,
@@ -93,7 +85,7 @@ const FormT = () => {
       });
 
       Swal.fire({
-        title: `${crearTruno.data.msg}`,
+        title: `${crearTurno.data.msg}`,
         text: "¡Turno creado con éxito!",
         icon: "success",
       });
