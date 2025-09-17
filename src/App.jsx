@@ -28,7 +28,6 @@ import PagoFallido from "./paginas/PagoFallido";
 import UsuarioCrearEditarMascota from "./paginas/UsuarioCrearEditarMascota";
 import UsuarioMascotas from "./paginas/UsuarioMascotas";
 
-
 const App = () => {
   return (
     <div className="app">
