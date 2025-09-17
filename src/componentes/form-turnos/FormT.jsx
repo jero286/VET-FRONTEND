@@ -61,21 +61,14 @@ const FormT = () => {
 
   const handleOnClickMandarDatosTurno = async (ev) => {
     ev.preventDefault();
-    const erroresTurnos = {};
+
     const { detalle, veterinario, mascota, fecha, hora } = turnos;
+    const erroresTurnos = {};
 
     if (!detalle) erroresTurnos.detalle = "Campo DETALLE vacío";
     if (!veterinario) erroresTurnos.veterinario = "Campo VETERINARIO vacío";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
     if (!fecha) erroresTurnos.fecha = "Campo FECHA vacío";
-    else if (!validarFecha(fecha)) {
-      erroresTurnos.fecha = "Solo se permiten turnos de lunes a viernes";
-      Swal.fire({
-        icon: "error",
-        title: "Fecha inválida",
-        text: "No se pueden crear turnos los sábados ni domingos",
-      });
-    }
     if (!hora) erroresTurnos.hora = "Campo HORA vacío";
 
     setErrores(erroresTurnos);
@@ -83,37 +76,14 @@ const FormT = () => {
 
     try {
       const idUsuario = JSON.parse(sessionStorage.getItem("idUsuario"));
-      if (!idUsuario) {
-        Swal.fire({
-          icon: "error",
-          title: "Error interno",
-          text: "No se encontró el ID del usuario. Iniciá sesión nuevamente.",
-        });
-        return;
-      }
-
-      const [year, month, day] = fecha.split("-").map(Number);
-      const [hh, mm] = hora.split(":").map(Number);
-
-      const fechaObj = new Date(year, month - 1, day);
-
-      const horaObj = new Date(year, month - 1, day, hh, mm);
-
-      if (horaObj.getTime() <= new Date().getTime()) {
-        Swal.fire({
-          icon: "error",
-          title: "Hora inválida",
-          text: "No podés elegir una fecha y hora pasada.",
-        });
-        return;
-      }
+      if (!idUsuario) throw new Error("No se encontró el ID del usuario");
 
       const payload = {
         detalle,
         veterinario,
         mascota,
-        fecha: fechaObj.toISOString(),
-        hora: horaObj.toISOString(),
+        fecha,
+        hora,
         idUsuario,
       };
 
@@ -122,7 +92,7 @@ const FormT = () => {
       const crearTurno = await clienteAxios.post("/turnos", payload);
 
       Swal.fire({
-        title: `${crearTurno.data.msg}`,
+        title: crearTurno.data.msg,
         text: "¡Turno creado con éxito!",
         icon: "success",
       });
@@ -135,17 +105,10 @@ const FormT = () => {
         hora: "",
       });
     } catch (error) {
-      console.error("Error al crear turno:", error.response ?? error);
-      const serverMsg =
-        error.response?.data?.msg ||
-        error.response?.data ||
-        "Revisá los campos o contactá al administrador.";
-
       Swal.fire({
         icon: "error",
         title: "Error al crear turno",
-        text:
-          typeof serverMsg === "string" ? serverMsg : JSON.stringify(serverMsg),
+        text: error.response?.data?.msg || error.message,
       });
     }
   };
