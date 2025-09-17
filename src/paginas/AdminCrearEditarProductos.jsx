@@ -31,7 +31,6 @@ const AdminCrearEditarProductos = () => {
       });
       setImagenExistente(producto.imagen);
     } catch (error) {
-      console.log("error al obtener producto", error);
       Swal.fire("Error", "No se pudo cargar el producto", "error");
     }
   };
@@ -111,8 +110,6 @@ const AdminCrearEditarProductos = () => {
         }, 2000);
       }
     } catch (error) {
-      console.error("Error al crear producto:", error);
-
       const mensaje =
         error.response?.data?.message || "No se pudo crear el producto";
       Swal.fire("Error", mensaje, "error");
@@ -158,8 +155,6 @@ const AdminCrearEditarProductos = () => {
 
       setTimeout(() => navigate("/admin/productos"), 2000);
     } catch (error) {
-      console.error("Error al editar el producto", error);
-
       const mensaje =
         error.response?.data?.message || "No se pudo editar el producto";
       Swal.fire("Error", mensaje, "error");

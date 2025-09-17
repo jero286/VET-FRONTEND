@@ -42,7 +42,6 @@ const TablaUsuarios = ({
         await refreshTurnos();
       }
     } catch (error) {
-      console.error("Error al cancelar turno:", error);
       await Swal.fire({
         title: "Error",
         text: "No se pudo cancelar el turno.",

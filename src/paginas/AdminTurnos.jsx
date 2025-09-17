@@ -11,7 +11,6 @@ const AdminTurnos = () => {
 
   const obtenerTodosLosTurnos = async () => {
     const turnos = await clienteAxios.get("/turnos");
-    console.log(turnos);
     setTurnos(turnos.data.turnos);
   };
 
@@ -21,14 +20,14 @@ const AdminTurnos = () => {
   return (
     <>
       <Container fluid className="my-5">
-       <div className="table-responsive">
-         <TablaC
-          idPagina="turnos"
-          array={turnos}
-          obtenerTodosLosTurnos={obtenerTodosLosTurnos}
-          usuarioLogueado={usuarioLogueado}
-        />
-       </div>
+        <div className="table-responsive">
+          <TablaC
+            idPagina="turnos"
+            array={turnos}
+            obtenerTodosLosTurnos={obtenerTodosLosTurnos}
+            usuarioLogueado={usuarioLogueado}
+          />
+        </div>
       </Container>
     </>
   );

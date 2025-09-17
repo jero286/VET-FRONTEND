@@ -7,7 +7,6 @@ const clienteAxios = axios.create({
 clienteAxios.interceptors.request.use(
   (config) => {
     let token = sessionStorage.getItem("token");
-    console.log("[axios interceptor] token:", token);
 
     if (token) {
       token = token.replace(/^["']|["']$/g, "");

@@ -64,7 +64,6 @@ const UsuarioCrearEditarMascota = () => {
       });
       navigate("/usuario/mascotas");
     } catch (error) {
-      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Error al registrar la mascota",
