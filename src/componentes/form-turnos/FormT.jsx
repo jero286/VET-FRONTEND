@@ -27,7 +27,6 @@ const FormT = () => {
     "15:00",
   ];
 
-  // Devuelve la fecha local en formato YYYY-MM-DD (evita usar toISOString()[0])
   const getLocalDateString = () => {
     const d = new Date();
     const yyyy = d.getFullYear();
@@ -65,6 +64,7 @@ const FormT = () => {
     const erroresTurnos = {};
     const { detalle, veterinario, mascota, fecha, hora } = turnos;
 
+    // Validaciones
     if (!detalle) erroresTurnos.detalle = "Campo DETALLE vacío";
     if (!veterinario) erroresTurnos.veterinario = "Campo VETERINARIO vacío";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
@@ -93,25 +93,18 @@ const FormT = () => {
         return;
       }
 
-      const [hh, mm] = hora.split(":").map(Number);
       const [year, month, day] = fecha.split("-").map(Number);
-      const fechaHoraSeleccion = new Date(year, month - 1, day, hh, mm);
+      const fechaISO = new Date(year, month - 1, day).toISOString();
 
-      if (fechaHoraSeleccion.getTime() <= new Date().getTime()) {
-        Swal.fire({
-          icon: "error",
-          title: "Hora inválida",
-          text: "No podés elegir una fecha y hora pasada.",
-        });
-        return;
-      }
+      const [hh, mm] = hora.split(":").map(Number);
+      const horaISO = new Date(1970, 0, 1, hh, mm).toISOString();
 
       const payload = {
         detalle,
         veterinario,
         mascota,
-        fecha: fechaHoraSeleccion.toISOString(),
-        hora: fechaHoraSeleccion.toISOString(),
+        fecha: fechaISO,
+        hora: horaISO,
         idUsuario,
       };
 
