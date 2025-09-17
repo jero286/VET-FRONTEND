@@ -16,7 +16,7 @@ import AdminPacientes from "./paginas/AdminPacientes";
 import AdminTurnos from "./paginas/AdminTurnos";
 import AdminProductos from "./paginas/AdminProductos";
 import PaginaUsuario from "./paginas/PaginaUsuario";
-import ReservarTurno from "./paginas/reservarTurno";
+import ReservarTurno from "./paginas/ReservarTurno";
 import AdminEditarUsuarios from "./paginas/AdminEditarUsuarios";
 import AdminCrearEditarProductos from "./paginas/AdminCrearEditarProductos";
 import UsuarioTurnos from "./paginas/UsuarioTurnos";
