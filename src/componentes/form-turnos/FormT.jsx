@@ -112,8 +112,8 @@ const FormT = () => {
         detalle,
         veterinario,
         mascota,
-        fecha: fechaObj,
-        hora: horaObj,
+        fecha: fechaObj.toISOString(),
+        hora: horaObj.toISOString(),
         idUsuario,
       };
 
