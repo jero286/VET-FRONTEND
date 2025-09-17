@@ -34,18 +34,13 @@ const AdminEditarUsuarios = () => {
     setCargando(true);
 
     try {
-      console.log("🔍 Buscando usuario con ID:", id);
       const res = await clienteAxios.get(`/usuarios/${id}`);
-      
-      console.log("📦 Respuesta completa del backend:", res.data);
-      
+
       const usuario = res.data.usuario;
-      
+
       if (!usuario) {
         throw new Error("Usuario no encontrado en la respuesta");
       }
-
-      console.log("👤 Datos del usuario:", usuario);
 
       const datosFormateados = {
         nombreUsuario: usuario.nombreUsuario || "",
@@ -54,13 +49,8 @@ const AdminEditarUsuarios = () => {
         telefono: usuario.telefono || "",
       };
 
-      console.log("✅ Datos formateados para el formulario:", datosFormateados);
-
       setFormEditarUsuario(datosFormateados);
-
     } catch (error) {
-      console.error("❌ Error completo:", error);
-      
       let mensaje = "Error al cargar los datos del usuario.";
       if (error.response?.status === 404) {
         mensaje = "Usuario no encontrado.";
@@ -82,18 +72,24 @@ const AdminEditarUsuarios = () => {
   };
 
   const handleChangeForm = (campo, valor) => {
-    setFormEditarUsuario(prevState => ({
+    setFormEditarUsuario((prevState) => ({
       ...prevState,
-      [campo]: valor
+      [campo]: valor,
     }));
   };
 
   const handleClickFormEditarUsuario = async (e) => {
     e.preventDefault();
 
-    const { nombreUsuario, apellidoUsuario, emailUsuario, telefono } = formEditarUsuario;
+    const { nombreUsuario, apellidoUsuario, emailUsuario, telefono } =
+      formEditarUsuario;
 
-    if (!nombreUsuario.trim() || !apellidoUsuario.trim() || !emailUsuario.trim() || !telefono.trim()) {
+    if (
+      !nombreUsuario.trim() ||
+      !apellidoUsuario.trim() ||
+      !emailUsuario.trim() ||
+      !telefono.trim()
+    ) {
       Swal.fire({
         icon: "warning",
         title: "Campos requeridos",
@@ -115,8 +111,6 @@ const AdminEditarUsuarios = () => {
     }
 
     try {
-      console.log("📤 Enviando datos actualizados:", formEditarUsuario);
-
       const datosParaEnviar = {
         nombreUsuario: nombreUsuario.trim(),
         apellidoUsuario: apellidoUsuario.trim(),
@@ -126,8 +120,6 @@ const AdminEditarUsuarios = () => {
 
       const res = await clienteAxios.put(`/usuarios/${id}`, datosParaEnviar);
 
-      console.log("✅ Respuesta del servidor:", res.data);
-
       Swal.fire({
         icon: "success",
         title: "Éxito",
@@ -136,10 +128,7 @@ const AdminEditarUsuarios = () => {
       }).then(() => {
         navigate("/admin/pacientes");
       });
-
     } catch (error) {
-      console.error("❌ Error al actualizar:", error);
-
       let mensaje = "No se pudo actualizar el usuario";
       if (error.response?.data?.msg) {
         mensaje = error.response.data.msg;
@@ -187,7 +176,7 @@ const AdminEditarUsuarios = () => {
   return (
     <Container className="w-25 my-5">
       <h2 className="text-center mb-4">Editar Usuario</h2>
-      
+
       <Form onSubmit={handleClickFormEditarUsuario}>
         <Form.Group className="mb-3" controlId="nombre">
           <Form.Label>Nombre *</Form.Label>
@@ -195,12 +184,12 @@ const AdminEditarUsuarios = () => {
             type="text"
             placeholder="Ingrese el nombre"
             value={formEditarUsuario.nombreUsuario}
-            onChange={(e) => handleChangeForm('nombreUsuario', e.target.value)}
+            onChange={(e) => handleChangeForm("nombreUsuario", e.target.value)}
             required
           />
           {formEditarUsuario.nombreUsuario && (
             <Form.Text className="text-muted">
-               Editando: {formEditarUsuario.nombreUsuario}
+              Editando: {formEditarUsuario.nombreUsuario}
             </Form.Text>
           )}
         </Form.Group>
@@ -211,12 +200,14 @@ const AdminEditarUsuarios = () => {
             type="text"
             placeholder="Ingrese el apellido"
             value={formEditarUsuario.apellidoUsuario}
-            onChange={(e) => handleChangeForm('apellidoUsuario', e.target.value)}
+            onChange={(e) =>
+              handleChangeForm("apellidoUsuario", e.target.value)
+            }
             required
           />
           {formEditarUsuario.apellidoUsuario && (
             <Form.Text className="text-muted">
-               Editando: {formEditarUsuario.apellidoUsuario}
+              Editando: {formEditarUsuario.apellidoUsuario}
             </Form.Text>
           )}
         </Form.Group>
@@ -227,12 +218,12 @@ const AdminEditarUsuarios = () => {
             type="email"
             placeholder="Ingrese el email"
             value={formEditarUsuario.emailUsuario}
-            onChange={(e) => handleChangeForm('emailUsuario', e.target.value)}
+            onChange={(e) => handleChangeForm("emailUsuario", e.target.value)}
             required
           />
           {formEditarUsuario.emailUsuario && (
             <Form.Text className="text-muted">
-               Editando: {formEditarUsuario.emailUsuario}
+              Editando: {formEditarUsuario.emailUsuario}
             </Form.Text>
           )}
         </Form.Group>
@@ -243,7 +234,7 @@ const AdminEditarUsuarios = () => {
             type="text"
             placeholder="Ingrese el teléfono"
             value={formEditarUsuario.telefono}
-            onChange={(e) => handleChangeForm('telefono', e.target.value)}
+            onChange={(e) => handleChangeForm("telefono", e.target.value)}
             required
           />
           {formEditarUsuario.telefono && (
@@ -255,14 +246,14 @@ const AdminEditarUsuarios = () => {
 
         <div className="text-center">
           <Button variant="primary" type="submit" className="me-2">
-             Guardar Cambios
+            Guardar Cambios
           </Button>
-          <Button 
-            variant="secondary" 
+          <Button
+            variant="secondary"
             type="button"
             onClick={() => navigate("/admin/pacientes")}
           >
-             Cancelar
+            Cancelar
           </Button>
         </div>
       </Form>

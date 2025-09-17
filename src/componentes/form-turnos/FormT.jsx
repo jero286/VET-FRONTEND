@@ -87,8 +87,6 @@ const FormT = () => {
         idUsuario,
       };
 
-      console.log("Payload a enviar:", payload);
-
       const crearTurno = await clienteAxios.post("/turnos", payload);
 
       Swal.fire({
