@@ -7,6 +7,14 @@ import Swal from "sweetalert2";
 import "./formT.css";
 
 const FormT = () => {
+  const [turnos, setTurnos] = useState({
+    detalle: "",
+    veterinario: "",
+    mascota: "",
+    fecha: "",
+    hora: "",
+  });
+  const [errores, setErrores] = useState({});
   const horasPermitidas = [
     "08:00",
     "09:00",
