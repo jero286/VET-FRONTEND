@@ -64,7 +64,6 @@ const FormT = () => {
     const erroresTurnos = {};
     const { detalle, veterinario, mascota, fecha, hora } = turnos;
 
-    // Validaciones
     if (!detalle) erroresTurnos.detalle = "Campo DETALLE vacío";
     if (!veterinario) erroresTurnos.veterinario = "Campo VETERINARIO vacío";
     if (!mascota) erroresTurnos.mascota = "Campo MASCOTA vacío";
@@ -94,17 +93,27 @@ const FormT = () => {
       }
 
       const [year, month, day] = fecha.split("-").map(Number);
-      const fechaISO = new Date(year, month - 1, day).toISOString();
-
       const [hh, mm] = hora.split(":").map(Number);
-      const horaISO = new Date(1970, 0, 1, hh, mm).toISOString();
+
+      const fechaObj = new Date(year, month - 1, day);
+
+      const horaObj = new Date(year, month - 1, day, hh, mm);
+
+      if (horaObj.getTime() <= new Date().getTime()) {
+        Swal.fire({
+          icon: "error",
+          title: "Hora inválida",
+          text: "No podés elegir una fecha y hora pasada.",
+        });
+        return;
+      }
 
       const payload = {
         detalle,
         veterinario,
         mascota,
-        fecha: fechaISO,
-        hora: horaISO,
+        fecha: fechaObj,
+        hora: horaObj,
         idUsuario,
       };
 
