@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { NavLink } from "react-router";
 import "./footerC.css";
-import ObtenerClimaTucuman from "../clima/obtenerClima";
+import ObtenerClimaTucuman from "../clima/ObtenerClima";
 
 const FooterC = () => {
   return (
