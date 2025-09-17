@@ -27,18 +27,27 @@ const FormT = () => {
     "15:00",
   ];
 
+  // Devuelve la fecha local en formato YYYY-MM-DD (evita usar toISOString()[0])
+  const getLocalDateString = () => {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
   const horasDisponibles = () => {
     if (!turnos.fecha) return horasPermitidas;
 
-    const hoy = new Date();
+    const ahora = new Date();
     const [year, month, day] = turnos.fecha.split("-").map(Number);
     const fechaSeleccion = new Date(year, month - 1, day);
 
-    if (fechaSeleccion.toDateString() === hoy.toDateString()) {
+    if (fechaSeleccion.toDateString() === ahora.toDateString()) {
       return horasPermitidas.filter((hora) => {
         const [hh, mm] = hora.split(":").map(Number);
         const fechaHora = new Date(year, month - 1, day, hh, mm);
-        return fechaHora.getTime() > hoy.getTime();
+        return fechaHora.getTime() > ahora.getTime();
       });
     }
 
@@ -97,13 +106,18 @@ const FormT = () => {
         return;
       }
 
-      const crearTurno = await clienteAxios.post("/turnos", {
+      const payload = {
         detalle,
         veterinario,
         mascota,
         fecha: fechaHoraSeleccion.toISOString(),
+        hora: fechaHoraSeleccion.toISOString(),
         idUsuario,
-      });
+      };
+
+      console.log("Payload a enviar:", payload);
+
+      const crearTurno = await clienteAxios.post("/turnos", payload);
 
       Swal.fire({
         title: `${crearTurno.data.msg}`,
@@ -119,12 +133,17 @@ const FormT = () => {
         hora: "",
       });
     } catch (error) {
+      console.error("Error al crear turno:", error.response ?? error);
+      const serverMsg =
+        error.response?.data?.msg ||
+        error.response?.data ||
+        "Revisá los campos o contactá al administrador.";
+
       Swal.fire({
         icon: "error",
         title: "Error al crear turno",
         text:
-          error.response?.data?.msg ||
-          "Revisá los campos o contactá al administrador.",
+          typeof serverMsg === "string" ? serverMsg : JSON.stringify(serverMsg),
       });
     }
   };
@@ -198,7 +217,7 @@ const FormT = () => {
           onChange={handleOnChangeDatosFormulario}
           value={turnos.fecha}
           className={errores.fecha ? "form-control is-invalid" : "form-control"}
-          min={new Date().toISOString().split("T")[0]}
+          min={getLocalDateString()}
         />
       </Form.Group>
 
