@@ -15,6 +15,7 @@ const FormT = () => {
     hora: "",
   });
   const [errores, setErrores] = useState({});
+
   const horasPermitidas = [
     "08:00",
     "09:00",
@@ -46,14 +47,12 @@ const FormT = () => {
 
   const validarFecha = (fecha) => {
     const [year, month, day] = fecha.split("-").map(Number);
-    const fechaForm = new Date(year, month - 1, day);
-    const dia = fechaForm.getDay();
+    const dia = new Date(year, month - 1, day).getDay();
     return dia !== 0 && dia !== 6;
   };
 
   const handleOnClickMandarDatosTurno = async (ev) => {
     ev.preventDefault();
-
     const erroresTurnos = {};
     const { detalle, veterinario, mascota, fecha, hora } = turnos;
 
@@ -63,7 +62,6 @@ const FormT = () => {
     if (!fecha) erroresTurnos.fecha = "Campo FECHA vacío";
     else if (!validarFecha(fecha)) {
       erroresTurnos.fecha = "Solo se permiten turnos de lunes a viernes";
-
       Swal.fire({
         icon: "error",
         title: "Fecha inválida",
@@ -90,9 +88,7 @@ const FormT = () => {
       const [year, month, day] = fecha.split("-").map(Number);
       const fechaHoraSeleccion = new Date(year, month - 1, day, hh, mm);
 
-      const ahora = new Date();
-
-      if (fechaHoraSeleccion.getTime() <= ahora.getTime()) {
+      if (fechaHoraSeleccion.getTime() <= new Date().getTime()) {
         Swal.fire({
           icon: "error",
           title: "Hora inválida",
@@ -105,8 +101,7 @@ const FormT = () => {
         detalle,
         veterinario,
         mascota,
-        fecha,
-        hora,
+        fecha: fechaHoraSeleccion.toISOString(),
         idUsuario,
       });
 
@@ -199,7 +194,6 @@ const FormT = () => {
         <Form.Label>Fecha</Form.Label>
         <Form.Control
           type="date"
-          placeholder="Solo de lunes a viernes"
           name="fecha"
           onChange={handleOnChangeDatosFormulario}
           value={turnos.fecha}
