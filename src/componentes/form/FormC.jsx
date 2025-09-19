@@ -24,6 +24,11 @@ const FormC = ({ idPage }) => {
     contrasenia: "",
   });
 
+  const validarEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const handleClickDelBotonParaRegistro = async (ev) => {
     try {
       ev.preventDefault();
@@ -37,6 +42,7 @@ const FormC = ({ idPage }) => {
         repContrasenia,
         terminosYCondiciones,
       } = registro;
+
       if (!nombreUsuario) {
         erroresFormulario.nombreUsuario = "Campo USUARIO está vacío";
       }
@@ -45,6 +51,8 @@ const FormC = ({ idPage }) => {
       }
       if (!emailUsuario) {
         erroresFormulario.emailUsuario = "Campo EMAIL está vacío";
+      } else if (!validarEmail(emailUsuario)) {
+        erroresFormulario.emailUsuario = "Ingrese un email válido";
       }
       if (!telefono) {
         erroresFormulario.telefono = "Campo TELEFONO está vacío";
@@ -60,66 +68,97 @@ const FormC = ({ idPage }) => {
         erroresFormulario.terminosYCondiciones =
           "Acepta los terminos y condiciones";
       }
-      setErrores(erroresFormulario);
-      if (
-        nombreUsuario &&
-        apellidoUsuario &&
-        emailUsuario &&
-        telefono &&
-        contrasenia &&
-        repContrasenia &&
-        terminosYCondiciones
-      ) {
-        if (contrasenia === repContrasenia) {
-          const usuarioRegistrado = await clienteAxios.post("/usuarios", {
-            nombreUsuario,
-            apellidoUsuario,
-            emailUsuario,
-            contrasenia,
-            telefono,
-          });
-          swal.fire({
-            title: `${usuarioRegistrado.data.msg}`,
-            text: "¡En breve recibiras un email de confirmación!",
-            icon: "success",
-          });
-          setRegistro({
-            nombreUsuario: "",
-            apellidoUsuario: "",
-            emailUsuario: "",
-            telefono: "",
-            contrasenia: "",
-            repContrasenia: "",
-            terminosYCondiciones: false,
-          });
-          setTimeout(() => {
-            navigate("/iniciarSesion");
-          }, 1000);
-        } else {
-          swal.fire({
-            icon: "error",
-            title: "Las contraseñas no coinciden",
-          });
-        }
+
+      if (Object.keys(erroresFormulario).length > 0) {
+        setErrores(erroresFormulario);
+        return;
       }
-    } catch (error) {
-      swal.fire({
-        icon: "error",
-        title: "Error al registrar",
-        text:
-          error.response?.data?.msg ||
-          "Revisá los campos o contactá al administrador.",
+
+      if (contrasenia !== repContrasenia) {
+        swal.fire({
+          icon: "error",
+          title: "Las contraseñas no coinciden",
+        });
+        return;
+      }
+
+      const usuarioRegistrado = await clienteAxios.post("/usuarios", {
+        nombreUsuario,
+        apellidoUsuario,
+        emailUsuario,
+        contrasenia,
+        telefono,
       });
+
+      swal.fire({
+        title: `${usuarioRegistrado.data.msg}`,
+        text: "¡En breve recibiras un email de confirmación!",
+        icon: "success",
+      });
+
+      setRegistro({
+        nombreUsuario: "",
+        apellidoUsuario: "",
+        emailUsuario: "",
+        telefono: "",
+        contrasenia: "",
+        repContrasenia: "",
+        terminosYCondiciones: false,
+      });
+
+      setErrores({});
+
+      setTimeout(() => {
+        navigate("/iniciarSesion");
+      }, 1000);
+
+    } catch (error) {
+      const mensajeError = error.response?.data?.msg || "Error desconocido";
+      
+      if (mensajeError.toLowerCase().includes("usuario") && 
+          (mensajeError.toLowerCase().includes("existe") || 
+           mensajeError.toLowerCase().includes("duplicado") ||
+           mensajeError.toLowerCase().includes("uso"))) {
+        setErrores({
+          nombreUsuario: "Este nombre de usuario ya está en uso. Elija otro nombre."
+        });
+        swal.fire({
+          icon: "error",
+          title: "Nombre de usuario no disponible",
+          text: "Este nombre de usuario ya está en uso. Por favor, elija otro nombre.",
+        });
+      } else {
+        swal.fire({
+          icon: "error",
+          title: "Error al registrar",
+          text: mensajeError || "Revisá los campos o contactá al administrador.",
+        });
+      }
     }
   };
 
   const handleChangeDatosRegistro = (ev) => {
     const value =
       ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
+    
+    if (errores[ev.target.name]) {
+      setErrores(prevErrores => ({
+        ...prevErrores,
+        [ev.target.name]: ""
+      }));
+    }
+    
     setRegistro({ ...registro, [ev.target.name]: value });
   };
 
   const handleChangeDatosLogeo = (ev) => {
+    if (errores[ev.target.name]) {
+      setErrores(prevErrores => ({
+        ...prevErrores,
+        [ev.target.name]: ""
+      }));
+    }
+    
     setLogin({ ...login, [ev.target.name]: ev.target.value });
   };
 
